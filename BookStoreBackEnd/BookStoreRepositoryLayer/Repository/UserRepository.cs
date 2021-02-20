@@ -130,9 +130,8 @@ namespace BookStoreRepositoryLayer
                 if (result != null)
                 {
 
-                    //string decode = Decryptdata(result.Password);
+                    string decode = Decryptdata(result.Password);
 
-                    
                     Sender send = new Sender();
                     send.MailSender(forgotPassword);
 
