@@ -1,8 +1,6 @@
 <template>
   <div>
     <form novalidate class="md-layout" @submit.prevent="validateUser">
-    
-    <!-- <form novalidate class="md-layout" @submit.prevent="validateUser()" > --->
       <md-card class="md-layout-item md-size-50 md-small-size-50 md-with-hover">
         
         <center><div class="h2">
@@ -16,7 +14,7 @@
               <div class="md-layout-item md-small-size-100">
                 <md-field :class="getValidationClass('firstName')">
                   <label for="first-name">First Name</label>
-                  <md-input name="first-name" id="first-name" autocomplete="given-name" v-model="form.firstName" :disabled="sending" />
+                  <md-input name="first-name" id="name" autocomplete="given-name" v-model="form.firstName" :disabled="sending" />
                   <span class="md-error" v-if="!$v.form.firstName.required" >The first name is required</span>
                   <span class="md-error" v-else-if="!$v.form.firstName.minlength">Invalid first name</span>
                 </md-field>
@@ -25,7 +23,7 @@
               <div class="md-layout-item md-small-size-100">
                 <md-field :class="getValidationClass('lastName')">
                   <label for="last-name">Last Name</label>
-                  <md-input name="last-name" id="last-name" autocomplete="family-name" v-model="form.lastName" :disabled="sending"/>
+                  <md-input name="last-name" id="name" autocomplete="family-name" v-model="form.lastName" :disabled="sending"/>
                   <span class="md-error" v-if="!$v.form.lastName.required">The last name is required</span>
                   <span class="md-error" v-else-if="!$v.form.lastName.minlength">Invalid last name</span>
                 </md-field>
@@ -43,7 +41,7 @@
             <div class="md-layout md-gutter">
               <div class="md-layout-item md-small-size-100">
                 <md-field :class="getValidationClass('password')">
-                  <label for="last-name">Password</label>
+                  <label for="Password">Password</label>
                   <md-input type="password" name="password" id="password" autocomplete="password" v-model="form.password" :disabled="sending" />
                   <span class="md-error" v-if="!$v.form.password.required">The password is required</span>
                   <span class="md-error" v-else-if="!$v.form.password.minlength">Invalid password</span>
@@ -53,7 +51,7 @@
               <div class="md-layout-item md-small-size-100">
                 <md-field :class="getValidationClass('confirm')">
                   <label for="last-name">Confirm</label>
-                  <md-input type="password" name="confirm" id="confirm" autocomplete="confirm" v-model="form.confirm" :disabled="sending" />
+                  <md-input type="password" name="confirm" id="password" autocomplete="confirm" v-model="form.confirm" :disabled="sending" />
                   <span class="md-error" v-if="!$v.form.confirm.required">The confirm is required</span>
                   <span class="md-error" v-else-if="!$v.form.confirm.minlength">Invalid confirm</span>
                 </md-field>
@@ -67,10 +65,10 @@
         <md-card-actions>
           <div class="md-layout md-gutter">
             <div class="md-layout-item md-small-size-100">
-              <md-button type="submit" to="./" class="md-primary" :disabled="sending">Sign in instead</md-button>
+              <md-button type="submit" to="./" id= "txt" class="md-primary" :disabled="sending">Sign in instead</md-button>
             </div>
             <div class="md-layout-item md-small-size-100">
-              <md-button  v-on:click="registerPost()" type="submit" class="md-dense md-raised md-primary" :disabled="sending" >SignUp</md-button>
+              <md-button  v-on:click="registerPost()" type="submit" id="txt" class="md-dense md-raised md-primary" :disabled="sending" >SignUp</md-button>
               <!-- <md-button  v-on:click="post" type="submit" class="md-dense md-raised md-primary" :disabled="sending" >SignUp</md-button> -->
             </div>
           </div>
@@ -82,10 +80,8 @@
 </template>
 
 <script>
-import {validationMixin} from "vuelidate";
+import { validationMixin } from "vuelidate";
 import {required,email,minLength,maxLength} from "vuelidate/lib/validators";
-import UserServices from "../Services/UserServices";
-// import axios from "axios";
 
 export default {
   name: "FormValidation",
@@ -137,29 +133,6 @@ export default {
       }
     },
 
-registerPost() {
-const userData = {
-
-    lastName:this.form.lastName,
-        firstName:this.form.firstName,
-        email:this.form.email,
-        password:this.form.password,
-      };
-     UserServices
-        .registration(userData)
-        .then((data)=> {
-          // localStorage.setItem("AccessToken", data.data.id);
-
-           setTimeout(()=>  this.$router.push("/home"), 2000)
-          // this.$router.push("/home");
-          // window.location.href="/";
-          console.log(data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-
     clearForm() {
       this.$v.$reset();
       this.form.firstName = null;
@@ -203,24 +176,44 @@ padding-bottom: 10px;
 margin-top: 1px;
 padding-top: 6px;
 font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-// color:rgb(14, 14, 14);
+color:rgb(14, 14, 14);
 padding-bottom: 10px;
-// background-color: rgba(200, 152, 228, 0.699);
 border-radius: 14px;
 }
-#h2
-{
-color:rgb(25, 6, 192);
-}
-
-.blank
-{
-padding-bottom: 8px;
+//Bottom Page 
+// .blank
+// {
+// padding-bottom: 8px;
 // background-color:rgba(200, 152, 228, 0.699);
-border-radius: 10px;
-}
+// border-radius: 10px;
+// }
+
 .md-card {
 margin-left: 400px;
 margin-top: 150px;
 }
+
+//Text Forgot 
+#txt {
+  text-transform: capitalize;
+}
+
+//Form 
+// .md-layout {
+//     display: flex;
+//   flex-wrap: wrap;
+//    width: 100px;
+//     margin-left: 100px;
+// }
+
+// /// Text Fields 
+
+// #name , #password
+// {
+// width: 20px;
+// }
+// #email
+// {
+
+// }
 </style>

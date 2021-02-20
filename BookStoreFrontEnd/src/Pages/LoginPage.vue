@@ -4,7 +4,7 @@
       <md-card class="md-layout-item md-size-50 md-small-size-100">
         <center>
           <div class="h2">
-            <h2 id="h2">Book Store </h2>
+            <h2 id="h2">Book Store</h2>
             <h3>Login</h3>
           </div>
         </center>
@@ -23,7 +23,7 @@
             <span class="md-error" v-else-if="!$v.form.password.minlength">Invalid password</span>
           </md-field>
 
-          <md-button to="./Forgot" class="md-primary">Forgot Password?</md-button>
+          <md-button to="./Forgot" id="txt" class="md-primary">Forgot Password?</md-button>
         </md-card-content>
 
         <md-progress-bar md-mode="indeterminate" v-if="sending" />
@@ -31,11 +31,11 @@
         <md-card-actions>
           <div class="md-layout md-gutter">
             <div class="md-layout-item md-small-size-100">
-              <md-button to="./Register" class="md-primary" :disabled="sending">Create Account</md-button>
+              <md-button to="./Register" id="txt" class="md-primary" :disabled="sending">Create Account</md-button>
               <!-- <md-button  type="submit" class="md-primary" >Create account</md-button> -->
             </div>
             <div class="md-layout-item md-small-size-100">
-              <md-button v-on:click="loginPost()" type="submit" class="md-dense md-raised md-primary" :disabled="sending">Login</md-button>
+              <md-button v-on:click="loginPost()" type="submit" id="txt" class="md-dense md-raised md-primary" :disabled="sending">Login</md-button>
             </div>
           </div>
         </md-card-actions>
@@ -47,12 +47,8 @@
 </template>
 
 <script>
-// import axios from 'axios'
-// import userService from "../Services/UserServices";
 import { validationMixin } from "vuelidate";
 import { required, email, minLength } from "vuelidate/lib/validators";
-// import { setTimeout } from 'timers';
-
 
 export default {
   name: "FormValidation",
@@ -79,66 +75,45 @@ export default {
     },
   },
 
-  // methods: {
-  //   // // loginUser
-  //   // loginPost() {
-  //   //   const userData = {
-  //   //     email: this.form.email,
-  //   //     password: this.form.password,
-  //   //      };
-  //   //   userService
-  //   //   .login(userData)
-  //   //     .then((data)=> {
-  //   //       localStorage.setItem("AccessToken", data.data.id);
-
-  //   //        setTimeout(()=>  this.redirect(), 2000)
-  //   //       this.$router.push("/home");
-  //   //       // window.location.href="/home";
-  //   //       // this.$router.replace("/home");
-  //   //       console.log(data);
-  //   //     })
-  //   //     .catch((error) => {
-  //   //       console.log(error);
-  //   //     });
-  //   // },// Login User
-
-  //   getValidationClass(fieldName) {
-  //     const field = this.$v.form[fieldName];
-  //     if (field) {
-  //       return {
-  //         "md-invalid": field.$invalid && field.$dirty,
-  //       };
-  //     }
-  //   }, 
+  methods: {
+    
+    getValidationClass(fieldName) {
+      const field = this.$v.form[fieldName];
+      if (field) {
+        return {
+          "md-invalid": field.$invalid && field.$dirty,
+        };
+      }
+    }, 
 
 
-  //    redirect() {
-  //           this.$router.push("/home")
-  //       },
+     redirect() {
+            this.$router.push("/home")
+        },
 
-  //   clearForm() {
-  //     this.$v.$reset();
-  //     this.form.email = null;
-  //     this.form.password = null;
-  //   },
-  //   saveUser() {
-  //     this.sending = true;
+    clearForm() {
+      this.$v.$reset();
+      this.form.email = null;
+      this.form.password = null;
+    },
+    saveUser() {
+      this.sending = true;
 
-  //     // Instead of this timeout, here you can call your API
-  //     window.setTimeout(() => {
-  //       this.loginUser = `${this.form.email} `;
-  //       this.userSaved = true;
-  //       this.sending = false;
-  //       this.clearForm();
-  //     }, 1500);
-  //   },
-  //   validateUser() {
-  //     this.$v.$touch();
-  //     if (!this.$v.$invalid) {
-  //       this.saveUser();
-  //     }
-  //   },
-  // },  // Methods 
+      window.setTimeout(() => {
+        this.loginUser = `${this.form.email} `;
+        this.userSaved = true;
+        this.sending = false;
+        this.clearForm();
+      }, 1500);
+    },
+    validateUser() {
+      this.$v.$touch();
+      if (!this.$v.$invalid) {
+        this.saveUser();
+      }
+    },
+    
+  },  // Methods 
 };
 </script>
 
@@ -148,19 +123,13 @@ export default {
   margin-top: 1px;
   padding-top: 6px;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  color: rgb(252, 248, 6);
   padding-bottom: 10px;
-  // background-color: black;
   border-radius: 14px;
-}
-
-#h2 {
-  color: white;
 }
 
 .blank {
   padding-bottom: 6px;
-  // background-color: black;
+  //  background-color: black;
   border-radius: 20px;
 }
 .md-progress-bar {
@@ -172,5 +141,18 @@ export default {
 .md-card {
   margin-left: 400px;
   margin-top: 150px;
+}
+
+//Form 
+.md-layout {
+    display: flex;
+    flex-wrap: wrap;
+   width: 900px;
+    margin-left: 200px;
+}
+
+//Text Forgot 
+#txt {
+  text-transform: capitalize;
 }
 </style>
