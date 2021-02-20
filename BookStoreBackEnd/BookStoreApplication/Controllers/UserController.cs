@@ -139,6 +139,33 @@ namespace BookStoreApplication.Controllers
             }
         }
 
+        /// <summary>
+        /// Reset password.
+        /// </summary>
+        /// <param name="reset">The reset.</param>
+        /// <returns></returns>
+
+        [HttpPut]
+        [Route("resetPassword")]
+        public IActionResult ResetPassword(LoginModel reset)
+        {
+            try
+            {
+                var result = this.business.ResetUserPassword(reset);
+                if (result != null)
+                {
+                    return this.Ok(new { Status = true, Message = "Password Reset Succesfully", Data = result });
+                }
+                else
+                {
+                    return this.BadRequest(new { Status = false, Message = "Error While Reseting Password" });
+                }
+            }
+            catch (Exception e)
+            {
+                return this.NotFound(new { Status = false, Message = e.Message });
+            }
+        }
 
     }
 }

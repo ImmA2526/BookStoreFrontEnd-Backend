@@ -1,5 +1,6 @@
 ﻿using BookStoreModelLayer;
 using BookStoreRepositoryLayer.IRepository;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using MSMQ;
 using System;
@@ -166,5 +167,36 @@ namespace BookStoreRepositoryLayer
             }
         }
 
+        /// <summary>
+        /// Reset password.
+        /// </summary>
+        /// <param name="oldPassword">The old password.</param>
+        /// <param name="newPassword">The new password.</param>
+        /// <returns></returns>
+
+        public string ResetUserPassword(LoginModel reset)
+        {
+            try
+            {
+                var resetPwd = bookStoreContext.UserTabel.FirstOrDefault(password => password.Email == reset.Email);
+                string newPassword = reset.Password;
+                string encodePass = PasswordEncryption(newPassword);
+                if (resetPwd != null)
+                {
+                    resetPwd.Password = encodePass;
+                    bookStoreContext.Entry(resetPwd).State = EntityState.Modified;
+                    bookStoreContext.SaveChanges();
+                    return "SUCCESS";
+                }
+                else
+                {
+                    return "NOT_FOUND";
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
     }
 }

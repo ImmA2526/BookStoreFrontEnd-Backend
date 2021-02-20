@@ -33,5 +33,11 @@ namespace BookStoreBusinessLayer.BusinessLayer
             return result;
         }
 
+        public string ResetUserPassword(LoginModel reset)
+        {
+            var result = userRepo.ResetUserPassword(reset);
+            return result;
+        }
+
     }
 }

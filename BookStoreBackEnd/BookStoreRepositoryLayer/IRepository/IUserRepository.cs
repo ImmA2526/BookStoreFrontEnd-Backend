@@ -13,5 +13,6 @@ namespace BookStoreRepositoryLayer.IRepository
 
         string ForgotUserPassword(ForgotModel forgot);
 
+        string ResetUserPassword(LoginModel reset);
     }
 }
