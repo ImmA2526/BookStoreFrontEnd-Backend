@@ -1,5 +1,6 @@
 ﻿using BookStoreBusinessLayer.IBusinessLayer;
 using BookStoreModelLayer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -107,5 +108,37 @@ namespace BookStoreApplication.Controllers
                 return this.NotFound(new { Status = false, Message = e.Message });
             }
         }
+
+        /// <summary>
+        /// Forgot password.
+        /// </summary>
+        /// <param name="forgot">The forgot.</param>
+        /// <returns></returns>
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("forgotPassword")]
+        public IActionResult ForgotPassword([FromQuery] ForgotModel forgot)
+        {
+            try
+            {
+                var result = this.business.ForgotUserPassword(forgot);
+
+                if (result != null)
+                {
+                    return this.Ok(new { Status = true, Message = "Password Send Successfully", Data = result });
+                }
+                else
+                {
+                    return this.BadRequest(new { Status = false, Message = "Sending Password Failed" });
+                }
+            }
+
+            catch (Exception e)
+            {
+                return this.NotFound(new { Status = false, Message = e.Message });
+            }
+        }
+
+
     }
 }

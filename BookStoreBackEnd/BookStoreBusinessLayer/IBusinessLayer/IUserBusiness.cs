@@ -11,5 +11,6 @@ namespace BookStoreBusinessLayer.IBusinessLayer
 
         UserModel UserLogin(LoginModel login);
 
+        string ForgotUserPassword(ForgotModel forgot);
     }
 }

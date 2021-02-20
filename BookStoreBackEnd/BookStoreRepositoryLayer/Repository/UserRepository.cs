@@ -1,8 +1,11 @@
 ﻿using BookStoreModelLayer;
 using BookStoreRepositoryLayer.IRepository;
 using Microsoft.Extensions.Configuration;
+using MSMQ;
 using System;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 
 namespace BookStoreRepositoryLayer
@@ -107,6 +110,60 @@ namespace BookStoreRepositoryLayer
             catch (Exception e)
             {
                 throw new Exception("Error while Decrypting" + e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Forgot password.
+        /// </summary>
+        /// <param name="forgot">The forgot.</param>
+        /// <returns></returns>
+
+        public string ForgotUserPassword(ForgotModel forgot)
+        {
+            try
+            {
+                var forgotPassword = "Reset Password link for Parking Model:- This is the Link of Your Forgot Password ";
+                string subject = "Your Password is";
+                string body;
+                var result = bookStoreContext.UserTabel.FirstOrDefault(e => e.Email == forgot.Email);
+                if (result != null)
+                {
+
+                    //string decode = Decryptdata(result.Password);
+
+                    
+                    Sender send = new Sender();
+                    send.MailSender(forgotPassword);
+
+                    Recever recev = new Recever();
+                    var forgotLink = recev.MailReciver();
+                    body = forgotLink;
+                }
+                else
+                {
+                    return "Not Found";
+                }
+
+                using (MailMessage mailMessage = new MailMessage("imraninfo.1996@gmail.com", forgot.Email))
+                {
+                    mailMessage.Subject = subject;
+                    mailMessage.Body = body;
+                    mailMessage.IsBodyHtml = true;
+                    SmtpClient smtp = new SmtpClient();
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.EnableSsl = true;
+                    NetworkCredential NetworkCred = new NetworkCredential("imraninfo.1996@gmail.com", "9175833272");
+                    smtp.UseDefaultCredentials = true;
+                    smtp.Credentials = NetworkCred;
+                    smtp.Port = 587;
+                    smtp.Send(mailMessage);
+                    return "Success";
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
             }
         }
 
