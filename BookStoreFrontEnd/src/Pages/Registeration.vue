@@ -2,7 +2,7 @@
   <div>
     <form novalidate class="md-layout" @submit.prevent="validateUser">
     
-    <!-- <form novalidate class="md-layout" @submit.prevent="validateUser()" > -->
+    <!-- <form novalidate class="md-layout" @submit.prevent="validateUser()" > --->
       <md-card class="md-layout-item md-size-50 md-small-size-50 md-with-hover">
         
         <center><div class="h2">
