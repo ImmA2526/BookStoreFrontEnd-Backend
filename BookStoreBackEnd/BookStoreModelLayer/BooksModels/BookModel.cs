@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BookStoreModelLayer.BooksModels
 {
-    public class BookModels
+    public class BookModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
