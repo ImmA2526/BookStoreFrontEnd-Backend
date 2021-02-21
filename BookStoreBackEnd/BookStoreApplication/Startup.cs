@@ -2,7 +2,6 @@
 using BookStoreBusinessLayer.IBusinessLayer;
 using BookStoreRepositoryLayer;
 using BookStoreRepositoryLayer.IRepository;
-using BookStoreRepositoryLayer.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,7 +34,7 @@ namespace BookStoreApplication
 
             //Adding Business Interface 
             services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<IBookBusiness, BookBusiness>();
+            services.AddTransient<IUserBusiness, UserBusiness>();
 
             services.AddTransient<IBookRepository, BookRepository>();
             services.AddTransient<IBookBusiness, BookBusiness>();
