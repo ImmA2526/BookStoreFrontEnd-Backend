@@ -13,12 +13,20 @@ namespace BookStoreModelLayer.BooksModels
         public int OrderId { get; set; }
 
         [Required]
+        [ForeignKey("CustomerModel")]
+        public int CustomerId { get; set; }
+
+        [Required]
         [ForeignKey("UserModel")]
         public int UserId { get; set; }
 
         [Required]
         [ForeignKey("BookModel")]
         public int BookId { get; set; }
+
+        [Required]
+        [ForeignKey("AddressTypeModel")]
+        public int AddressTypeId { get; set; }
 
     }
 }

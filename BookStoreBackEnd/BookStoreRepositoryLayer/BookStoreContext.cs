@@ -1,5 +1,7 @@
 ﻿using BookStoreModelLayer;
 using BookStoreModelLayer.BooksModels;
+using BookStoreModelLayer.CustomerModels;
+using BookStoreModelLayer.UserModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,10 +17,13 @@ namespace BookStoreRepositoryLayer
         
         public DbSet<UserModel> UserTabel { get; set; }
 
-        public DbSet<UserModel> AddressTypeTable { get; set; }
+        public DbSet<AddressTypeModel> AddressTypeTable { get; set; }
+
+        public DbSet<CustomerModel> CustomerTable { get; set; }
 
         public DbSet<BookModel> BookTable { get; set; }
 
         public DbSet<OrderModel> OrderSummaryTable { get; set; }
+
     }
 }
