@@ -1,5 +1,4 @@
-﻿using BookStoreBusinessLayer.IBusinessLayer;
-using BookStoreModelLayer;
+﻿using BookStoreModelLayer;
 using BookStoreRepositoryLayer.IRepository;
 using System;
 using System.Collections.Generic;
@@ -7,7 +6,7 @@ using System.Text;
 
 namespace BookStoreBusinessLayer.BusinessLayer
 {
-    public class UserBusiness :IUserBusiness
+    public class UserBusiness
     {
         IUserRepository userRepo;
         public UserBusiness(IUserRepository userRepo)
@@ -38,6 +37,5 @@ namespace BookStoreBusinessLayer.BusinessLayer
             var result = userRepo.ResetUserPassword(reset);
             return result;
         }
-
     }
 }

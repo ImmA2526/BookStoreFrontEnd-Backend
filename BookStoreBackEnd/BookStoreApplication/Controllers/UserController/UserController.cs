@@ -87,7 +87,7 @@ namespace BookStoreApplication.Controllers
 
         [HttpPost]
         [Route("loginUser")]
-        public async Task<IActionResult> LoginUser([FromBody] LoginModel login)
+        public IActionResult LoginUser([FromBody] LoginModel login)
         {
             try
             {
