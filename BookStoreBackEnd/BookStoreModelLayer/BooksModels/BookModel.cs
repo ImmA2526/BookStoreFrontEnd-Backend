@@ -21,10 +21,10 @@ namespace BookStoreModelLayer.BooksModels
         [Required]
         public string PublisherName { get; set; }
 
+        public DateTime BookPublishDate { get; set; }
+
         [Required]
         public string BookPrice { get; set; }
-
-        public DateTime BookPublishDate { get;set; }
 
     }
 }

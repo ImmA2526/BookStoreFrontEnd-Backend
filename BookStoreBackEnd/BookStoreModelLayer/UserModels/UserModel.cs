@@ -22,5 +22,6 @@ namespace BookStoreModelLayer
         [Required]
         public string Password { get; set; }
 
+
     }
 }

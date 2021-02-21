@@ -13,8 +13,13 @@ namespace BookStoreModelLayer.CustomerModels
         public int CustomerId { get; set; }
         
         [Required]
-        public string CustomerName { get; set; }
+        public string FirstName { get; set; }
 
+        [Required]
+        public string LastName { get; set; }
+
+        [Required]
+        [MaxLength(10)]
         public long PhoneNumber { get; set; }
 
         [Required]
