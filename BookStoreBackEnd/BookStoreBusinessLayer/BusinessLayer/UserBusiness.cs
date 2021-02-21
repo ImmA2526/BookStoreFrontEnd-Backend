@@ -1,4 +1,5 @@
-﻿using BookStoreModelLayer;
+﻿using BookStoreBusinessLayer.IBusinessLayer;
+using BookStoreModelLayer;
 using BookStoreRepositoryLayer.IRepository;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace BookStoreBusinessLayer.BusinessLayer
 {
-    public class UserBusiness
+    public class UserBusiness:IUserBusiness
     {
         IUserRepository userRepo;
         public UserBusiness(IUserRepository userRepo)

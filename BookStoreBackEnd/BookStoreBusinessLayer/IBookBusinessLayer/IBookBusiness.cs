@@ -1,13 +1,11 @@
-﻿using BookStoreModelLayer.BooksModels;
+﻿using BookStoreModelLayer;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BookStoreBusinessLayer.IBookBusinessLayer
+namespace BookStoreBusinessLayer.IBusinessLayer
 {
     public interface IBookBusiness
     {
-        BookModel AddBooks(BookModel book);
-
     }
 }
