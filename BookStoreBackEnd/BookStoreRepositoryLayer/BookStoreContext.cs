@@ -25,5 +25,9 @@ namespace BookStoreRepositoryLayer
 
         public DbSet<OrderModel> OrderSummaryTable { get; set; }
 
+        public DbSet<CartModel> CartTable { get; set; }
+
+        public DbSet<WishlistModel> WishlistTable { get; set; }
+
     }
 }
