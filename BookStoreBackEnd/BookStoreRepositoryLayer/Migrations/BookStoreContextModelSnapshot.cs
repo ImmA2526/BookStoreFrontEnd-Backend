@@ -51,7 +51,7 @@ namespace BookStoreRepositoryLayer.Migrations
 
                     b.Property<int>("BookId");
 
-                    b.Property<int>("BookPrice");
+                    b.Property<int>("Quantity");
 
                     b.Property<int>("UserId");
 
@@ -81,7 +81,7 @@ namespace BookStoreRepositoryLayer.Migrations
 
             modelBuilder.Entity("BookStoreModelLayer.BooksModels.WishlistModel", b =>
                 {
-                    b.Property<int>("WishlitID")
+                    b.Property<int>("WishlistID")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -89,7 +89,7 @@ namespace BookStoreRepositoryLayer.Migrations
 
                     b.Property<int>("UserId");
 
-                    b.HasKey("WishlitID");
+                    b.HasKey("WishlistID");
 
                     b.ToTable("WishlistTable");
                 });

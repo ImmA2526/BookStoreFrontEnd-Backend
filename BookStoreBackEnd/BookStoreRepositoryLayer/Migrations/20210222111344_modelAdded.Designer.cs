@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookStoreRepositoryLayer.Migrations
 {
     [DbContext(typeof(BookStoreContext))]
-    [Migration("20210222040508_createModels")]
-    partial class createModels
+    [Migration("20210222111344_modelAdded")]
+    partial class modelAdded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,7 +53,7 @@ namespace BookStoreRepositoryLayer.Migrations
 
                     b.Property<int>("BookId");
 
-                    b.Property<int>("BookPrice");
+                    b.Property<int>("Quantity");
 
                     b.Property<int>("UserId");
 
@@ -83,7 +83,7 @@ namespace BookStoreRepositoryLayer.Migrations
 
             modelBuilder.Entity("BookStoreModelLayer.BooksModels.WishlistModel", b =>
                 {
-                    b.Property<int>("WishlitID")
+                    b.Property<int>("WishlistID")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -91,7 +91,7 @@ namespace BookStoreRepositoryLayer.Migrations
 
                     b.Property<int>("UserId");
 
-                    b.HasKey("WishlitID");
+                    b.HasKey("WishlistID");
 
                     b.ToTable("WishlistTable");
                 });

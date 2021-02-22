@@ -21,6 +21,6 @@ namespace BookStoreModelLayer.BooksModels
         public int BookId { get; set; }
 
         [Required]
-        public int BookPrice { get; set; }
+        public int Quantity { get; set; }
     }
 }
