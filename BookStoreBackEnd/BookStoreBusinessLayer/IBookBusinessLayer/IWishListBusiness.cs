@@ -6,10 +6,12 @@ using System.Text;
 
 namespace BookStoreBusinessLayer.IBusinessLayer
 {
-    public interface ICartBusiness
+    public interface IWishListBusiness
     {
-        CartModel AddItems(CartModel addItem);
+        WishlistModel AddItems(WishlistModel addItem);
 
-        IEnumerable<CartModel> GetAllBookItems();
+        IEnumerable<WishlistModel> GetAllBookItems();
+
+        string DeleteBooksFromWishlist(int bookId);
     }
 }

@@ -22,5 +22,11 @@ namespace BookStoreBusinessLayer.BusinessLayer
             var result = cartRepo.AddItems(addItem);
             return result;
         }
+
+        public IEnumerable<CartModel> GetAllBookItems()
+        {
+            var getResult = cartRepo.GetAllBookItems();
+            return getResult;
+        }
     }
 }

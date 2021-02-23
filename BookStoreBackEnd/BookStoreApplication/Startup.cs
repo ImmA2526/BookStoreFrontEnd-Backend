@@ -42,6 +42,9 @@ namespace BookStoreApplication
             services.AddTransient<ICartRepository, CartRepository>();
             services.AddTransient<ICartBusiness, CartBusiness>();
 
+            services.AddTransient<IWishListRepository, WishListRepository>();
+            services.AddTransient<IWishListBusiness, WishListBusiness>();
+
             //Swagger Implementetion
             services.AddSwaggerGen(c =>
             {

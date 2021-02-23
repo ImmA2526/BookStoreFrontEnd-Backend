@@ -13,13 +13,13 @@ using System.Text;
 
 namespace BookStoreRepositoryLayer
 {
-    public class CartRepository :ICartRepository
+    public class WishListRepository :IWishListRepository
     {
         public IConfiguration Configuration { get; }
-        private readonly BookStoreContext cartContext;
-        public CartRepository(BookStoreContext cartContext)
+        private readonly BookStoreContext wishContext;
+        public WishListRepository(BookStoreContext wishContext)
         {
-            this.cartContext = cartContext;
+            this.wishContext = wishContext;
         }
 
         /// <summary>
@@ -29,12 +29,12 @@ namespace BookStoreRepositoryLayer
         /// <returns></returns>
         /// <exception cref="Exception">Error While Adding Book" +e.Message</exception>
 
-        public CartModel AddItems(CartModel addItem)
+        public WishlistModel AddItems(WishlistModel addItem)
         {
             try
             {
-                cartContext.CartTable.Add(addItem);
-                var add = cartContext.SaveChanges();
+                wishContext.WishlistTable.Add(addItem);
+                var add = wishContext.SaveChanges();
 
                 if (add > 0)
                 {
@@ -54,11 +54,11 @@ namespace BookStoreRepositoryLayer
         /// <returns></returns>
         /// <exception cref="Exception">Error While Retriving Cart Items" + e.Message</exception>
 
-        public IEnumerable<CartModel> GetAllBookItems()
+        public IEnumerable<WishlistModel> GetAllBookItems()
         {
             try
             {
-                IEnumerable<CartModel> getresult = cartContext.CartTable.Where(e => e.CartId > 0).ToList();
+                IEnumerable<WishlistModel> getresult = wishContext.WishlistTable.Where(e => e.WishlistID > 0).ToList();
                 if (getresult != null)
                 {
                     return getresult;
@@ -70,6 +70,33 @@ namespace BookStoreRepositoryLayer
                 throw new Exception("Error While Retriving Data" + e.Message);
             }
         }
+
+        /// <summary>
+        /// Deletes the books from wishlist.
+        /// </summary>
+        /// <param name="bookId">The book identifier.</param>
+        /// <returns></returns>
+        /// <exception cref="Exception">Error While Retriving Data" + e.Message</exception>
+        public string DeleteBooksFromWishlist(int bookId)
+        {
+            try
+            {
+                WishlistModel deleteResult = wishContext.WishlistTable.Find(bookId);
+                if (deleteResult != null)
+                {
+                    //wishContext.WishlistTable.Remove();
+                    wishContext.WishlistTable.Remove(deleteResult);
+                    wishContext.SaveChangesAsync();
+                    return "RecordDeleted";
+                }
+                return null;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error While Removing Data" + e.Message);
+            }
+        }
+
 
     }
 
