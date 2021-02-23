@@ -29,9 +29,9 @@ namespace BookStoreBusinessLayer.BusinessLayer
             return getResult;
         }
 
-        public string DeleteBooksFromWishlist(int bookId)
+        public string DeleteBooksFromWishlist(int wishlistId)
         {
-            var deleteResult = wishRepo.DeleteBooksFromWishlist(bookId);
+            var deleteResult = wishRepo.DeleteBooksFromWishlist(wishlistId);
             return deleteResult;
         }
     }

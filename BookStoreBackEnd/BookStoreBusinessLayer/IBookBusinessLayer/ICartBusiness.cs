@@ -11,5 +11,7 @@ namespace BookStoreBusinessLayer.IBusinessLayer
         CartModel AddItems(CartModel addItem);
 
         IEnumerable<CartModel> GetAllBookItems();
+
+        string DeleteBooksFromCart(int cartId);
     }
 }

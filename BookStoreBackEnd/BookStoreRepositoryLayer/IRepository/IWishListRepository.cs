@@ -12,6 +12,6 @@ namespace BookStoreRepositoryLayer.IRepository
 
         IEnumerable<WishlistModel> GetAllBookItems();
 
-        string DeleteBooksFromWishlist(int bookId);
+        string DeleteBooksFromWishlist(int wishlistId);
     }
 }

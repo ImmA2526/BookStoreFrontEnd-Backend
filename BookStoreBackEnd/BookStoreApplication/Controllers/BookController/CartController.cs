@@ -85,5 +85,32 @@ namespace BookStoreApplication.Controllers
             }
         }
 
+        /// <summary>
+        /// Deletes the book from wishlist.
+        /// </summary>
+        /// <param name="bookId">The book identifier.</param>
+        /// <returns></returns>
+
+        [HttpDelete]
+        public IActionResult DeleteBookFromWishlist(int cartId)
+        {
+            try
+            {
+                var delete = this.cartBusinsess.DeleteBooksFromCart(cartId);
+                if (delete != null)
+                {
+                    return this.Ok(new { Status = true, Message = "Item Removed SuccesFully" });
+                }
+                else
+                {
+                    return this.BadRequest(new { Status = false, Message = "Error While Removing" });
+                }
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(new { Status = false, Message = e.Message });
+            }
+        }
+
     }
 }

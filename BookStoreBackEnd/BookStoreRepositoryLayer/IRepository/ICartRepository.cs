@@ -11,5 +11,7 @@ namespace BookStoreRepositoryLayer.IRepository
         CartModel AddItems(CartModel addItem);
 
         IEnumerable<CartModel> GetAllBookItems();
+
+        string DeleteBooksFromCart(int cartId);
     }
 }

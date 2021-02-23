@@ -77,11 +77,11 @@ namespace BookStoreRepositoryLayer
         /// <param name="bookId">The book identifier.</param>
         /// <returns></returns>
         /// <exception cref="Exception">Error While Retriving Data" + e.Message</exception>
-        public string DeleteBooksFromWishlist(int bookId)
+        public string DeleteBooksFromWishlist(int wishlistId)
         {
             try
             {
-                WishlistModel deleteResult = wishContext.WishlistTable.Find(bookId);
+                WishlistModel deleteResult = wishContext.WishlistTable.Find(wishlistId);
                 if (deleteResult != null)
                 {
                     //wishContext.WishlistTable.Remove();

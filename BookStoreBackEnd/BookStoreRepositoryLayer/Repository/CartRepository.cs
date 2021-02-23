@@ -71,6 +71,32 @@ namespace BookStoreRepositoryLayer
             }
         }
 
+        /// <summary>
+        /// Deletes the books from wishlist.
+        /// </summary>
+        /// <param name="bookId">The book identifier.</param>
+        /// <returns></returns>
+        /// <exception cref="Exception">Error While Retriving Data" + e.Message</exception>
+        public string DeleteBooksFromCart(int cartId)
+        {
+            try
+            {
+                WishlistModel deleteResult = cartContext.WishlistTable.Find(cartId);
+                if (deleteResult != null)
+                {
+                    //wishContext.WishlistTable.Remove();
+                    cartContext.WishlistTable.Remove(deleteResult);
+                    cartContext.SaveChangesAsync();
+                    return "RecordDeleted";
+                }
+                return null;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error While Removing Data" + e.Message);
+            }
+        }
+
     }
 
 }

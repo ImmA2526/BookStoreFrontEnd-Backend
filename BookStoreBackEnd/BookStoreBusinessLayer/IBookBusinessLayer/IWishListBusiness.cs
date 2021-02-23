@@ -12,6 +12,6 @@ namespace BookStoreBusinessLayer.IBusinessLayer
 
         IEnumerable<WishlistModel> GetAllBookItems();
 
-        string DeleteBooksFromWishlist(int bookId);
+        string DeleteBooksFromWishlist(int wishlistId);
     }
 }

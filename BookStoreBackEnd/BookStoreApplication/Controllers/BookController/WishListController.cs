@@ -92,11 +92,11 @@ namespace BookStoreApplication.Controllers
         /// <returns></returns>
 
         [HttpDelete]
-        public IActionResult DeleteBookFromWishlist(int bookId)
+        public IActionResult DeleteBookFromWishlist(int wishListId)
         {
             try
             {
-                var delete = this.wishBusinsess.DeleteBooksFromWishlist(bookId);
+                var delete = this.wishBusinsess.DeleteBooksFromWishlist(wishListId);
                 if (delete != null)
                 {
                     return this.Ok(new { Status = true, Message = "Item Removed SuccesFully" });
