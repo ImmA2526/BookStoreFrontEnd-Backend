@@ -54,21 +54,60 @@ namespace BookStoreRepositoryLayer
         /// <returns></returns>
         /// <exception cref="Exception">Error While Retriving Cart Items" + e.Message</exception>
 
-        public IEnumerable<WishlistModel> GetAllBookItems()
+        public IEnumerable<WishBookResponse> GetAllBookItems(int userID)
         {
             try
             {
-                IEnumerable<WishlistModel> getresult = wishContext.WishlistTable.Where(e => e.WishlistID > 0).ToList();
+                IEnumerable<WishlistModel> getresult = wishContext.WishlistTable.Where(e => e.UserId == userID).ToList();
+
                 if (getresult != null)
                 {
-                    return getresult;
+                    IEnumerable<WishBookResponse> result = GetAllWishlistBooks(userID);
+                    return result;
                 }
+
                 return null;
             }
             catch (Exception e)
             {
                 throw new Exception("Error While Retriving Data" + e.Message);
             }
+        }
+
+        /// <summary>
+        /// Gets all wishlist books.
+        /// </summary>
+        /// <param name="wishListId">The wish list identifier.</param>
+        /// <returns></returns>
+        public IEnumerable<WishBookResponse> GetAllWishlistBooks(int userID)
+        {
+            List<WishBookResponse> getResult = new List<WishBookResponse>();
+            var result = from BookModel in wishContext.BookTable
+                         join WishlistModel in wishContext.WishlistTable
+                         on BookModel.BookId equals WishlistModel.BookId
+
+                         select new WishBookResponse()
+                         {
+                             BookId = BookModel.BookId,
+                             BookName = BookModel.BookName,
+                             AuthorName = BookModel.AuthorName,
+                             PublisherName = BookModel.PublisherName,
+                             PublishedYear = BookModel.PublishedYear,
+                             BookPrice = BookModel.BookPrice,
+                             BookCount = BookModel.BookCount,
+                             BookImage = BookModel.BookImage,
+                             WishlistID = WishlistModel.WishlistID,
+                             UserId = WishlistModel.UserId
+                         };
+
+            foreach (var data in result)
+            {
+                if (data.UserId == userID)
+                {
+                    getResult.Add(data);
+                }
+            }
+            return getResult;
         }
 
         /// <summary>

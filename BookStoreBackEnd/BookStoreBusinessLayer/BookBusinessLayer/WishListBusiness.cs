@@ -8,7 +8,7 @@ using System.Text;
 
 namespace BookStoreBusinessLayer.BusinessLayer
 {
-    public class WishListBusiness:IWishListBusiness
+    public class WishListBusiness : IWishListBusiness
     {
         IWishListRepository wishRepo;
 
@@ -23,15 +23,16 @@ namespace BookStoreBusinessLayer.BusinessLayer
             return result;
         }
 
-        public IEnumerable<WishlistModel> GetAllBookItems()
+
+        public IEnumerable<WishBookResponse> GetAllBookItems(int userID)
         {
-            var getResult = wishRepo.GetAllBookItems();
+            var getResult = wishRepo.GetAllBookItems(userID);
             return getResult;
         }
 
-        public string DeleteBooksFromWishlist(int wishlistId)
+        public string DeleteBooksFromWishlist(int wishListId)
         {
-            var deleteResult = wishRepo.DeleteBooksFromWishlist(wishlistId);
+            var deleteResult = wishRepo.DeleteBooksFromWishlist(wishListId);
             return deleteResult;
         }
     }
