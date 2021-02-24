@@ -65,15 +65,16 @@ namespace BookStoreApplication.Controllers
 
         [HttpGet]
         [Route("getAllBookItems")]
-        public IActionResult GetAllBookItems()
+        public IActionResult GetAllBookItems(int userId)
         {
             try
             {
-                IEnumerable<CartModel> getResult = this.cartBusinsess.GetAllBookItems();
+                IEnumerable<BookResponse> getResult = this.cartBusinsess.GetAllBookItems(userId);
                 if (getResult != null)
                 {
-                    return this.Ok(new { Status = true, Message = "Cart Data Retrive Successfully",Data=getResult });
+                    return this.Ok(new { Status = true, Message = "Cart Data Retrive Successfully", Data = getResult });
                 }
+
                 else
                 {
                     return this.NotFound(new { Status = false, Message = "Error Occur While Fetching Cart Items" });

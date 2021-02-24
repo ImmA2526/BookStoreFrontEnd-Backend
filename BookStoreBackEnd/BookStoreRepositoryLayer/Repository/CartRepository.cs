@@ -13,7 +13,7 @@ using System.Text;
 
 namespace BookStoreRepositoryLayer
 {
-    public class CartRepository :ICartRepository
+    public class CartRepository : ICartRepository
     {
         public IConfiguration Configuration { get; }
         private readonly BookStoreContext cartContext;
@@ -54,21 +54,62 @@ namespace BookStoreRepositoryLayer
         /// <returns></returns>
         /// <exception cref="Exception">Error While Retriving Cart Items" + e.Message</exception>
 
-        public IEnumerable<CartModel> GetAllBookItems()
+        public IEnumerable<BookResponse> GetAllBookItems(int userId)
         {
             try
             {
-                IEnumerable<CartModel> getresult = cartContext.CartTable.Where(e => e.CartId > 0).ToList();
+                IEnumerable<CartModel> getresult = cartContext.CartTable.Where(e => e.UserId == userId).ToList();
+
                 if (getresult != null)
                 {
-                    return getresult;
+                    IEnumerable<BookResponse> result = GetAllCartBooks(userId);
+                    return result;
                 }
+
                 return null;
             }
             catch (Exception e)
             {
                 throw new Exception("Error While Retriving Data" + e.Message);
             }
+        }
+
+
+        //public 
+
+        /// <summary>
+        ///Join Query For Retrive Books
+        /// </summary>
+        /// <param name="userId">The user identifier.</param>
+        /// <returns></returns>
+
+        public IEnumerable<BookResponse> GetAllCartBooks(int userId)
+        {
+            List<BookResponse> getResult = new List<BookResponse>();
+            var result = from BookModel in cartContext.BookTable
+                         join CartModel in cartContext.CartTable
+                         on BookModel.BookId equals CartModel.BookId
+
+                         select new BookResponse()
+                         {
+                             BookId = BookModel.BookId,
+                             BookName = BookModel.BookName,
+                             AuthorName = BookModel.AuthorName,
+                             PublisherName = BookModel.PublisherName,
+                             PublishedYear = BookModel.PublishedYear,
+                             BookPrice = BookModel.BookPrice,
+                             CartId = CartModel.CartId,
+                             UserId = CartModel.UserId
+                         };
+
+            foreach (var data in result)
+            {
+                if (data.UserId == userId)
+                {
+                    getResult.Add(data);
+                }
+            }
+            return getResult;
         }
 
         /// <summary>
@@ -81,11 +122,11 @@ namespace BookStoreRepositoryLayer
         {
             try
             {
-                WishlistModel deleteResult = cartContext.WishlistTable.Find(cartId);
+                CartModel deleteResult = cartContext.CartTable.Find(cartId);
                 if (deleteResult != null)
                 {
                     //wishContext.WishlistTable.Remove();
-                    cartContext.WishlistTable.Remove(deleteResult);
+                    cartContext.CartTable.Remove(deleteResult);
                     cartContext.SaveChangesAsync();
                     return "RecordDeleted";
                 }
