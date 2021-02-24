@@ -12,9 +12,7 @@ namespace BookStoreModelLayer.BooksModels
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderId { get; set; }
 
-        [Required]
-        [ForeignKey("CustomerModel")]
-        public int CustomerId { get; set; }
+        public int OrderSummaryID { get; set; }
 
         [Required]
         [ForeignKey("UserModel")]
@@ -23,10 +21,5 @@ namespace BookStoreModelLayer.BooksModels
         [Required]
         [ForeignKey("BookModel")]
         public int BookId { get; set; }
-
-        [Required]
-        [ForeignKey("AddressTypeModel")]
-        public int AddressTypeId { get; set; }
-
     }
 }

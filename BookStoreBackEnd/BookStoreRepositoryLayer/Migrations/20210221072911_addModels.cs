@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BookStoreRepositoryLayer.Migrations
 {
-    public partial class modelsRefactored : Migration
+    public partial class addModels : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -30,26 +30,11 @@ namespace BookStoreRepositoryLayer.Migrations
                     AuthorName = table.Column<string>(nullable: false),
                     PublisherName = table.Column<string>(nullable: false),
                     PublishedYear = table.Column<int>(nullable: false),
-                    BookPrice = table.Column<int>(nullable: false)
+                    BookPrice = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_BookTable", x => x.BookId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CartTable",
-                columns: table => new
-                {
-                    CartId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    UserId = table.Column<int>(nullable: false),
-                    BookId = table.Column<int>(nullable: false),
-                    Quantity = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CartTable", x => x.CartId);
                 });
 
             migrationBuilder.CreateTable(
@@ -62,8 +47,7 @@ namespace BookStoreRepositoryLayer.Migrations
                     LastName = table.Column<string>(nullable: false),
                     PhoneNumber = table.Column<long>(maxLength: 10, nullable: false),
                     AddressTypeId = table.Column<int>(nullable: false),
-                    Address = table.Column<string>(nullable: false),
-                    UserId = table.Column<int>(nullable: false)
+                    Address = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -101,20 +85,6 @@ namespace BookStoreRepositoryLayer.Migrations
                 {
                     table.PrimaryKey("PK_UserTabel", x => x.UserId);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "WishlistTable",
-                columns: table => new
-                {
-                    WishlistID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    UserId = table.Column<int>(nullable: false),
-                    BookId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_WishlistTable", x => x.WishlistID);
-                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -126,9 +96,6 @@ namespace BookStoreRepositoryLayer.Migrations
                 name: "BookTable");
 
             migrationBuilder.DropTable(
-                name: "CartTable");
-
-            migrationBuilder.DropTable(
                 name: "CustomerTable");
 
             migrationBuilder.DropTable(
@@ -136,9 +103,6 @@ namespace BookStoreRepositoryLayer.Migrations
 
             migrationBuilder.DropTable(
                 name: "UserTabel");
-
-            migrationBuilder.DropTable(
-                name: "WishlistTable");
         }
     }
 }

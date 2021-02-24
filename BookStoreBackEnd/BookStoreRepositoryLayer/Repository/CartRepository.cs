@@ -54,7 +54,7 @@ namespace BookStoreRepositoryLayer
         /// <returns></returns>
         /// <exception cref="Exception">Error While Retriving Cart Items" + e.Message</exception>
 
-        public IEnumerable<BookResponse> GetAllBookItems(int userId)
+        public IEnumerable<CartBookResponse> GetAllBookItems(int userId)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace BookStoreRepositoryLayer
 
                 if (getresult != null)
                 {
-                    IEnumerable<BookResponse> result = GetAllCartBooks(userId);
+                    IEnumerable<CartBookResponse> result = GetAllCartBooks(userId);
                     return result;
                 }
 
@@ -74,23 +74,20 @@ namespace BookStoreRepositoryLayer
             }
         }
 
-
-        //public 
-
         /// <summary>
         ///Join Query For Retrive Books
         /// </summary>
         /// <param name="userId">The user identifier.</param>
         /// <returns></returns>
 
-        public IEnumerable<BookResponse> GetAllCartBooks(int userId)
+        public IEnumerable<CartBookResponse> GetAllCartBooks(int userId)
         {
-            List<BookResponse> getResult = new List<BookResponse>();
+            List<CartBookResponse> getResult = new List<CartBookResponse>();
             var result = from BookModel in cartContext.BookTable
                          join CartModel in cartContext.CartTable
                          on BookModel.BookId equals CartModel.BookId
 
-                         select new BookResponse()
+                         select new CartBookResponse()
                          {
                              BookId = BookModel.BookId,
                              BookName = BookModel.BookName,
@@ -98,6 +95,8 @@ namespace BookStoreRepositoryLayer
                              PublisherName = BookModel.PublisherName,
                              PublishedYear = BookModel.PublishedYear,
                              BookPrice = BookModel.BookPrice,
+                             BookCount=BookModel.BookCount,
+                             BookImage=BookModel.BookImage,
                              CartId = CartModel.CartId,
                              UserId = CartModel.UserId
                          };
@@ -125,7 +124,6 @@ namespace BookStoreRepositoryLayer
                 CartModel deleteResult = cartContext.CartTable.Find(cartId);
                 if (deleteResult != null)
                 {
-                    //wishContext.WishlistTable.Remove();
                     cartContext.CartTable.Remove(deleteResult);
                     cartContext.SaveChangesAsync();
                     return "RecordDeleted";

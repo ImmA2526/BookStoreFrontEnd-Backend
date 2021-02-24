@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookStoreRepositoryLayer.Migrations
 {
     [DbContext(typeof(BookStoreContext))]
-    [Migration("20210223060127_modelsRefactored")]
-    partial class modelsRefactored
+    [Migration("20210222040508_createModels")]
+    partial class createModels
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,7 +32,8 @@ namespace BookStoreRepositoryLayer.Migrations
                     b.Property<string>("BookName")
                         .IsRequired();
 
-                    b.Property<int>("BookPrice");
+                    b.Property<string>("BookPrice")
+                        .IsRequired();
 
                     b.Property<int>("PublishedYear");
 
@@ -52,7 +53,7 @@ namespace BookStoreRepositoryLayer.Migrations
 
                     b.Property<int>("BookId");
 
-                    b.Property<int>("Quantity");
+                    b.Property<int>("BookPrice");
 
                     b.Property<int>("UserId");
 
@@ -82,7 +83,7 @@ namespace BookStoreRepositoryLayer.Migrations
 
             modelBuilder.Entity("BookStoreModelLayer.BooksModels.WishlistModel", b =>
                 {
-                    b.Property<int>("WishlistID")
+                    b.Property<int>("WishlitID")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -90,7 +91,7 @@ namespace BookStoreRepositoryLayer.Migrations
 
                     b.Property<int>("UserId");
 
-                    b.HasKey("WishlistID");
+                    b.HasKey("WishlitID");
 
                     b.ToTable("WishlistTable");
                 });
@@ -114,8 +115,6 @@ namespace BookStoreRepositoryLayer.Migrations
 
                     b.Property<long>("PhoneNumber")
                         .HasMaxLength(10);
-
-                    b.Property<int>("UserId");
 
                     b.HasKey("CustomerId");
 

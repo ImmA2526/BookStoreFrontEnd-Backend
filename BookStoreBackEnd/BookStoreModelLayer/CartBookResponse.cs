@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BookStoreModelLayer
 {
-    public class BookResponse
+    public class CartBookResponse
     {
         [Key]
         public int BookId { get; set; }
@@ -13,6 +13,10 @@ namespace BookStoreModelLayer
         public string BookName { get; set; }
 
         public string AuthorName { get; set; }
+
+        public string BookImage { get; set; }
+
+        public int BookCount { get; set; }
 
         public string PublisherName { get; set; }
 

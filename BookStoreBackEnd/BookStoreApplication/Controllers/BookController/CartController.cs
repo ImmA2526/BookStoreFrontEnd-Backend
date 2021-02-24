@@ -69,7 +69,7 @@ namespace BookStoreApplication.Controllers
         {
             try
             {
-                IEnumerable<BookResponse> getResult = this.cartBusinsess.GetAllBookItems(userId);
+                IEnumerable<CartBookResponse> getResult = this.cartBusinsess.GetAllBookItems(userId);
                 if (getResult != null)
                 {
                     return this.Ok(new { Status = true, Message = "Cart Data Retrive Successfully", Data = getResult });

@@ -3,14 +3,16 @@ using BookStoreRepositoryLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BookStoreRepositoryLayer.Migrations
 {
     [DbContext(typeof(BookStoreContext))]
-    partial class BookStoreContextModelSnapshot : ModelSnapshot
+    [Migration("20210221072911_addModels")]
+    partial class addModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,15 +29,11 @@ namespace BookStoreRepositoryLayer.Migrations
                     b.Property<string>("AuthorName")
                         .IsRequired();
 
-                    b.Property<int>("BookCount");
-
-                    b.Property<string>("BookImage")
-                        .IsRequired();
-
                     b.Property<string>("BookName")
                         .IsRequired();
 
-                    b.Property<int>("BookPrice");
+                    b.Property<string>("BookPrice")
+                        .IsRequired();
 
                     b.Property<int>("PublishedYear");
 
@@ -47,53 +45,23 @@ namespace BookStoreRepositoryLayer.Migrations
                     b.ToTable("BookTable");
                 });
 
-            modelBuilder.Entity("BookStoreModelLayer.BooksModels.CartModel", b =>
-                {
-                    b.Property<int>("CartId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BookId");
-
-                    b.Property<int>("Quantity");
-
-                    b.Property<int>("UserId");
-
-                    b.HasKey("CartId");
-
-                    b.ToTable("CartTable");
-                });
-
             modelBuilder.Entity("BookStoreModelLayer.BooksModels.OrderModel", b =>
                 {
                     b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("AddressTypeId");
+
                     b.Property<int>("BookId");
 
-                    b.Property<int>("OrderSummaryID");
+                    b.Property<int>("CustomerId");
 
                     b.Property<int>("UserId");
 
                     b.HasKey("OrderId");
 
                     b.ToTable("OrderSummaryTable");
-                });
-
-            modelBuilder.Entity("BookStoreModelLayer.BooksModels.WishlistModel", b =>
-                {
-                    b.Property<int>("WishlistID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BookId");
-
-                    b.Property<int>("UserId");
-
-                    b.HasKey("WishlistID");
-
-                    b.ToTable("WishlistTable");
                 });
 
             modelBuilder.Entity("BookStoreModelLayer.CustomerModels.CustomerModel", b =>
@@ -107,19 +75,14 @@ namespace BookStoreRepositoryLayer.Migrations
 
                     b.Property<int>("AddressTypeId");
 
-                    b.Property<string>("City")
+                    b.Property<string>("FirstName")
                         .IsRequired();
 
-                    b.Property<string>("FullName")
-                        .IsRequired();
-
-                    b.Property<string>("Locality")
+                    b.Property<string>("LastName")
                         .IsRequired();
 
                     b.Property<long>("PhoneNumber")
                         .HasMaxLength(10);
-
-                    b.Property<long>("PinCode");
 
                     b.HasKey("CustomerId");
 

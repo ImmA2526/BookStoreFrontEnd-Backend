@@ -23,7 +23,7 @@ namespace BookStoreBusinessLayer.BusinessLayer
             return result;
         }
 
-        public IEnumerable<BookResponse> GetAllBookItems(int userId)
+        public IEnumerable<CartBookResponse> GetAllBookItems(int userId)
         {
             var getResult = cartRepo.GetAllBookItems(userId);
             return getResult;
