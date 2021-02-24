@@ -156,4 +156,22 @@ export default {
 #txt {
   text-transform: capitalize;
 }
+
+@media (max-width: 500px) {
+ 
+ .md-layout {
+    display: flex;
+    flex-wrap: wrap;
+   width: 300px;
+   height: 70px;
+    margin-left: 40px;
+  // padding-bottom: 80px;
+}
+
+.md-card {
+  margin-left: 200px;
+  margin-top: 70px;
+}
+
+}
 </style>

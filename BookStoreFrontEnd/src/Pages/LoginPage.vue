@@ -4,8 +4,9 @@
       <md-card class="md-layout-item md-size-50 md-small-size-100">
         <center>
           <div class="h2">
-            <h2 id="h2">Book Store</h2>
-            <h3>Login</h3>
+            <md-button to="./" id="txt" class="md-primary" :disabled="sending">Login</md-button>
+            <md-button to="./Register" id="txt" class="md-primary" :disabled="sending">SignUp</md-button>
+                          
           </div>
         </center>
 
@@ -36,6 +37,7 @@
             </div>
             <div class="md-layout-item md-small-size-100">
               <md-button v-on:click="loginPost()" type="submit" id="txt" class="md-dense md-raised md-primary" :disabled="sending">Login</md-button>
+           
             </div>
           </div>
         </md-card-actions>
@@ -118,6 +120,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+
+
 .h2 {
   padding-bottom: 10px;
   margin-top: 1px;
@@ -147,12 +152,25 @@ export default {
 .md-layout {
     display: flex;
     flex-wrap: wrap;
-   width: 900px;
+   width: 800px;
+   height: 70px;
     margin-left: 200px;
 }
 
 //Text Forgot 
 #txt {
   text-transform: capitalize;
+}
+
+@media (max-width: 500px) {
+ 
+ .md-layout {
+    display: flex;
+    flex-wrap: wrap;
+   width: 300px;
+   height: 60px;
+    margin-left: 30px;
+}
+
 }
 </style>
