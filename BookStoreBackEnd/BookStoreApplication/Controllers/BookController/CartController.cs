@@ -92,6 +92,7 @@ namespace BookStoreApplication.Controllers
         /// <returns></returns>
 
         [HttpDelete]
+        [Route("deleteBookItems")]
         public IActionResult DeleteBookFromWishlist(int cartId)
         {
             try

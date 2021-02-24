@@ -30,8 +30,7 @@ namespace BookStoreRepositoryLayer.Migrations
                     b.Property<string>("BookName")
                         .IsRequired();
 
-                    b.Property<string>("BookPrice")
-                        .IsRequired();
+                    b.Property<int>("BookPrice");
 
                     b.Property<int>("PublishedYear");
 
@@ -113,6 +112,8 @@ namespace BookStoreRepositoryLayer.Migrations
 
                     b.Property<long>("PhoneNumber")
                         .HasMaxLength(10);
+
+                    b.Property<int>("UserId");
 
                     b.HasKey("CustomerId");
 

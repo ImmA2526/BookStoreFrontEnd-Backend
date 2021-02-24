@@ -11,22 +11,29 @@ namespace BookStoreModelLayer.CustomerModels
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CustomerId { get; set; }
-        
-        [Required]
-        public string FirstName { get; set; }
 
         [Required]
-        public string LastName { get; set; }
+        public string FullName { get; set; }
 
         [Required]
         [MaxLength(10)]
         public long PhoneNumber { get; set; }
 
         [Required]
-        [ForeignKey("AddressTypeModel")]
-        public int AddressTypeId { get; set; }
+        public long PinCode { get; set; }
+
+        [Required]
+        public string Locality { get; set; }
+
+        [Required]
+        public string City { get; set; }
 
         [Required]
         public string Address { get; set; }
+
+        [Required]
+        [ForeignKey("AddressTypeModel")]
+        public int AddressTypeId { get; set; }
+
     }
 }

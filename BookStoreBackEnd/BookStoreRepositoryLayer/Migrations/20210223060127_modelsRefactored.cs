@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BookStoreRepositoryLayer.Migrations
 {
-    public partial class modelAdded : Migration
+    public partial class modelsRefactored : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -30,7 +30,7 @@ namespace BookStoreRepositoryLayer.Migrations
                     AuthorName = table.Column<string>(nullable: false),
                     PublisherName = table.Column<string>(nullable: false),
                     PublishedYear = table.Column<int>(nullable: false),
-                    BookPrice = table.Column<string>(nullable: false)
+                    BookPrice = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -62,7 +62,8 @@ namespace BookStoreRepositoryLayer.Migrations
                     LastName = table.Column<string>(nullable: false),
                     PhoneNumber = table.Column<long>(maxLength: 10, nullable: false),
                     AddressTypeId = table.Column<int>(nullable: false),
-                    Address = table.Column<string>(nullable: false)
+                    Address = table.Column<string>(nullable: false),
+                    UserId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
