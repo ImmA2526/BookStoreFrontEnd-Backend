@@ -134,4 +134,17 @@ clearForm() {
 #txt {
   text-transform: capitalize;
 }
+
+@media (max-width: 500px) {
+ 
+ .md-layout {
+    display: flex;
+    flex-wrap: wrap;
+   width: 300px;
+   height: 70px;
+    margin-left: 40px;
+  // padding-bottom: 80px;
+}
+
+}
 </style>

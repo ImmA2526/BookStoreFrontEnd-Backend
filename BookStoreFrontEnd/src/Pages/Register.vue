@@ -3,70 +3,62 @@
     <form novalidate class="md-layout" @submit.prevent="validateUser">
       <md-card class="md-layout-item md-size-50 md-small-size-100">
         <center>
-          <div class="h2">
+          <div class="h2" id="namess">
             <md-button to="./" id="txt" class="md-primary" :disabled="sending">Login</md-button>
-            <md-button to="./Register" id="txt" class="md-primary" :disabled="sending">SignUp</md-button>
-                          
+            <md-button to="./Register" id="txts" class="md-primary" :disabled="sending">SignUp</md-button>                     
           </div>
         </center>
 
-        <md-card-content>
+    <div class="form-group row">
+            <label id="fname" class="col-sm-2 col-form-label">Full Name</label>
+            <div class="col-sm-8">
+                <input type="text" id="name" name="fullname" >
+            </div>
+        </div>
 
-<!-- //Full Name           -->
-          <md-field :class="getValidationClass('firstName')">
-            <label for="firstName">Full Name</label>
-            <md-input type="text" name="firstName" id="name" autocomplete="given-name" v-model="form.firstName" :disabled="sending"/>
-             <span class="md-error" v-if="!$v.form.firstName.required" >The first name is required</span>
-                  <span class="md-error" v-else-if="!$v.form.firstName.minlength">Invalid first name</span>
-               </md-field>
-          
-          <!-- Emali -->
-          
-          <md-field :class="getValidationClass('email')">
-            <label for="email">Email</label>
-            <md-input type="email" name="email" id="email" autocomplete="email" v-model="form.email" :disabled="sending"/>
-            <span class="md-error" v-if="!$v.form.email.required">The email is required</span>
-            <span class="md-error" v-else-if="!$v.form.email.email">Invalid email</span>
-          </md-field>
-          
-          <!-- PWD -->
-          <md-field :class="getValidationClass('password')">
-            <label for="password">Password</label>
-            <md-input type="password" name="password" id="password" autocomplete="password" v-model="form.password" :disabled="sending"/>
-            <span class="md-error" v-if="!$v.form.password.required">The password is required</span>
-            <span class="md-error" v-else-if="!$v.form.password.minlength">Invalid password</span>
-          </md-field>
+    <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Email Id</label>
+            <div class="col-sm-8">
+                <input type="email" id="email" name="email" >
+            </div>
+        </div>
 
 
-<!-- phone Numb -->
-<md-field :class="getValidationClass('phone')">
-            <label for="email">Mobile Number</label>
-            <md-input type="" name="phone" id="phone"  v-model="form.phone" :disabled="sending"/>
-              <!-- <ejs-textbox floatLabelType="Auto" cssClass="e-outline" placeholder="Outlined"></ejs-textbox> -->
-            <span class="md-error" v-if="!$v.form.phone.required">Mobile No is required</span>
-            <span class="md-error" v-else-if="!$v.form.phone.phone">Invalid Mobile No.</span>
-          </md-field>
-          
+    
+    <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-8">
+                <input type="password" id="pass" name="password" >
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Phone Number</label>
+            <div class="col-sm-8">
+                <input type="text" id="phone" name="phone" >
+            </div>
+        </div>
+        <!-- <md-card-content>
 
 
           <md-button to="./Forgot" id="txt" class="md-primary">Forgot Password?</md-button>
-        </md-card-content>
+        </md-card-content> -->
 
         <md-progress-bar md-mode="indeterminate" v-if="sending" />
 
         <md-card-actions>
           <div class="md-layout md-gutter">
-            <div class="md-layout-item md-small-size-100">
+            <!-- <div class="md-layout-item md-small-size-100">
               <md-button to="./Register" id="txt" class="md-primary" :disabled="sending">Create Account</md-button>
-              <!-- <md-button  type="submit" class="md-primary" >Create account</md-button> -->
-            </div>
-            <div class="md-layout-item md-small-size-100">
-              <md-button v-on:click="loginPost()" type="submit" id="txt" class="md-dense md-raised md-primary" :disabled="sending">Login</md-button>
+              <md-button  type="submit" class="md-primary" >Create account</md-button>
+            </div> -->
+            <div class="md-layout-item md-small-size-120">
+              <md-button v-on:click="loginPost()" type="submit" id="txt1" class="md-dense md-raised md-primary" :disabled="sending">Login</md-button>
            
             </div>
           </div>
         </md-card-actions>
-        <div class="blank"></div>
+        <!-- <div class="blank"></div> -->
       </md-card>
       <md-snackbar :md-active.sync="userSaved">The user {{ loginUser }} successfully login!</md-snackbar>
     </form>
@@ -166,6 +158,11 @@ minLength:minLength(10),
   border-radius: 14px;
 }
 
+.md-card-content {
+    padding: 8px;
+    font-size: 14px;
+    line-height: 10px;
+}
 .blank {
   padding-bottom: 6px;
   //  background-color: black;
@@ -182,17 +179,101 @@ minLength:minLength(10),
   margin-top: 150px;
 }
 
+
+
+
 //Form 
 .md-layout {
     display: flex;
     flex-wrap: wrap;
-   width: 800px;
+   width: 700px;
+   height: 40px;
     margin-left: 200px;
 }
 
 //Text Forgot 
 #txt {
-  text-transform: capitalize;
+  
+  //  text-transform: capitalize;
+  border-bottom: 78px;
+  // color: red;
+  margin-right: 80px;
+      // border-bottom: 8px solid brown;
+    border-width:4px ;
+
+  // color: red;
+
+}
+
+
+
+#names
+{
+  margin-bottom: 4px;
+}
+
+#namess
+{
+  // padding-bottom: 10px;
+      padding-bottom: 1px;
+    // margin-top: -11px;
+}
+
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea,
+select {
+  padding: 12px 20px;
+  margin: 12px 0;
+  box-sizing: border-box;
+  // border-radius: 8px;
+  width: 80%;
+  height: 30px;
+  /* border-color:black;
+*/
+  // margin-right: 10%;
+  outline: none;
+}
+
+label {
+  display: flex;
+  justify-content: left;
+  text-align: right;
+  width: 100px;
+  line-height: 8px;
+  // margin-left: 40px;
+  color: black;
+  margin-left: 38px;
+}
+s
+#fname
+{
+  margin-top: 20px;
+}
+
+#txt1
+{
+  width: 240px;
+  background-color:brown;
+   text-transform: capitalize;
+
+}
+
+
+
+#txts
+{
+  color: white;
+  //  text-transform: capitalize;
+
+    border-bottom: 8px solid brown;
+    border-width:4px ;
+    // background-color: brown;
+  color:brown;
+  // margin-right: 70px;k
+  // color: red;
 }
 @media (max-width: 500px) {
  
@@ -209,6 +290,7 @@ minLength:minLength(10),
   margin-left: 200px;
   margin-top: 70px;
 }
+
 
 }
 

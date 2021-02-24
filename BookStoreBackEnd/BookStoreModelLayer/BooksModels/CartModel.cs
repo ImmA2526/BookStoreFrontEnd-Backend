@@ -13,14 +13,14 @@ namespace BookStoreModelLayer.BooksModels
         public int CartId { get; set; }
 
         [Required]
+        public int Quantity { get; set; }
+
+        [Required]
+        public int BookCount { get; set; }
+
+        [Required]
         [ForeignKey("UserModel")]
         public int UserId { get; set; }
 
-        [Required]
-        [ForeignKey("BookModel")]
-        public int BookId { get; set; }
-
-        [Required]
-        public int Quantity { get; set; }
     }
 }

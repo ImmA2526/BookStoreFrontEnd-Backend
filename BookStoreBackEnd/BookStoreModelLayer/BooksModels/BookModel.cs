@@ -16,6 +16,9 @@ namespace BookStoreModelLayer.BooksModels
         public string BookName { get; set; }
 
         [Required]
+        public string BookDescription { get; set; }
+
+        [Required]
         public string BookImage { get; set; }
 
         [Required]
@@ -23,12 +26,6 @@ namespace BookStoreModelLayer.BooksModels
 
         [Required]
         public string AuthorName { get; set; }
-
-        [Required]
-        public string PublisherName { get; set; }
-
-        [Required]
-        public int PublishedYear { get; set; }
 
         [Required]
         public int BookPrice { get; set; }

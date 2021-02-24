@@ -18,8 +18,5 @@ namespace BookStoreModelLayer.BooksModels
         [ForeignKey("UserModel")]
         public int UserId { get; set; }
 
-        [Required]
-        [ForeignKey("BookModel")]
-        public int BookId { get; set; }
     }
 }

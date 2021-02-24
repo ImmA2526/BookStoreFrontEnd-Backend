@@ -4,28 +4,25 @@
       <md-card class="md-layout-item md-size-50 md-small-size-100">
         <center>
           <div class="h2">
-            <md-button to="./" id="txts" class="md-primary" :disabled="sending">Login</md-button>
-            <md-button to="./Register" id="tt" class="md-primary" :disabled="sending">SignUp</md-button>
+            <md-button to="./" id="txt" class="md-primary" :disabled="sending">Login</md-button>
+            <md-button to="./Register" id="txt" class="md-primary" :disabled="sending">SignUp</md-button>
                           
           </div>
         </center>
 
         <md-card-content>
-              <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Email Id</label>
-            <div class="col-sm-8">
-                <input type="email" id="email" name="email" >
-            </div>
-        </div>
-
-
-    
-    <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Password</label>
-            <div class="col-sm-8">
-                <input type="password" id="pass" name="password" >
-            </div>
-        </div>
+          <md-field :class="getValidationClass('email')">
+            <label for="email">Email</label>
+            <md-input type="email" name="email" id="email" autocomplete="email" v-model="form.email" :disabled="sending"/>
+            <span class="md-error" v-if="!$v.form.email.required">The email is required</span>
+            <span class="md-error" v-else-if="!$v.form.email.email">Invalid email</span>
+          </md-field>
+          <md-field :class="getValidationClass('password')">
+            <label for="password">Password</label>
+            <md-input type="password" name="password" id="password" autocomplete="password" v-model="form.password" :disabled="sending"/>
+            <span class="md-error" v-if="!$v.form.password.required">The password is required</span>
+            <span class="md-error" v-else-if="!$v.form.password.minlength">Invalid password</span>
+          </md-field>
 
           <md-button to="./Forgot" id="txt" class="md-primary">Forgot Password?</md-button>
         </md-card-content>
@@ -34,17 +31,17 @@
 
         <md-card-actions>
           <div class="md-layout md-gutter">
-            <!-- <div class="md-layout-item md-small-size-100">
-              <md-button to="./Register" id="txt" class="md-primary" :disabled="sending">Create Account</md-button>
-              <md-button  type="submit" class="md-primary" >Create account</md-button>
-            </div> -->
             <div class="md-layout-item md-small-size-100">
-              <md-button v-on:click="loginPost()" type="submit" id="lgbtn" class="md-dense md-raised md-primary" :disabled="sending">Login</md-button>
+              <md-button to="./Register" id="txt" class="md-primary" :disabled="sending">Create Account</md-button>
+              <!-- <md-button  type="submit" class="md-primary" >Create account</md-button> -->
+            </div>
+            <div class="md-layout-item md-small-size-100">
+              <md-button v-on:click="loginPost()" type="submit" id="txt" class="md-dense md-raised md-primary" :disabled="sending">Login</md-button>
            
             </div>
           </div>
         </md-card-actions>
-        <!-- <div class="blank"></div> -->
+        <div class="blank"></div>
       </md-card>
       <md-snackbar :md-active.sync="userSaved">The user {{ loginUser }} successfully login!</md-snackbar>
     </form>
@@ -122,8 +119,9 @@ export default {
 };
 </script>
 
-
 <style lang="scss" scoped>
+
+
 
 .h2 {
   padding-bottom: 10px;
@@ -134,11 +132,6 @@ export default {
   border-radius: 14px;
 }
 
-.md-card-content {
-    padding: 8px;
-    font-size: 14px;
-    line-height: 10px;
-}
 .blank {
   padding-bottom: 6px;
   //  background-color: black;
@@ -155,115 +148,34 @@ export default {
   margin-top: 150px;
 }
 
-
-
-
 //Form 
 .md-layout {
     display: flex;
     flex-wrap: wrap;
-   width: 700px;
-   height: 40px;
+   width: 800px;
+   height: 70px;
     margin-left: 200px;
 }
 
-//Text Forgot
-
-#txt
-{
+//Text Forgot 
+#txt {
   text-transform: capitalize;
-
-}
-#lgbtn {
-  text-transform: capitalize;
-width: 240px;
-background-color: brown;
-
 }
 
-#names
-{
-  margin-bottom: 4px;
-}
-
-#namess
-{
-  // padding-bottom: 10px;
-      padding-bottom: 1px;
-    // margin-top: -11px;
-}
-
-
-input[type="text"],
-input[type="password"],
-input[type="email"],
-textarea,
-select {
-  padding: 12px 20px;
-  margin: 12px 0;
-  box-sizing: border-box;
-  // border-radius: 8px;
-  width: 80%;
-  height: 30px;
-  /* border-color:black;
-*/
-  // margin-right: 10%;
-  outline: none;
-}
-
-label {
-  display: flex;
-  justify-content: left;
-  text-align: right;
-  width: 100px;
-  line-height: 8px;
-  // margin-left: 40px;
-  color: black;
-  margin-left: 38px;
-}
-
-#fname
-{
-  margin-top: 20px;
-}
-
-#txt1
-{
-  width: 240px;
-  background-color:brown;
-  //  text-transform: capitalize;
-
-}
-
-#txts
-{
-  color: white;
-  //  text-transform: capitalize;
-
-    border-bottom: 8px solid brown;
-    border-width:4px ;
-    // background-color: brown;
-  color:brown;
-  margin-right: 70px;
-  // color: red;
-}
 @media (max-width: 500px) {
  
  .md-layout {
     display: flex;
     flex-wrap: wrap;
    width: 300px;
-   height: 70px;
-    margin-left: 40px;
-  // padding-bottom: 80px;
+   height: 60px;
+    margin-left: 30px;
 }
 
 .md-card {
   margin-left: 200px;
-  margin-top: 70px;
+  margin-top: 100px;
 }
 
-
 }
-
 </style>

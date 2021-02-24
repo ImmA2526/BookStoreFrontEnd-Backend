@@ -35,5 +35,12 @@ namespace BookStoreModelLayer.CustomerModels
         [ForeignKey("AddressTypeModel")]
         public int AddressTypeId { get; set; }
 
+        [Required]
+        [ForeignKey("UserModel")]
+        public int UserId { get; set; }
+        
+
+        //address type 
+
     }
 }

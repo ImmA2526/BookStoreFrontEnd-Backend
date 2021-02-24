@@ -85,18 +85,18 @@ namespace BookStoreRepositoryLayer
             List<CartBookResponse> getResult = new List<CartBookResponse>();
             var result = from BookModel in cartContext.BookTable
                          join CartModel in cartContext.CartTable
-                         on BookModel.BookId equals CartModel.BookId
+                         on BookModel.BookId equals CartModel.UserId
 
                          select new CartBookResponse()
                          {
                              BookId = BookModel.BookId,
                              BookName = BookModel.BookName,
                              AuthorName = BookModel.AuthorName,
-                             PublisherName = BookModel.PublisherName,
-                             PublishedYear = BookModel.PublishedYear,
                              BookPrice = BookModel.BookPrice,
-                             BookCount=BookModel.BookCount,
-                             BookImage=BookModel.BookImage,
+                             BookCount = BookModel.BookCount,
+                             BookImage = BookModel.BookImage,
+                             BookDescription = BookModel.BookDescription,
+
                              CartId = CartModel.CartId,
                              UserId = CartModel.UserId
                          };

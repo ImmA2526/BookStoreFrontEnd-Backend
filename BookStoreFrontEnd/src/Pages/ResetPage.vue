@@ -170,7 +170,7 @@ export default {
 
 .md-card {
   margin-left: 200px;
-  margin-top: 70px;
+  margin-top: 100px;
 }
 
 }

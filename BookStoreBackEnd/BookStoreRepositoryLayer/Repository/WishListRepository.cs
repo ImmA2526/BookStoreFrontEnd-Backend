@@ -13,7 +13,7 @@ using System.Text;
 
 namespace BookStoreRepositoryLayer
 {
-    public class WishListRepository :IWishListRepository
+    public class WishListRepository : IWishListRepository
     {
         public IConfiguration Configuration { get; }
         private readonly BookStoreContext wishContext;
@@ -91,11 +91,11 @@ namespace BookStoreRepositoryLayer
                              BookId = BookModel.BookId,
                              BookName = BookModel.BookName,
                              AuthorName = BookModel.AuthorName,
-                             PublisherName = BookModel.PublisherName,
-                             PublishedYear = BookModel.PublishedYear,
                              BookPrice = BookModel.BookPrice,
                              BookCount = BookModel.BookCount,
                              BookImage = BookModel.BookImage,
+                             BookDescription = BookModel.BookDescription,
+
                              WishlistID = WishlistModel.WishlistID,
                              UserId = WishlistModel.UserId
                          };
