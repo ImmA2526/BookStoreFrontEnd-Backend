@@ -18,7 +18,7 @@ namespace BookStoreApplication.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
+    [Authorize]
     public class WishListController : Controller
     {
         private readonly IWishListBusiness wishBusinsess;

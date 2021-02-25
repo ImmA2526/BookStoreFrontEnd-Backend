@@ -16,7 +16,7 @@ namespace BookStoreModelLayer.CustomerModels
         public string FullName { get; set; }
 
         [Required]
-        [MaxLength(10)]
+        //[MaxLength(10)]
         public long PhoneNumber { get; set; }
 
         [Required]
@@ -38,9 +38,6 @@ namespace BookStoreModelLayer.CustomerModels
         [Required]
         [ForeignKey("UserModel")]
         public int UserId { get; set; }
-        
-
-        //address type 
-
+         
     }
 }

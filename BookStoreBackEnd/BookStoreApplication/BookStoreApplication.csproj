@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BookStoreBusinessLayer\BookStoreBusinessLayer.csproj" />
-    <ProjectReference Include="..\BookStoreRepositoryLayer\BookStoreRepositoryLayer.csproj" />
   </ItemGroup>
 
 </Project>

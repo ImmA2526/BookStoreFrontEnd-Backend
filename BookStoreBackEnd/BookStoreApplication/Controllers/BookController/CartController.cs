@@ -18,11 +18,11 @@ namespace BookStoreApplication.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
+    [Authorize]
     public class CartController : Controller
     {
         private readonly ICartBusiness cartBusinsess;
-    
+
         public CartController(ICartBusiness cartBusinsess)
         {
             this.cartBusinsess = cartBusinsess;
@@ -127,6 +127,35 @@ namespace BookStoreApplication.Controllers
                 if (update != null)
                 {
                     return this.Ok(new { Status = true, Message = "Book Updated Succesfully", Data = update });
+                }
+                else
+                {
+                    return this.NotFound(new { Status = false, Message = "Error While Updating" });
+                }
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(new { Status = false, Message = e.Message });
+
+            }
+        }
+
+        /// <summary>
+        /// Gets the cart books count.
+        /// </summary>
+        /// <param name="userId">The user identifier.</param>
+        /// <returns></returns>
+
+        [HttpGet]
+        [Route("getCounts")]
+        public IActionResult  GetCartBooksCount(int userId)
+        {
+            try
+            {
+                var count = this.cartBusinsess.GetCartBooksCount(userId);
+                if (count >0)
+                {
+                    return this.Ok(new { Status = true, Message = "The No of Books Are :" + count, Data = count });
                 }
                 else
                 {

@@ -15,7 +15,6 @@ namespace BookStoreRepositoryLayer
 {
     public class CartRepository : ICartRepository
     {
-        public IConfiguration Configuration { get; }
         private readonly BookStoreContext cartContext;
         public CartRepository(BookStoreContext cartContext)
         {
@@ -44,7 +43,7 @@ namespace BookStoreRepositoryLayer
             }
             catch (Exception e)
             {
-                throw new Exception("Error While Adding Book" + e.Message);
+                throw new Exception("Error While Adding Book in Cart " + e.Message);
             }
         }
 
@@ -106,7 +105,7 @@ namespace BookStoreRepositoryLayer
             }
             catch (Exception e)
             {
-                throw new Exception("Error While Removing Data" + e.Message);
+                throw new Exception("Error While Removing Data From Cart" + e.Message);
             }
         }
 
@@ -126,9 +125,9 @@ namespace BookStoreRepositoryLayer
                 this.cartContext.Update(update);
                 var result = this.cartContext.SaveChanges();
 
-                if (result> 0)
+                if (result > 0)
                 {
-                    
+
                     return model;
                 }
                 return null;
@@ -138,7 +137,7 @@ namespace BookStoreRepositoryLayer
                 throw new Exception("Error While Updating Record" + e.Message);
             }
         }
-        
+
         /// <summary>
         /// Gets the cart books count.
         /// </summary>

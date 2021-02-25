@@ -14,7 +14,6 @@ namespace BookStoreRepositoryLayer.Repository
             this.orderContext = orderContext;
         }
 
-
         /// <summary>
         /// Creates the order summary.
         /// </summary>

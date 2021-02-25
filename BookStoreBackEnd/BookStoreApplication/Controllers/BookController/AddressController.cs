@@ -1,6 +1,7 @@
 ﻿using BookStoreBusinessLayer.IBookBusinessLayer;
 using BookStoreModelLayer;
 using BookStoreModelLayer.CustomerModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -14,6 +15,7 @@ namespace BookStoreApplication.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
 
     public class AddressController : Controller
     {

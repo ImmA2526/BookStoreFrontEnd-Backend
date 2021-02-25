@@ -1,6 +1,7 @@
 ﻿using BookStoreBusinessLayer.IBookBusinessLayer;
 using BookStoreModelLayer;
 using BookStoreModelLayer.CustomerModels;
+using BookStoreRepositoryLayer.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,9 +10,9 @@ namespace BookStoreBusinessLayer.BookBusinessLayer
 {
     public class AddressBusiness : IAddressBusiness
     {
-        IAddressBusiness addressRepo;
+        IAddressRepository addressRepo;
 
-        public AddressBusiness(IAddressBusiness addressRepo)
+        public AddressBusiness(IAddressRepository addressRepo)
         {
             this.addressRepo = addressRepo;
         }

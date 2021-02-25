@@ -1,5 +1,6 @@
 ﻿using BookStoreBusinessLayer.IBookBusinessLayer;
 using BookStoreModelLayer.BooksModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,7 +12,7 @@ namespace BookStoreApplication.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
+    [Authorize]
     public class OrderController : Controller
     {
         private readonly IOrderBusiness orderBusinsess;

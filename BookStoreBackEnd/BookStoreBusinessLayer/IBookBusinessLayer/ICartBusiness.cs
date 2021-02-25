@@ -15,5 +15,7 @@ namespace BookStoreBusinessLayer.IBusinessLayer
         string DeleteBooksFromCart(int cartId);
 
         CartModel UpdateCart(CartModel model);
+
+        int GetCartBooksCount(int userId);
     }
 }

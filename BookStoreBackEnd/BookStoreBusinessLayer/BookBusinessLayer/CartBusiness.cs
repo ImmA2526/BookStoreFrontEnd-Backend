@@ -40,5 +40,11 @@ namespace BookStoreBusinessLayer.BusinessLayer
             var update = cartRepo.UpdateCart(model);
             return update;
         }
+
+        public int GetCartBooksCount(int userId)
+        {
+            var count = cartRepo.GetCartBooksCount(userId);
+            return count;
+        }
     }
 }
