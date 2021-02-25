@@ -15,7 +15,6 @@ namespace BookStoreRepositoryLayer
 {
     public class WishListRepository : IWishListRepository
     {
-        public IConfiguration Configuration { get; }
         private readonly BookStoreContext wishContext;
         public WishListRepository(BookStoreContext wishContext)
         {
@@ -49,37 +48,11 @@ namespace BookStoreRepositoryLayer
         }
 
         /// <summary>
-        /// Gets all book items.
-        /// </summary>
-        /// <returns></returns>
-        /// <exception cref="Exception">Error While Retriving Cart Items" + e.Message</exception>
-
-        public IEnumerable<WishBookResponse> GetAllBookItems(int userID)
-        {
-            try
-            {
-                IEnumerable<WishlistModel> getresult = wishContext.WishlistTable.Where(e => e.UserId == userID).ToList();
-
-                if (getresult != null)
-                {
-                    IEnumerable<WishBookResponse> result = GetAllWishlistBooks(userID);
-                    return result;
-                }
-
-                return null;
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Error While Retriving Data" + e.Message);
-            }
-        }
-
-        /// <summary>
         /// Gets all wishlist books.
         /// </summary>
         /// <param name="wishListId">The wish list identifier.</param>
         /// <returns></returns>
-        public IEnumerable<WishBookResponse> GetAllWishlistBooks(int userID)
+        public IEnumerable<WishBookResponse> GetAllBookFromWishList(int userID)
         {
             List<WishBookResponse> getResult = new List<WishBookResponse>();
             var result = from BookModel in wishContext.BookTable
@@ -123,7 +96,6 @@ namespace BookStoreRepositoryLayer
                 WishlistModel deleteResult = wishContext.WishlistTable.Find(wishlistId);
                 if (deleteResult != null)
                 {
-                    //wishContext.WishlistTable.Remove();
                     wishContext.WishlistTable.Remove(deleteResult);
                     wishContext.SaveChangesAsync();
                     return "RecordDeleted";
@@ -135,8 +107,5 @@ namespace BookStoreRepositoryLayer
                 throw new Exception("Error While Removing Data" + e.Message);
             }
         }
-
-
     }
-
 }

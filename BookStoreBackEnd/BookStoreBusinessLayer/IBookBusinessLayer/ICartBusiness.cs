@@ -10,7 +10,8 @@ namespace BookStoreBusinessLayer.IBusinessLayer
     {
         CartModel AddItems(CartModel addItem);
 
-        IEnumerable<CartBookResponse> GetAllBookItems(int userId);
+        //IEnumerable<CartBookResponse> GetAllBookFromCart(int userId);
+        IEnumerable<CartBookResponse> GetAllCartBooks(int userId);
 
         string DeleteBooksFromCart(int cartId);
 

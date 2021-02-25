@@ -28,19 +28,19 @@ namespace BookStoreApplication.Controllers
         /// <returns></returns>
 
         [HttpPost]
-        [Route("addItems")]
+        [Route("addOrder")]
         public IActionResult OrderSummary([FromBody] OrderModel order)
         {
             try
             {
                 var result = this.orderBusinsess.CreateOrderSummary(order);
-                if (result != null)
+                if (result >0)
                 {
-                    return this.Ok(new { Status = true, Message = "Data Added Successfully", Data = result });
+                    return this.Ok(new { Status = true, Message = "Order Added Successfully", Data = result });
                 }
                 else
                 {
-                    return this.BadRequest(new { Status = false, Message = "Data is Not Added Succesfully " });
+                    return this.BadRequest(new { Status = false, Message = "Error While Adding Order " });
                 }
             }
             catch (Exception e)

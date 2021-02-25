@@ -36,7 +36,7 @@ namespace BookStoreApplication.Controllers
         /// <returns></returns>
 
         [HttpPost]
-        [Route("addItems")]
+        [Route("addBooks")]
         public IActionResult AddItems([FromBody] WishlistModel addItem)
         {
             try
@@ -64,11 +64,11 @@ namespace BookStoreApplication.Controllers
 
         [HttpGet]
         [Route("getAllBooks")]
-        public IActionResult GetAllBookItems(int userId)
+        public IActionResult GetAllBookFromWishList(int userId)
         {
             try
             {
-                IEnumerable<WishBookResponse> getResult = this.wishBusinsess.GetAllBookItems(userId);
+                IEnumerable<WishBookResponse> getResult = this.wishBusinsess.GetAllBookFromWishList(userId);
                 if (getResult != null)
                 {
                     return this.Ok(new { Status = true, Message = "WishList Data Retrive Successfully", Data = getResult });
@@ -76,7 +76,7 @@ namespace BookStoreApplication.Controllers
 
                 else
                 {
-                    return this.NotFound(new { Status = false, Message = "Error Occur While Fetching WishList Items" });
+                    return this.NotFound(new { Status = false, Message = "Error Occur While Fetching WishList Data" });
                 }
             }
             catch (Exception e)

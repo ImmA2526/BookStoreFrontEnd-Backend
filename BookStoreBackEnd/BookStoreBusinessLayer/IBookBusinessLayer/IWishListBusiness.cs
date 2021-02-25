@@ -10,7 +10,7 @@ namespace BookStoreBusinessLayer.IBusinessLayer
     {
         WishlistModel AddItems(WishlistModel addItem);
 
-        IEnumerable<WishBookResponse> GetAllBookItems(int userID);
+        IEnumerable<WishBookResponse> GetAllBookFromWishList(int userID);
 
         string DeleteBooksFromWishlist(int wishListId);
     }

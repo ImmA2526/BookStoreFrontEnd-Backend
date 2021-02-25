@@ -24,9 +24,9 @@ namespace BookStoreBusinessLayer.BusinessLayer
         }
 
 
-        public IEnumerable<WishBookResponse> GetAllBookItems(int userID)
+        public IEnumerable<WishBookResponse> GetAllBookFromWishList(int userID)
         {
-            var getResult = wishRepo.GetAllBookItems(userID);
+            var getResult = wishRepo.GetAllBookFromWishList(userID);
             return getResult;
         }
 

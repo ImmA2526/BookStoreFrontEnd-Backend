@@ -9,8 +9,8 @@ namespace BookStoreRepositoryLayer.IRepository
     public interface ICartRepository
     { 
         CartModel AddItems(CartModel addItem);
-
-        IEnumerable<CartBookResponse> GetAllBookItems(int userId);
+        //IEnumerable<CartBookResponse> GetAllBookFromCart(int userId);
+        IEnumerable<CartBookResponse> GetAllCartBooks(int userId);
 
         string DeleteBooksFromCart(int cartId);
 

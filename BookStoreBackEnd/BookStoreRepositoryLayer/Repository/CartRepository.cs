@@ -49,32 +49,6 @@ namespace BookStoreRepositoryLayer
         }
 
         /// <summary>
-        /// Gets all book items.
-        /// </summary>
-        /// <returns></returns>
-        /// <exception cref="Exception">Error While Retriving Cart Items" + e.Message</exception>
-
-        public IEnumerable<CartBookResponse> GetAllBookItems(int userId)
-        {
-            try
-            {
-                IEnumerable<CartModel> getresult = cartContext.CartTable.Where(e => e.UserId == userId).ToList();
-
-                if (getresult != null)
-                {
-                    IEnumerable<CartBookResponse> result = GetAllCartBooks(userId);
-                    return result;
-                }
-
-                return null;
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Error While Retriving Data" + e.Message);
-            }
-        }
-
-        /// <summary>
         ///Join Query For Retrive Books
         /// </summary>
         /// <param name="userId">The user identifier.</param>
@@ -135,6 +109,7 @@ namespace BookStoreRepositoryLayer
                 throw new Exception("Error While Removing Data" + e.Message);
             }
         }
+
         /// <summary>
         /// Updates the cart by identifier.
         /// </summary>
@@ -163,6 +138,7 @@ namespace BookStoreRepositoryLayer
                 throw new Exception("Error While Updating Record" + e.Message);
             }
         }
+        
         /// <summary>
         /// Gets the cart books count.
         /// </summary>

@@ -35,7 +35,7 @@ namespace BookStoreApplication.Controllers
         /// <returns></returns>
 
         [HttpPost]
-        [Route("addItems")]
+        [Route("addBooks")]
         public IActionResult AddItems([FromBody] CartModel addItem)
         {
             try
@@ -63,11 +63,11 @@ namespace BookStoreApplication.Controllers
 
         [HttpGet]
         [Route("getAllBooks")]
-        public IActionResult GetAllBookItems(int userId)
+        public IActionResult GetAllBookFromCart(int userId)
         {
             try
             {
-                IEnumerable<CartBookResponse> getResult = this.cartBusinsess.GetAllBookItems(userId);
+                IEnumerable<CartBookResponse> getResult = this.cartBusinsess.GetAllCartBooks(userId);
                 if (getResult != null)
                 {
                     return this.Ok(new { Status = true, Message = "Cart Data Retrive Successfully", Data = getResult });
