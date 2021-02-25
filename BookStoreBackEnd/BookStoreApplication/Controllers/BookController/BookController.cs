@@ -22,12 +22,10 @@ namespace BookStoreApplication.Controllers
     public class BookController : Controller
     {
         private readonly IBookBusiness bookbusiness;
-        private readonly IConfiguration configuration;
-
-        public BookController(IBookBusiness bookbusiness, IConfiguration configuration)
+      
+        public BookController(IBookBusiness bookbusiness)
         {
             this.bookbusiness = bookbusiness;
-            this.configuration = configuration;
         }
 
         /// <summary>

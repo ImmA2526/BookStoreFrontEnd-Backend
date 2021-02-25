@@ -1,86 +1,51 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using BookStoreBusinessLayer.IBookBusinessLayer;
+using BookStoreModelLayer.BooksModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BookStoreApplication.Controllers.BookController
+namespace BookStoreApplication.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
+
     public class OrderController : Controller
     {
-        // GET: OrderController
-        public ActionResult Index()
+        private readonly IOrderBusiness orderBusinsess;
+
+        public OrderController(IOrderBusiness orderBusinsess)
         {
-            return View();
+            this.orderBusinsess = orderBusinsess;
         }
 
-        // GET: OrderController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        /// <summary>
+        /// Registers the user.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <returns></returns>
 
-        // GET: OrderController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: OrderController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        [Route("addItems")]
+        public IActionResult OrderSummary([FromBody] OrderModel order)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var result = this.orderBusinsess.CreateOrderSummary(order);
+                if (result != null)
+                {
+                    return this.Ok(new { Status = true, Message = "Data Added Successfully", Data = result });
+                }
+                else
+                {
+                    return this.BadRequest(new { Status = false, Message = "Data is Not Added Succesfully " });
+                }
             }
-            catch
+            catch (Exception e)
             {
-                return View();
-            }
-        }
-
-        // GET: OrderController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: OrderController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: OrderController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: OrderController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
+                return this.NotFound(new { Status = false, Message = e.Message });
             }
         }
     }

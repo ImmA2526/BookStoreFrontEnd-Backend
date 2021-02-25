@@ -22,12 +22,10 @@ namespace BookStoreApplication.Controllers
     public class CartController : Controller
     {
         private readonly ICartBusiness cartBusinsess;
-        private readonly IConfiguration configuration;
-
-        public CartController(ICartBusiness cartBusinsess, IConfiguration configuration)
+    
+        public CartController(ICartBusiness cartBusinsess)
         {
             this.cartBusinsess = cartBusinsess;
-            this.configuration = configuration;
         }
 
         /// <summary>
