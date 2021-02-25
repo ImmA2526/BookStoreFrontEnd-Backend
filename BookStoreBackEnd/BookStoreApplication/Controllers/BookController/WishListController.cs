@@ -22,12 +22,11 @@ namespace BookStoreApplication.Controllers
     public class WishListController : Controller
     {
         private readonly IWishListBusiness wishBusinsess;
-        private readonly IConfiguration configuration;
-
-        public WishListController(IWishListBusiness wishBusinsess, IConfiguration configuration)
+        
+        public WishListController(IWishListBusiness wishBusinsess)
         {
             this.wishBusinsess = wishBusinsess;
-            this.configuration = configuration;
+           
         }
 
         /// <summary>
@@ -64,7 +63,7 @@ namespace BookStoreApplication.Controllers
         /// <returns></returns>
 
         [HttpGet]
-        [Route("getAllBookItems")]
+        [Route("getAllBooks")]
         public IActionResult GetAllBookItems(int userId)
         {
             try
@@ -93,7 +92,7 @@ namespace BookStoreApplication.Controllers
         /// <returns></returns>
 
         [HttpDelete]
-        [Route("deleteBookItems")]
+        [Route("deleteBooks")]
         public IActionResult DeleteBookFromWishlist(int wishListId)
         {
             try
@@ -101,7 +100,7 @@ namespace BookStoreApplication.Controllers
                 var delete = this.wishBusinsess.DeleteBooksFromWishlist(wishListId);
                 if (delete != null)
                 {
-                    return this.Ok(new { Status = true, Message = "Item Removed SuccesFully" });
+                    return this.Ok(new { Status = true, Message = "Item Removed SuccesFully" ,Data=delete});
                 }
                 else
                 {

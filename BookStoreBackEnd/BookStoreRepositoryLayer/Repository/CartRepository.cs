@@ -135,7 +135,44 @@ namespace BookStoreRepositoryLayer
                 throw new Exception("Error While Removing Data" + e.Message);
             }
         }
+        /// <summary>
+        /// Updates the cart by identifier.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
+        /// <exception cref="Exception">Error While Updating Record" + e.Message</exception>
 
+        public CartModel UpdateCart(CartModel model)
+        {
+            try
+            {
+                var update = cartContext.CartTable.FirstOrDefault(book => book.CartId == model.CartId);
+                update.BookCount = model.BookCount;
+                this.cartContext.Update(update);
+                var result = this.cartContext.SaveChanges();
+
+                if (result> 0)
+                {
+                    
+                    return model;
+                }
+                return null;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error While Updating Record" + e.Message);
+            }
+        }
+        /// <summary>
+        /// Gets the cart books count.
+        /// </summary>
+        /// <param name="userId">The user identifier.</param>
+        /// <returns></returns>
+        public int GetCartBooksCount(int userId)
+        {
+            IEnumerable<CartModel> getresult = cartContext.CartTable.Where(e => e.UserId == userId).ToList();
+            return getresult.Count();
+        }
     }
 
 }

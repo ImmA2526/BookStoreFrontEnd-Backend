@@ -1,7 +1,10 @@
-﻿using BookStoreBusinessLayer.BusinessLayer;
+﻿using BookStoreBusinessLayer.BookBusinessLayer;
+using BookStoreBusinessLayer.BusinessLayer;
+using BookStoreBusinessLayer.IBookBusinessLayer;
 using BookStoreBusinessLayer.IBusinessLayer;
 using BookStoreRepositoryLayer;
 using BookStoreRepositoryLayer.IRepository;
+using BookStoreRepositoryLayer.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -44,6 +47,12 @@ namespace BookStoreApplication
 
             services.AddTransient<IWishListRepository, WishListRepository>();
             services.AddTransient<IWishListBusiness, WishListBusiness>();
+
+            services.AddTransient<IAddressRepository, AddressRepository>();
+            services.AddTransient<IAddressBusiness, AddressBusiness>();
+
+            services.AddTransient<IOrderRepository, OrderSummaryRepository>();
+            services.AddTransient<IOrderBusiness, OrderBusiness>();
 
             //Swagger Implementetion
             services.AddSwaggerGen(c =>

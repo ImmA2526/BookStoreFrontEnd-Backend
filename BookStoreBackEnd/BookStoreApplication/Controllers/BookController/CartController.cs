@@ -64,7 +64,7 @@ namespace BookStoreApplication.Controllers
         /// <returns></returns>
 
         [HttpGet]
-        [Route("getAllBookItems")]
+        [Route("getAllBooks")]
         public IActionResult GetAllBookItems(int userId)
         {
             try
@@ -93,7 +93,7 @@ namespace BookStoreApplication.Controllers
         /// <returns></returns>
 
         [HttpDelete]
-        [Route("deleteBookItems")]
+        [Route("deleteBooks")]
         public IActionResult DeleteBookFromWishlist(int cartId)
         {
             try
@@ -111,6 +111,34 @@ namespace BookStoreApplication.Controllers
             catch (Exception e)
             {
                 return this.BadRequest(new { Status = false, Message = e.Message });
+            }
+        }
+
+        /// <summary>
+        /// Updates the book by identifier.
+        /// </summary>
+        /// <param name="bookId">The book identifier.</param>
+        /// <returns></returns>
+        [HttpPut]
+        [Route("updateBookById")]
+        public IActionResult UpdateCart(CartModel model)
+        {
+            try
+            {
+                var update = this.cartBusinsess.UpdateCart(model);
+                if (update != null)
+                {
+                    return this.Ok(new { Status = true, Message = "Book Updated Succesfully", Data = update });
+                }
+                else
+                {
+                    return this.NotFound(new { Status = false, Message = "Error While Updating" });
+                }
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(new { Status = false, Message = e.Message });
+
             }
         }
 

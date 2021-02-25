@@ -13,5 +13,7 @@ namespace BookStoreBusinessLayer.IBusinessLayer
         IEnumerable<CartBookResponse> GetAllBookItems(int userId);
 
         string DeleteBooksFromCart(int cartId);
+
+        CartModel UpdateCart(CartModel model);
     }
 }

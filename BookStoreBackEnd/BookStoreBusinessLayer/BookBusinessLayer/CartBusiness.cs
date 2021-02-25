@@ -34,5 +34,11 @@ namespace BookStoreBusinessLayer.BusinessLayer
             var deleteResult = cartRepo.DeleteBooksFromCart(cartId);
             return deleteResult;
         }
+
+        public CartModel UpdateCart(CartModel model)
+        {
+            var update = cartRepo.UpdateCart(model);
+            return update;
+        }
     }
 }
