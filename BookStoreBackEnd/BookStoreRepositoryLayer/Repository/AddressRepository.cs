@@ -67,7 +67,7 @@ namespace BookStoreRepositoryLayer.Repository
             }
             catch (Exception e)
             {
-                throw new Exception("Error While Updating Record" + e.Message);
+                throw new Exception("Error While Updating Customer Record" + e.Message);
             }
         }
 

@@ -44,11 +44,11 @@ namespace BookStoreApplication.Controllers
                 var result = this.wishBusinsess.AddItems(addItem);
                 if (result != null)
                 {
-                    return this.Ok(new { Status = true, Message = "Data Added Successfully", Data = result });
+                    return this.Ok(new { Status = true, Message = "Books Added in Wishlist Successfully", Data = result });
                 }
                 else
                 {
-                    return this.BadRequest(new { Status = false, Message = "Data is Not Added Succesfully " });
+                    return this.BadRequest(new { Status = false, Message = "Book is Not Added Succesfully " });
                 }
             }
             catch (Exception e)
@@ -100,11 +100,11 @@ namespace BookStoreApplication.Controllers
                 var delete = this.wishBusinsess.DeleteBooksFromWishlist(wishListId);
                 if (delete != null)
                 {
-                    return this.Ok(new { Status = true, Message = "Item Removed SuccesFully" ,Data=delete});
+                    return this.Ok(new { Status = true, Message = "Book Removed From Wishlist SuccesFully" ,Data=delete});
                 }
                 else
                 {
-                    return this.BadRequest(new { Status = false, Message = "Error While Removing" });
+                    return this.BadRequest(new { Status = false, Message = "Error While Removing Book" });
                 }
             }
             catch (Exception e)

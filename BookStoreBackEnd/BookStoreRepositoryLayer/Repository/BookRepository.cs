@@ -2,7 +2,6 @@
 using BookStoreModelLayer.BooksModels;
 using BookStoreRepositoryLayer.IRepository;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using MSMQ;
 using System;
 using System.Collections.Generic;
@@ -15,7 +14,6 @@ namespace BookStoreRepositoryLayer
 {
     public class BookRepository :IBookRepository
     {
-        public IConfiguration Configuration { get; }
         private readonly BookStoreContext bookContext;
         public BookRepository(BookStoreContext bookContext)
         {
@@ -67,7 +65,7 @@ namespace BookStoreRepositoryLayer
             }
             catch (Exception e)
             {
-                throw new Exception("Error While Retriving Data" + e.Message);
+                throw new Exception("Error While Retriving Book" + e.Message);
             }
         }
 
