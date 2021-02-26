@@ -83,14 +83,20 @@ namespace BookStoreApplication.Controllers
             }
         }
 
+        /// <summary>
+        /// Books the image upload.
+        /// </summary>
+        /// <param name="image">The image.</param>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         [HttpPost]
-        [Route("uploadImage")]
-        public IActionResult BookImageUpload(IFormFile image, int id)
+        [Route("uploadImage/{bookId}")]
+        public IActionResult BookImageUpload(IFormFile image, int bookId)
         {
             try
             {
 
-                var book = this.bookbusiness.Image(image, id);
+                var book = this.bookbusiness.Image(image, bookId);
                 if (book != null)
                 {
                     return this.Ok(new { Status = true, Message = "Image Uploaded Succesfully", Data = book });
@@ -107,6 +113,12 @@ namespace BookStoreApplication.Controllers
             }
         }
 
+        /// <summary>
+        /// Updates the book by adding.
+        /// </summary>
+        /// <param name="bookCount">The book count.</param>
+        /// <param name="bookId">The book identifier.</param>
+        /// <returns></returns>
         [HttpPut]
         [Route("updateBook/addBookCount/{bookId}")]
         public IActionResult UpdateBookByAdding(int bookCount,int bookId)
@@ -130,6 +142,13 @@ namespace BookStoreApplication.Controllers
                 return this.NotFound(new { Status = false, Message = e.Message });
             }
         }
+
+        /// <summary>
+        /// Updates the book by deleting.
+        /// </summary>
+        /// <param name="bookCount">The book count.</param>
+        /// <param name="bookId">The book identifier.</param>
+        /// <returns></returns>
 
         [HttpPut]
         [Route("updateBook/deleteBookCount/{bookId}")]

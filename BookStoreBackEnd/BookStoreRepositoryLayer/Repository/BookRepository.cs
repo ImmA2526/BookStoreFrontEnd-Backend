@@ -60,7 +60,7 @@ namespace BookStoreRepositoryLayer
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
 
-        public string Image(IFormFile file, int id)
+        public string Image(IFormFile file, int bookId)
         {
             try
             {
@@ -78,7 +78,7 @@ namespace BookStoreRepositoryLayer
                 };
                 ImageUploadResult uploadResult = cloudinary.Upload(uploadParams);
                 cloudinary.Api.UrlImgUp.BuildUrl(String.Format("{0}.{1}", uploadResult.PublicId, uploadResult.Format));
-                var data = this.bookContext.BookTable.Where(t => t.BookId == id).FirstOrDefault();
+                var data = this.bookContext.BookTable.Where(t => t.BookId == bookId).FirstOrDefault();
                 data.BookImage = uploadResult.Uri.ToString();
                 var result = this.bookContext.SaveChanges();
                 return data.BookImage;

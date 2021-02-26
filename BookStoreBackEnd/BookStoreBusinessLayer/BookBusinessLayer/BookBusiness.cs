@@ -29,9 +29,9 @@ namespace BookStoreBusinessLayer.BusinessLayer
             return getResult;
         }
 
-        public string Image(IFormFile file, int id)
+        public string Image(IFormFile file, int bookId)
         {
-            var uploadImage = bookRepo.Image(file, id);
+            var uploadImage = bookRepo.Image(file, bookId);
             return uploadImage;
 
         }

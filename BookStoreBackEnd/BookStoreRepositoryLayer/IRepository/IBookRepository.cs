@@ -11,7 +11,7 @@ namespace BookStoreRepositoryLayer.IRepository
     {
         BookModel AddBooks(BookModel book);
         IEnumerable<BookModel> GetAllBook();
-        string Image(IFormFile file, int id);
+        string Image(IFormFile file, int bookId);
 
         BookModel UpdateBooksByAdding(int bookCount, int bookId);
 
