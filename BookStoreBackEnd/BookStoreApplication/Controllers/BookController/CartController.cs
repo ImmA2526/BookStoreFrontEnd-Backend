@@ -62,7 +62,7 @@ namespace BookStoreApplication.Controllers
         /// <returns></returns>
 
         [HttpGet]
-        [Route("getAllBooks")]
+        [Route("getAllBooks/{userId}")]
         public IActionResult GetAllBookFromCart(int userId)
         {
             try
@@ -91,7 +91,7 @@ namespace BookStoreApplication.Controllers
         /// <returns></returns>
 
         [HttpDelete]
-        [Route("deleteBooks")]
+        [Route("deleteBooks/{cartId}")]
         public IActionResult DeleteBookFromWishlist(int cartId)
         {
             try
@@ -147,7 +147,7 @@ namespace BookStoreApplication.Controllers
         /// <returns></returns>
 
         [HttpGet]
-        [Route("getCounts")]
+        [Route("getBookCount/{userId}")]
         public IActionResult  GetCartBooksCount(int userId)
         {
             try

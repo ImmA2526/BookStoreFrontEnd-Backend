@@ -29,5 +29,12 @@ namespace BookStoreBusinessLayer.BookBusinessLayer
             return updateResult;
         }
 
+        public AddressResponse GetAddress(int userId)
+        {
+            var getAddress = addressRepo.GetAddress(userId);
+            return getAddress;
+              
+        }
+
     }
 }

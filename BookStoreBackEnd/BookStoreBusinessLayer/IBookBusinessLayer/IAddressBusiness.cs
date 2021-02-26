@@ -12,5 +12,7 @@ namespace BookStoreBusinessLayer.IBookBusinessLayer
          CustomerModel AddAddress(CustomerModel addAddress);
 
          CustomerModel UpdateAddress(CustomerModel update);
+
+        AddressResponse GetAddress(int userId);
     }
 }

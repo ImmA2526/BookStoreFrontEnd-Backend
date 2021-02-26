@@ -22,7 +22,7 @@ namespace BookStoreApplication.Controllers
     public class BookController : Controller
     {
         private readonly IBookBusiness bookbusiness;
-      
+
         public BookController(IBookBusiness bookbusiness)
         {
             this.bookbusiness = bookbusiness;
@@ -36,7 +36,7 @@ namespace BookStoreApplication.Controllers
 
         [HttpPost]
         [Route("addBooks")]
-        public IActionResult AddBooks([FromBody] BookModel book)
+        public IActionResult AddBooks(BookModel book)
         {
             try
             {
@@ -80,6 +80,78 @@ namespace BookStoreApplication.Controllers
             catch (Exception e)
             {
                 return this.BadRequest(new { Status = false, Message = e.Message });
+            }
+        }
+
+        [HttpPost]
+        [Route("uploadImage")]
+        public IActionResult BookImageUpload(IFormFile image, int id)
+        {
+            try
+            {
+
+                var book = this.bookbusiness.Image(image, id);
+                if (book != null)
+                {
+                    return this.Ok(new { Status = true, Message = "Image Uploaded Succesfully", Data = book });
+                }
+                else
+                {
+                    return this.BadRequest(new { Status = false, Message = "Error While Uploading Book Image" });
+                }
+
+            }
+            catch (Exception e)
+            {
+                return this.NotFound(new { Status = false, Message = e.Message });
+            }
+        }
+
+        [HttpPut]
+        [Route("updateBook/addBookCount/{bookId}")]
+        public IActionResult UpdateBookByAdding(int bookCount,int bookId)
+        {
+            try
+            {
+
+                var book = this.bookbusiness.UpdateBooksByAdding(bookCount, bookId);
+                if (book != null)
+                {
+                    return this.Ok(new { Status = true, Message = "Book Count Updated Succesfully", Data = book });
+                }
+                else
+                {
+                    return this.BadRequest(new { Status = false, Message = "Error While Updating Book Count" });
+                }
+
+            }
+            catch (Exception e)
+            {
+                return this.NotFound(new { Status = false, Message = e.Message });
+            }
+        }
+
+        [HttpPut]
+        [Route("updateBook/deleteBookCount/{bookId}")]
+        public IActionResult UpdateBookByDeleting(int bookCount, int bookId)
+        {
+            try
+            {
+
+                var book = this.bookbusiness.UpdateBooksByDeleting(bookCount, bookId);
+                if (book != null)
+                {
+                    return this.Ok(new { Status = true, Message = "Book Count Updated Succesfully", Data = book });
+                }
+                else
+                {
+                    return this.BadRequest(new { Status = false, Message = "Error While Updating Book Count" });
+                }
+
+            }
+            catch (Exception e)
+            {
+                return this.NotFound(new { Status = false, Message = e.Message });
             }
         }
     }

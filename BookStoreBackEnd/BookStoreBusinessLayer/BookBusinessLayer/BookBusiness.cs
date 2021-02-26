@@ -2,6 +2,7 @@
 using BookStoreModelLayer;
 using BookStoreModelLayer.BooksModels;
 using BookStoreRepositoryLayer.IRepository;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -26,6 +27,25 @@ namespace BookStoreBusinessLayer.BusinessLayer
         {
             var getResult = bookRepo.GetAllBook();
             return getResult;
+        }
+
+        public string Image(IFormFile file, int id)
+        {
+            var uploadImage = bookRepo.Image(file, id);
+            return uploadImage;
+
+        }
+
+        public BookModel UpdateBooksByAdding(int bookCount, int bookId)
+        {
+            var udateBook = bookRepo.UpdateBooksByAdding(bookCount, bookId);
+            return udateBook;
+        }
+
+        public BookModel UpdateBooksByDeleting(int bookCount, int bookId)
+        {
+            var udateBook = bookRepo.UpdateBooksByDeleting(bookCount, bookId);
+            return udateBook;
         }
     }
 }

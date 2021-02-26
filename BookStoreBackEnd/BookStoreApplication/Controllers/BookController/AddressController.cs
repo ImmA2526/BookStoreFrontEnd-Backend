@@ -83,5 +83,32 @@ namespace BookStoreApplication.Controllers
             }
         }
 
+        /// <summary>
+        /// Gets the address.
+        /// </summary>
+        /// <param name="userId">The user identifier.</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("getAddress/{userId}")]
+        public IActionResult GetAddress(int userId)
+        {
+            try
+            {
+                var getAddress = this.addressBusiness.GetAddress(userId);
+                if (getAddress != null)
+                {
+                    return this.Ok(new { Status = true, Message = "Address Data Retrive Succesfully", Data = getAddress });
+                }
+                else
+                {
+                    return this.NotFound(new { Status = false, Message = "Error While Retriving Address" });
+                }
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(new { Status = false, Message = e.Message });
+            }
+        }
+
     }
 }

@@ -1,7 +1,11 @@
 ﻿using BookStoreModelLayer;
 using BookStoreModelLayer.BooksModels;
 using BookStoreRepositoryLayer.IRepository;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using MSMQ;
 using System;
 using System.Collections.Generic;
@@ -12,12 +16,15 @@ using System.Text;
 
 namespace BookStoreRepositoryLayer
 {
-    public class BookRepository :IBookRepository
+    public class BookRepository : IBookRepository
     {
         private readonly BookStoreContext bookContext;
-        public BookRepository(BookStoreContext bookContext)
+        private readonly IConfiguration configuration;
+        public BookRepository(BookStoreContext bookContext, IConfiguration configuration)
         {
             this.bookContext = bookContext;
+            this.configuration = configuration;
+
         }
 
         /// <summary>
@@ -31,6 +38,7 @@ namespace BookStoreRepositoryLayer
         {
             try
             {
+                
                 bookContext.BookTable.Add(book);
                 var add = bookContext.SaveChanges();
 
@@ -45,6 +53,38 @@ namespace BookStoreRepositoryLayer
                 throw new Exception("Error While Adding Book" + e.Message);
             }
         }
+
+
+
+        public string Image(IFormFile file, int id)
+        {
+            try
+            {
+                if (file == null)
+                {
+                    return null;
+                }
+                var stream = file.OpenReadStream();
+                var name = file.FileName;
+                Account account = new Account(configuration["Cloudinary:CloudName"], configuration["Cloudinary:APIKey"], configuration["Cloudinary:APISecret"]);
+                Cloudinary cloudinary = new Cloudinary(account);
+                var uploadParams = new ImageUploadParams()
+                {
+                    File = new FileDescription(name, stream)
+                };
+                ImageUploadResult uploadResult = cloudinary.Upload(uploadParams);
+                cloudinary.Api.UrlImgUp.BuildUrl(String.Format("{0}.{1}", uploadResult.PublicId, uploadResult.Format));
+                var data = this.bookContext.BookTable.Where(t => t.BookId == id).FirstOrDefault();
+                data.BookImage = uploadResult.Uri.ToString();
+                var result = this.bookContext.SaveChanges();
+                return data.BookImage;
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
 
         /// <summary>
         /// Gets all book.
@@ -68,6 +108,80 @@ namespace BookStoreRepositoryLayer
                 throw new Exception("Error While Retriving Book" + e.Message);
             }
         }
+
+
+        public BookModel UpdateBooksByAdding(int bookCount ,int bookId)
+        {
+            try
+            {
+                var book = this.bookContext.BookTable.Where<BookModel>(e => e.BookId == bookId).FirstOrDefault();
+
+                if (book!=null)
+                {
+                    book.BookCount = book.BookCount - bookCount;
+                    bookContext.SaveChanges();
+                    var bookResult = this.bookContext.BookTable.Where<BookModel>(e => e.BookId == bookId).FirstOrDefault();
+
+                    return bookResult;
+                }
+                return null;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error While Updating Customer Record" + e.Message);
+            }
+        }
+
+
+        public BookModel UpdateBooksByDeleting(int bookCount, int bookId)
+        {
+            try
+            {
+                var book = this.bookContext.BookTable.Where<BookModel>(e => e.BookId == bookId).FirstOrDefault();
+
+                if (book != null)
+                {
+                    book.BookCount = book.BookCount + bookCount;
+                    bookContext.SaveChanges();
+                    return book;
+                }
+                return null;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error While Updating Customer Record" + e.Message);
+            }
+        }
+
+
+        ///// <summary>
+        ///// Uploads the image.
+        ///// </summary>
+        ///// <param name="bookId">The book identifier.</param>
+        ///// <param name="bookImage">The book image.</param>
+        ///// <returns></returns>
+        ///// <exception cref="Exception"></exception>
+        //public bool UploadImage(int bookId, IFormFile bookImage)
+        //{
+        //    try
+        //    {
+        //        var books= bookContext.BookTable.Where(x => x.BookId == bookId).SingleOrDefault();
+        //        if (books != null)
+        //        {
+
+        //            bookContext.Entry(books).State = EntityState.Modified;
+        //            bookContext.SaveChanges();
+        //            return true;
+        //        }
+        //        return false;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception(ex.Message);
+        //    }
+
+        // 
+        //}
 
     }
 }
