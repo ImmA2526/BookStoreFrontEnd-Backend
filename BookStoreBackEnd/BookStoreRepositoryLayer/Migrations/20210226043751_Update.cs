@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BookStoreRepositoryLayer.Migrations
 {
-    public partial class UpdateModels : Migration
+    public partial class Update : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,7 +44,7 @@ namespace BookStoreRepositoryLayer.Migrations
                 {
                     CartId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Quantity = table.Column<int>(nullable: false),
+                    BookId = table.Column<int>(nullable: false),
                     BookCount = table.Column<int>(nullable: false),
                     UserId = table.Column<int>(nullable: false)
                 },
@@ -60,7 +60,7 @@ namespace BookStoreRepositoryLayer.Migrations
                     CustomerId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     FullName = table.Column<string>(nullable: false),
-                    PhoneNumber = table.Column<long>(maxLength: 10, nullable: false),
+                    PhoneNumber = table.Column<long>(nullable: false),
                     PinCode = table.Column<long>(nullable: false),
                     Locality = table.Column<string>(nullable: false),
                     City = table.Column<string>(nullable: false),

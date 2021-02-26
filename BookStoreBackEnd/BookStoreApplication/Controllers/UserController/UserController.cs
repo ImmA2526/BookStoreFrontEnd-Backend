@@ -66,7 +66,7 @@ namespace BookStoreApplication.Controllers
                 var result = this.business.UserRegistration(user);
                 if (result != null)
                 {
-                    return this.Ok(new { Status = true, Message = "Data Added Successfully", Data = result });
+                    return this.Ok(new { Status = true, Message = "User Data Added Successfully", Data = result });
                 }
                 else
                 {

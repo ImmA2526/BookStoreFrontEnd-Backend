@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookStoreRepositoryLayer.Migrations
 {
     [DbContext(typeof(BookStoreContext))]
-    [Migration("20210224155526_UpdateModels")]
-    partial class UpdateModels
+    [Migration("20210226043751_Update")]
+    partial class Update
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,7 +55,7 @@ namespace BookStoreRepositoryLayer.Migrations
 
                     b.Property<int>("BookCount");
 
-                    b.Property<int>("Quantity");
+                    b.Property<int>("BookId");
 
                     b.Property<int>("UserId");
 
@@ -114,8 +114,7 @@ namespace BookStoreRepositoryLayer.Migrations
                     b.Property<string>("Locality")
                         .IsRequired();
 
-                    b.Property<long>("PhoneNumber")
-                        .HasMaxLength(10);
+                    b.Property<long>("PhoneNumber");
 
                     b.Property<long>("PinCode");
 

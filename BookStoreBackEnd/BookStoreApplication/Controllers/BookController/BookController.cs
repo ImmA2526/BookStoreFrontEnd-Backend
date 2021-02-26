@@ -95,7 +95,6 @@ namespace BookStoreApplication.Controllers
         {
             try
             {
-
                 var book = this.bookbusiness.Image(image, bookId);
                 if (book != null)
                 {
@@ -105,7 +104,6 @@ namespace BookStoreApplication.Controllers
                 {
                     return this.BadRequest(new { Status = false, Message = "Error While Uploading Book Image" });
                 }
-
             }
             catch (Exception e)
             {
@@ -121,11 +119,10 @@ namespace BookStoreApplication.Controllers
         /// <returns></returns>
         [HttpPut]
         [Route("updateBook/addBookCount/{bookId}")]
-        public IActionResult UpdateBookByAdding(int bookCount,int bookId)
+        public IActionResult UpdateBookByAdding(int bookCount, int bookId)
         {
             try
             {
-
                 var book = this.bookbusiness.UpdateBooksByAdding(bookCount, bookId);
                 if (book != null)
                 {
@@ -135,7 +132,6 @@ namespace BookStoreApplication.Controllers
                 {
                     return this.BadRequest(new { Status = false, Message = "Error While Updating Book Count" });
                 }
-
             }
             catch (Exception e)
             {

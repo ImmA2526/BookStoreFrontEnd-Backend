@@ -112,8 +112,7 @@ namespace BookStoreRepositoryLayer.Migrations
                     b.Property<string>("Locality")
                         .IsRequired();
 
-                    b.Property<long>("PhoneNumber")
-                        .HasMaxLength(10);
+                    b.Property<long>("PhoneNumber");
 
                     b.Property<long>("PinCode");
 
