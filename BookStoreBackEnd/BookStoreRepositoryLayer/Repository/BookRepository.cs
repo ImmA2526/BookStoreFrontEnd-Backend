@@ -38,7 +38,6 @@ namespace BookStoreRepositoryLayer
         {
             try
             {
-
                 bookContext.BookTable.Add(book);
                 var add = bookContext.SaveChanges();
 
@@ -90,7 +89,6 @@ namespace BookStoreRepositoryLayer
             }
         }
 
-
         /// <summary>
         /// Gets all book.
         /// </summary>
@@ -114,6 +112,13 @@ namespace BookStoreRepositoryLayer
             }
         }
 
+        /// <summary>
+        /// Updates the books by adding.
+        /// </summary>
+        /// <param name="bookCount">The book count.</param>
+        /// <param name="bookId">The book identifier.</param>
+        /// <returns></returns>
+        /// <exception cref="Exception">Error While Updating Customer Record" + e.Message</exception>
 
         public BookModel UpdateBooksByAdding(int bookCount, int bookId)
         {
@@ -137,7 +142,13 @@ namespace BookStoreRepositoryLayer
             }
         }
 
-
+        /// <summary>
+        /// Updates the books by deleting.
+        /// </summary>
+        /// <param name="bookCount">The book count.</param>
+        /// <param name="bookId">The book identifier.</param>
+        /// <returns></returns>
+        /// <exception cref="Exception">Error While Updating Customer Record" + e.Message</exception>
         public BookModel UpdateBooksByDeleting(int bookCount, int bookId)
         {
             try
@@ -157,36 +168,5 @@ namespace BookStoreRepositoryLayer
                 throw new Exception("Error While Updating Customer Record" + e.Message);
             }
         }
-
-
-        ///// <summary>
-        ///// Uploads the image.
-        ///// </summary>
-        ///// <param name="bookId">The book identifier.</param>
-        ///// <param name="bookImage">The book image.</param>
-        ///// <returns></returns>
-        ///// <exception cref="Exception"></exception>
-        //public bool UploadImage(int bookId, IFormFile bookImage)
-        //{
-        //    try
-        //    {
-        //        var books= bookContext.BookTable.Where(x => x.BookId == bookId).SingleOrDefault();
-        //        if (books != null)
-        //        {
-
-        //            bookContext.Entry(books).State = EntityState.Modified;
-        //            bookContext.SaveChanges();
-        //            return true;
-        //        }
-        //        return false;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception(ex.Message);
-        //    }
-
-        // 
-        //}
-
     }
 }
