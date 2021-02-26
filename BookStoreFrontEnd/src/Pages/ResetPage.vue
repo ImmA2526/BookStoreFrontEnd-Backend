@@ -1,7 +1,12 @@
 <template>
-  <div>
+  <div class="md-layout">
     <!-- <form > -->
-    <form novalidate class="md-layout" @submit.prevent="validateUser">   
+    <form
+      id="md-card"
+      novalidate
+      class="md-layout"
+      @submit.prevent="validateUser"
+    >
       <md-card class="md-layout-item md-size-50 md-small-size-100">
         <center>
           <div class="h2">
@@ -13,35 +18,73 @@
         <md-card-content>
           <md-field :class="getValidationClass('password')">
             <label for="password">Old Password</label>
-            <md-input type="password" name="password" id="password" autocomplete="password" :disabled="sending" />
-            <span class="md-error" v-if="!$v.form.password.required" >The password is required</span>
-            <span class="md-error" v-else-if="!$v.form.password.minlength" >Invalid password</span>
+            <md-input
+              type="password"
+              name="password"
+              id="password"
+              autocomplete="password"
+              :disabled="sending"
+            />
+            <span class="md-error" v-if="!$v.form.password.required"
+              >The password is required</span
+            >
+            <span class="md-error" v-else-if="!$v.form.password.minlength"
+              >Invalid password</span
+            >
           </md-field>
-<!-- New password for reseting -->
+          <!-- New password for reseting -->
           <md-field :class="getValidationClass('password')">
             <label for="password">New Password</label>
-            <md-input type="password" name="newPassword" id="password" v-model="form.password" :disabled="sending" />
-            <span class="md-error" v-if="!$v.form.cpassword.required" >The password is required</span>
-            <span class="md-error" v-else-if="!$v.form.cpassword.minlength" >Invalid password</span>
+            <md-input
+              type="password"
+              name="newPassword"
+              id="password"
+              v-model="form.password"
+              :disabled="sending"
+            />
+            <span class="md-error" v-if="!$v.form.cpassword.required"
+              >The password is required</span
+            >
+            <span class="md-error" v-else-if="!$v.form.cpassword.minlength"
+              >Invalid password</span
+            >
           </md-field>
 
           <md-field :class="getValidationClass('password')">
             <label for="Newpassword">Confirm Password</label>
-            <md-input type="password" name="Confirmpassword" id="cpass" v-model="form.password"  :disabled="sending" />
-            <span class="md-error" v-if="!$v.form.cpassword.required" >The password is required</span>
-            <span class="md-error" v-else-if="!$v.form.cpassword.minlength" >Invalid password</span>
+            <md-input
+              type="password"
+              name="Confirmpassword"
+              id="cpass"
+              v-model="form.password"
+              :disabled="sending"
+            />
+            <span class="md-error" v-if="!$v.form.cpassword.required"
+              >The password is required</span
+            >
+            <span class="md-error" v-else-if="!$v.form.cpassword.minlength"
+              >Invalid password</span
+            >
           </md-field>
-
         </md-card-content>
 
         <md-progress-bar md-mode="indeterminate" v-if="sending" />
 
         <md-card-actions>
-          <md-button v-on:click="put" type="submit" id="txt" class="md-dense md-raised md-primary" :disabled="sending">Reset</md-button>
+          <md-button
+            v-on:click="put"
+            type="submit"
+            id="txt"
+            class="md-dense md-raised md-primary"
+            :disabled="sending"
+            >Reset</md-button
+          >
         </md-card-actions>
         <div class="blank"></div>
       </md-card>
-      <md-snackbar :md-active.sync="userSaved">The user {{ loginUser }} successfully login!</md-snackbar>
+      <md-snackbar :md-active.sync="userSaved"
+        >The user {{ loginUser }} successfully login!</md-snackbar
+      >
     </form>
   </div>
 </template>
@@ -58,7 +101,7 @@ export default {
   data: () => ({
     form: {
       password: null,
-       cpassword:null,
+      cpassword: null,
     },
     userSaved: false,
     sending: false,
@@ -70,11 +113,11 @@ export default {
         required,
         minLength: minLength(8),
       },
-// resetpwd
-       cpassword:{
-         required,
-         minLength:minLength(8),
-       },
+      // resetpwd
+      cpassword: {
+        required,
+        minLength: minLength(8),
+      },
     },
   },
   methods: {
@@ -91,7 +134,7 @@ export default {
     clearForm() {
       this.$v.$reset();
       this.form.password = null;
-      this.form.cpassword=null;
+      this.form.cpassword = null;
     },
     saveUser() {
       this.sending = true;
@@ -115,63 +158,171 @@ export default {
 };
 </script>
 
-
-
 <style lang="scss" scoped>
 .h2 {
   padding-bottom: 10px;
+  margin-top: 1px;
   padding-top: 6px;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   padding-bottom: 10px;
   border-radius: 14px;
 }
 
-//Form 
-.md-layout {
-    display: flex;
-    flex-wrap: wrap;
-   width: 900px;
-    margin-left: 200px;
+.md-card-content {
+  padding: 8px;
+  font-size: 14px;
+  line-height: 10px;
 }
- 
-// Bootom Page 
-// .blank {
-//   padding-bottom: 6px;
-//   background-color: rgba(78, 52, 12, 0.966);
-//   border-radius: 20px;
-// }
-
+.blank {
+  padding-bottom: 6px;
+  //  background-color: black;
+  border-radius: 20px;
+}
 .md-progress-bar {
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
 }
-.md-card {
-  margin-left: 400px;
+
+#md-card {
+  display: flex;
+  justify-content: center;
   margin-top: 150px;
+  margin-left: 400px;
 }
 
-//Text Forgot 
+//Form
+.md-layout {
+  width: 700px;
+  height: 40px;
+}
+
+//Text Forgot
+
 #txt {
   text-transform: capitalize;
 }
 
-@media (max-width: 500px) {
- 
- .md-layout {
-    display: flex;
-    flex-wrap: wrap;
-   width: 300px;
-   height: 70px;
-    margin-left: 40px;
-  // padding-bottom: 80px;
+#lgbtn {
+  text-transform: capitalize;
+  width: 240px;
+  background-color: brown;
 }
 
-.md-card {
-  margin-left: 200px;
+#names {
+  margin-bottom: 4px;
+}
+
+#namess {
+  padding-bottom: 1px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea,
+select {
+  padding: 12px 20px;
+  margin: 12px 0;
+  box-sizing: border-box;
+  width: 80%;
+  height: 30px;
+  outline: none;
+}
+
+label {
+  display: flex;
+  justify-content: left;
+  text-align: right;
+  width: 100px;
+  line-height: 8px;
+  color: black;
+  margin-left: 38px;
+}
+
+#fname {
+  margin-top: 20px;
+}
+
+#txt1 {
+  width: 240px;
+  background-color: brown;
+  //  text-transform: capitalize;
+}
+
+#txts {
+  color: white;
+  border-bottom: 8px solid brown;
+  border-width: 4px;
+  color: brown;
+  margin-right: 70px;
+}
+
+//IPAD 
+
+@media (max-width: 768px) {
+
+#md-card {
+  // margin-left: 800px;
+  display: flex;
+  justify-content: center;
+  margin-top: 180px;
+  margin-left: 60px;
+
+}
+
+//Form
+.md-layout {
+  display: flex;
+  width: 600px;
+  height: 80px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea,
+select {
+  padding: 20px 24px;
+  margin: 12px 0;
+  box-sizing: border-box;
+  width: 80%;
+  height: 30px;
+  outline: none;
+}
+
+label {
+  display: flex;
+  padding: 2px;
+  justify-content: left;
+  text-align: right;
+  width: 100px;
+  line-height: 10px;
+  color: black;
+  margin-left: 60px;
+}
+
+}
+
+//Other Device 
+
+@media (max-width: 100px) {
+
+#md-card {
+  // margin-left: 800px;
+  display: flex;
+  justify-content: center;
   margin-top: 100px;
+  margin-left: 20px;
+
 }
 
+//Form
+.md-layout {
+  display: flex;
+  width: 300px;
+  height: 40px;
+}
 }
 </style>

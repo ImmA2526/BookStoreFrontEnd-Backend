@@ -10,10 +10,10 @@ export default
                 method: 'post',
                 url:`${baseUrl}${requestUrl}`,
                 data:data,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': localStorage.getItem("AccessToken")
-                }
+                // headers: {
+                //     'Content-Type': 'application/json',
+                //     'Authorization': localStorage.getItem("AccessToken")
+                // }
             })
         },
 // Get Data 

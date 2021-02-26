@@ -2,7 +2,7 @@ import http from './Http'
 class UserRegister {
 
     registration(userData) {
-        return http.post('/User/registerUser', userData)
+        return http.post('/User/registerUser',userData)
     }
 
     login(userData) {
