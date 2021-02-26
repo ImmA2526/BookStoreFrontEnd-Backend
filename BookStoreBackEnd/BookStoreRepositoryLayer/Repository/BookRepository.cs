@@ -38,7 +38,7 @@ namespace BookStoreRepositoryLayer
         {
             try
             {
-                
+
                 bookContext.BookTable.Add(book);
                 var add = bookContext.SaveChanges();
 
@@ -54,7 +54,12 @@ namespace BookStoreRepositoryLayer
             }
         }
 
-
+        /// <summary>
+        /// Images the specified file.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
 
         public string Image(IFormFile file, int id)
         {
@@ -110,13 +115,13 @@ namespace BookStoreRepositoryLayer
         }
 
 
-        public BookModel UpdateBooksByAdding(int bookCount ,int bookId)
+        public BookModel UpdateBooksByAdding(int bookCount, int bookId)
         {
             try
             {
                 var book = this.bookContext.BookTable.Where<BookModel>(e => e.BookId == bookId).FirstOrDefault();
 
-                if (book!=null)
+                if (book != null)
                 {
                     book.BookCount = book.BookCount - bookCount;
                     bookContext.SaveChanges();
