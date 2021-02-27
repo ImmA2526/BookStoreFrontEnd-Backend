@@ -1,5 +1,5 @@
 <template>
-  <div class="md-layout">
+  <div class="main">
     <form
       id="md-card"
       novalidate
@@ -20,6 +20,8 @@
               >SignUp</md-button
             >
           </div>
+
+          
         </center>
 
         <md-card-content>
@@ -164,6 +166,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+//Top Button
 .h2 {
   padding-bottom: 10px;
   margin-top: 1px;
@@ -173,16 +176,12 @@ export default {
   border-radius: 14px;
 }
 
-.md-card-content {
-  padding: 8px;
-  font-size: 14px;
-  line-height: 10px;
-}
-.blank {
-  padding-bottom: 6px;
-  //  background-color: black;
-  border-radius: 20px;
-}
+// .md-card-content {
+//   padding: 8px;
+//   font-size: 14px;
+//   line-height: 10px;
+// }
+
 .md-progress-bar {
   position: absolute;
   top: 0;
@@ -193,25 +192,36 @@ export default {
 #md-card {
   display: flex;
   justify-content: center;
-  margin-top: 150px;
-  margin-left: 400px;
+  margin-top:12% ;
+  margin-left: 30%;
 }
+
+.main {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color:white;
 
 //Form
 .md-layout {
-  width: 700px;
-  height: 40px;
+  display: flex;
+  justify-content: center;
+  width: 46%;
+  height: 84%;
+  margin: auto;
+}
+
 }
 
 //Text Forgot
-
 #txt {
   text-transform: capitalize;
 }
 
 #lgbtn {
   text-transform: capitalize;
-  width: 240px;
+  width: 80%;
   background-color: brown;
 }
 
@@ -278,10 +288,12 @@ label {
 }
 
 //Form
-.md-layout {
+.main {
   display: flex;
-  width: 300px;
-  height: 40px;
+  width: 50%;
+  height: 40%;
+  justify-content: center;
+  background-color: aliceblue;
 }
 }
 
