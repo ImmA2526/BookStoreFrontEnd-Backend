@@ -15,7 +15,7 @@
             <input type="text" class="textbox" placeholder="Search" />
           </md-card>
 
-          <!-- <div class="Icons">
+          <!-- <!-- <div class="Icons"> -->
             <md-icon id="refresh">refresh</md-icon>
             <md-icon id="listview">view_stream</md-icon>
             <md-icon id="setting">settings</md-icon>
