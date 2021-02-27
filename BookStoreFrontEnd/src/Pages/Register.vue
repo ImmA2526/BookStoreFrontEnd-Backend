@@ -302,7 +302,7 @@ label {
   // margin-left: 800px;
   display: flex;
   justify-content: center;
-  margin-top: 180px;
+  // margin-top: 180px;
   margin-left: 60px;
 
 }

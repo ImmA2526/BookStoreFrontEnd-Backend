@@ -20,7 +20,11 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Email Id</label>
             <div class="col-sm-8">
-              <input type="email" id="email" name="email" />
+              <input type="email" id="email" name="email" v-model="email" />
+            <div v-if="submitted && $v.user.email.$error" class="invalid-feedback">
+                                    <span v-if="!$v.user.email.required">Email is required</span>
+                                    <span v-if="!$v.user.email.email">Email is invalid</span>
+                                </div>
             </div>
           </div>
           <!-- <md-button to="./Forgot" id="txt" class="md-primary">Forgot Password?</md-button> -->

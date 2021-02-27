@@ -22,10 +22,10 @@ export default
             return axios({
                 method:'get',
                 url: `${baseUrl}${requestUrl}`,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': localStorage.getItem("AccessToken")
-                }
+                // headers: {
+                //     'Content-Type': 'application/json',
+                //     'Authorization': localStorage.getItem("AccessToken")
+                // }
             })
         },
 // Edit Method 
