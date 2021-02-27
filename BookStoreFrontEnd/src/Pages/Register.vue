@@ -179,6 +179,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+//Top Button >> Login SignUp
 .h2 {
   padding-bottom: 10px;
   margin-top: 1px;
@@ -188,41 +189,55 @@ export default {
   border-radius: 14px;
 }
 
+//Inside Card
 .md-card-content {
-  padding: 8px;
+  padding: 4%;
   font-size: 14px;
   line-height: 10px;
 }
-.blank {
-  padding-bottom: 6px;
-  border-radius: 20px;
-}
+
+//Progress Bar
 .md-progress-bar {
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
 }
-#md-card {
-  // margin-left: 800px;
+
+.main {
   display: flex;
   justify-content: center;
-  margin-top: 150px;
-  margin-left: 400px;
-}
+  width: 100%;
+  height: 100%;
+  background-color: white;
 
-//Form
-.md-layout {
-  width: 700px;
-  height: 40px;
+  //Form
+  .md-layout {
+    display: flex;
+    justify-content: center;
+    width: 46%;
+    height: 84%;
+    margin: auto;
+  }
+
+  //Whole Card
+  #md-card {
+    display: flex;
+    justify-content: center;
+    margin-top: 12%;
+    margin-left: 30%;
+  }
 }
 
 //Text Forgot
 #txt {
-  //  text-transform: capitalize;
-  border-bottom: 78px;
-  margin-right: 80px;
-  border-width: 4px;
+  text-transform: capitalize;
+}
+
+#lgbtn {
+  text-transform: capitalize;
+  width: 80%;
+  background-color: brown;
 }
 
 #names {
@@ -231,6 +246,18 @@ export default {
 
 #namess {
   padding-bottom: 1px;
+}
+
+// Label Input
+
+label {
+  display: flex;
+  justify-content: left;
+  text-align: right;
+  width: 100%;
+  line-height: 8px;
+  color: black;
+  margin-left: 10%;
 }
 
 input[type="text"],
@@ -246,15 +273,6 @@ select {
   outline: none;
 }
 
-label {
-  display: flex;
-  justify-content: left;
-  text-align: right;
-  width: 100px;
-  line-height: 8px;
-  color: black;
-  margin-left: 38px;
-}
 #fname {
   margin-top: 20px;
 }
@@ -262,84 +280,98 @@ label {
 #txt1 {
   width: 240px;
   background-color: brown;
-  text-transform: capitalize;
+  //  text-transform: capitalize;
 }
 
 #txts {
   color: white;
-  //  text-transform: capitalize;
   border-bottom: 8px solid brown;
   border-width: 4px;
   color: brown;
+  margin-right: 70px;
 }
 
 //Other Device 
+@media (min-width: 300px) and(max-width:640px) {
+  //Form
+  .main {
+    display: flex;
+    justify-content: center;
+    width: 120%;
+    height: 80%;
+    background-color: white;
 
-@media (max-width: 600px) {
+    //Form
+    .md-layout {
+      width: 120%;
+      height: 50%;
+      margin-right: 20px;
+    }
 
-#md-card {
-  // margin-left: 800px;
-  display: flex;
-  justify-content: center;
-  margin-top: 100px;
-  margin-left: 20px;
-
+    //Whole Card
+    #md-card {
+      display: flex;
+      justify-content: center;
+      margin-top: 12%;
+      margin-left: 30%;
+    }
+  }
 }
 
-//Form
-.md-layout {
-  display: flex;
-  width: 300px;
-  height: 40px;
-}
-}
+//IPAD Device 
 
-//IPAD 
+// @media (min-width: 750px) and(max-width:1030px) {
+//   //Form
+//   .main {
+//     display: flex;
+//     justify-content: center;
+//     width: 140%;
+//     height: 120%;
+//     background-color: white;
 
-@media (max-width: 768px) {
+//     //Form
+//     .md-layout {
+//       display: flex;
+//       justify-content: center;
+//       width: 60%;
+//       height: 90%;
+//       margin: auto;
+//     }
 
-#md-card {
-  // margin-left: 800px;
-  display: flex;
-  justify-content: center;
-  // margin-top: 180px;
-  margin-left: 60px;
+//     //Whole Card
+//     #md-card {
+//       display: flex;
+//       justify-content: center;
+//       margin-top: 12%;
+//       margin-left: 8%;
+//     }
+//   }
 
-}
+//   // Label Input
 
-//Form
-.md-layout {
-  display: flex;
-  width: 600px;
-  height: 80px;
-}
+// label {
+//   display: flex;
+//   justify-content: left;
+//   text-align: right;
+//   width: 100%;
+//   line-height: 8px;
+//   color: black;
+//   margin-left: 10%;
+// }
 
-input[type="text"],
-input[type="password"],
-input[type="email"],
-textarea,
-select {
-  padding: 20px 24px;
-  margin: 12px 0;
-  box-sizing: border-box;
-  width: 80%;
-  height: 30px;
-  outline: none;
-}
+// input[type="text"],
+// input[type="password"],
+// input[type="email"],
+// textarea,
+// select {
+//   padding: 12px 20px;
+//   margin: 12px 0;
+//   box-sizing: border-box;
+//   width: 80%;
+//   height: 48px;
+//   outline: none;
+// }
 
-label {
-  display: flex;
-  padding: 2px;
-  justify-content: left;
-  text-align: right;
-  width: 100px;
-  line-height: 10px;
-  color: black;
-  margin-left: 60px;
-}
+// }
 
-}
-#phn{
-  width:60%
-}
 </style>
