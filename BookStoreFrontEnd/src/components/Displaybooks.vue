@@ -16,7 +16,7 @@
           </div>
 
           <div class="book pds">
-            <img src="{{book.BookImage}}" />
+            <!-- <img src="{{book.BookImage}}" /> -->
           </div>
         </div>
       </div>
@@ -28,6 +28,7 @@
 export default {
   name: "DisplayBooks",
   components: {
+    
   },
 
   props: ["allBooks"],

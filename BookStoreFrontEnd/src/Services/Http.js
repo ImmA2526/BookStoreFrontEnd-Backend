@@ -21,7 +21,7 @@ export default
         get(requestUrl){
             return axios({
                 method:'get',
-                url: `${baseUrl}${requestUrl}`,
+                url: `${baseUrl}${requestUrl}`
                 // headers: {
                 //     'Content-Type': 'application/json',
                 //     'Authorization': localStorage.getItem("AccessToken")

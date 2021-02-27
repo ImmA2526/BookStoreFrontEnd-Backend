@@ -13,12 +13,16 @@
 import Spinner from "vue-simple-spinner";
 import bookService from "../Services/bookService";
 import Display from "../components/Displaybooks";
+
 export default {
+   name: "Books",
   data() {
     return {
       Loadding: false,
       books: [],
-      allbooks: [],
+      // allBooks: [],
+ isListEmpty: true,
+      
     };
   },
 
@@ -33,7 +37,9 @@ export default {
       bookService
         .getBooks()
         .then((response) => {
-          console.log(response.data.data);
+          console.log(response.data);
+          // console.log("This is Your Data");
+          this.allBooks= response.data;
           this.Loadding = false;
         })
         .catch((error) => {
@@ -44,6 +50,7 @@ export default {
 
   // For All List
   mounted() {
+    console.log("message");
     this.getAllBooks();
   },
 }; // }Export MAin

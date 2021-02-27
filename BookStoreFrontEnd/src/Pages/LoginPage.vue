@@ -23,9 +23,9 @@
         </center>
 
         <md-card-content>
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Email Id</label>
-            <div class="col-sm-8">
+          <div >
+            <label >Email Id</label>
+            <div >
               <input
                 type="email"
                 id="email"
@@ -35,9 +35,9 @@
             </div>
           </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Password</label>
-            <div class="col-sm-8">
+          <div >
+            <label >Password</label>
+            <div >
               <input
                 type="password"
                 id="pass"
@@ -266,7 +266,7 @@ label {
 
 //Other Device 
 
-@media (max-width: 100px) {
+@media (max-width: 600px) {
 
 #md-card {
   // margin-left: 800px;
@@ -287,7 +287,7 @@ label {
 
 //IPAD 
 
-@media (max-width: 768px) {
+@media (max-width: 300px) and(max-width:780px) {
 
 #md-card {
   // margin-left: 800px;

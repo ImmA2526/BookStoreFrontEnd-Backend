@@ -2,27 +2,31 @@
   <!-- Main -->
   <div>
     <!-- <Home></Home> -->
-    <div class="text">
-      <md-app md-mode="reveal">
-        <md-app-toolbar class="color" position="fixed">
-          <!-- <md-button class="md-icon-button">
-            <md-icon>menu</md-icon>
-          </md-button>
-          <span class="md-title">Keep</span>
- -->
-          <md-card id="cards">
-            <md-icon id="search">search</md-icon>
-            <input type="text" class="textbox" placeholder="Search" />
-          </md-card>
+    <div class="main">
+      <md-app md-mode="fixed">
+        <md-app-toolbar fixed app flat class="color" >
+          <div id="book-div">
+            <img id="img" src="/book.png" />
+            <label id="book">Book Store</label>
+          </div>
+          <div class="search">
+            <!-- <md-card id="cards"> -->
+            <md-icon id="search"
+              >search <input type="text" class="textbox" placeholder="Search"
+            /></md-icon>
 
-          <!-- <!-- <div class="Icons"> -->
-            <md-icon id="refresh">refresh</md-icon>
-            <md-icon id="listview">view_stream</md-icon>
-            <md-icon id="setting">settings</md-icon>
-            <md-icon id="apps1" class="material-icons">apps</md-icon>
-          </div> -->
+            <!-- </md-card> -->
+          </div>
+
+          <div class="Icons">
+            <label>Cart</label>
+            <md-icon id="cart">shopping_cart</md-icon>
+          </div>
         </md-app-toolbar>
       </md-app>
+      <!-- <p>OK</p> -->
+          <router-view></router-view>
+        
     </div>
   </div>
   <!-- </div> -->
@@ -32,101 +36,78 @@
 <style lang="scss" scoped>
 // Navabar Style
 .color {
-  background-color: #fff;
-  height: 20px;
+  background-color: rgb(192, 56, 56);
+  height: 10px;
 }
 
-#cards {
+#search {
   height: 40px;
-  width: 560px;
-  border-radius: 10px;
-  // border:0.1px solid black;
-  margin-left: 200px;
-}
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  margin-left: 100px;
 
-.textbox {
-  width: 420px;
-  border-radius: 12px;
-  height: 36px;
-  margin-top: 2px;
-  outline: none;
-  margin-right: 70px;
-  border: none;
-}
+  .search {
+    color: black;
+    margin-right: 12px;
+    height: 20px;
+    display: inline-block;
+  }
 
-.text {
-  display: inline;
-  height: 20px;
+  .textbox {
+    width: 500px;
+    height: 30px;
+    margin-top: 4px;
+    outline: none;
+    margin-right: 70px;
+    border: none;
+    display: flex;
+    justify-content: center;
+  }
+
+  // margin-left: 80px;
 }
 
 .Icons {
   display: inline;
-  margin-left: 240px;
-}
-#search {
-  // margin-left: 24px;
-  color: black;
-  margin-right: 12px;
-}
-#listview {
-  margin-left: 24px;
-}
-#setting {
-  margin-left: 24px;
-  color: black;
-}
-#apps1 {
-  margin-left: 110px;
-  color: black;
+  // margin-left: 100px;
+  padding-left: 300px;
+
+  color: white;
 }
 
-.title {
-  font-size: 20px;
-  font-weight: normal;
-  margin-top: 20px;
+#cart {
+  margin-left: 10px;
+  color: white;
   cursor: pointer;
 }
-.title-name {
-  font-weight: bold;
-  margin-right: 200px;
-}
-#refresh {
-  margin-left: 24px;
-  color: black;
+
+.main {
+  height: 10px;
 }
 
-// @media (min-width: 100px) and (max-width: 140px) {
-// .md-app-toolbar , .md-app-bar
-//    {
-//     width: 100px;
-//     left: 15vw;
-//   }
-//   .md-app-toolbar {
-//     position: fixed;
-//     top: 0;
-// }
+#book-div {
+  // margin-left: 180px;
+  padding-left: 200px;
+}
 
-//   }
+#book {
+  color: white;
+  font-size: 16px;
+}
+
+#img {
+  height: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+}
 </style>
 
 <script>
-// Importing One Component To Another
-// import Create from "../components/Create";
 // import Home from "../components/Home";
 export default {
   components: {
-    // Create,
     // Home,
-    // Display,
   },
-  name: "Reveal",
-  data: () => ({
-    menuVisible: false,
-  }),
-  // methods: {
-  //   toggleMenu() {
-  //     this.menuVisible = !this.menuVisible;
-  //   },
-  // },
 };
 </script>

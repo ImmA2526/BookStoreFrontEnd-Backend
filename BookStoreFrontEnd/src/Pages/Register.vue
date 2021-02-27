@@ -17,9 +17,9 @@
           </div>
         </center>
 
-        <div class="form-group row">
-          <label id="fname" class="col-sm-2 col-form-label">Full Name</label>
-          <div class="col-sm-8">
+        <div >
+          <label>Full Name</label>
+          <div >
             <input
               type="text"
               id="name"
@@ -29,16 +29,16 @@
           </div>
         </div>
 
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Email Id</label>
-          <div class="col-sm-8">
+        <div >
+          <label >Email Id</label>
+          <div >
             <input type="email" id="email" name="email" v-model="form.email" />
           </div>
         </div>
 
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Password</label>
-          <div class="col-sm-8">
+        <div >
+          <label >Password</label>
+          <div >
             <input
               type="password"
               id="pass"
@@ -48,9 +48,9 @@
           </div>
         </div>
 
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Phone Number</label>
-          <div class="col-sm-8">
+        <div >
+          <label id="phn">Phone Number</label>
+          <div >
             <input type="text" id="phone" name="phone" v-model="form.phone" />
           </div>
         </div>
@@ -339,5 +339,7 @@ label {
 }
 
 }
-
+#phn{
+  width:60%
+}
 </style>

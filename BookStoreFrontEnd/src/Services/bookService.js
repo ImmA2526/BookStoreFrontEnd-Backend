@@ -13,11 +13,7 @@ class bookService {
     // Get Data  Method 
     getBooks() {
         console.log("The Details are Service :")
-        return http.get(`/Book/getAllRecord`, {
-            // headers: {
-            //     Authorization: localStorage.getItem('AccessToken'),
-            // },
-        });
+        return http.get(`/Book/getAllRecord`)
     }
 
 }

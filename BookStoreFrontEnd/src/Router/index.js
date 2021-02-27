@@ -5,6 +5,7 @@ import Register from "../Pages/Register"
 import ForgotPassword from "../Pages/Forgot"
 import ResetPassword from "../Pages/ResetPage"
 import Home from "../components/Home"
+import Books from "../components/Books"
 
 Vue.use(VueRouter);
 
@@ -28,7 +29,7 @@ const routes = [
     name: "forgot",
     component: ForgotPassword,
   },
-  
+
   {
     path: "/reset",
     name: "reset",
@@ -36,11 +37,17 @@ const routes = [
   },
 
   {
-    path:"/home",
-    name:"Home",
+    path: "/home",
+    name: "Home",
     component: Home,
+    children: [{
+      path: "books",
+      name: "books",
+      component: Books,
+    },
+    ]
   }
-    
+
 ];
 
 const router = new VueRouter({
