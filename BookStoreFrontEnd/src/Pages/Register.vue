@@ -1,6 +1,6 @@
 <template>
-  <div class="md-layout">
-    <form id="md-card" novalidate @submit.prevent="validateUser">
+  <div class="main">
+    <form id="md-card" class="md-layout" novalidate @submit.prevent="validateUser">
       <md-card class="md-layout-item md-size-50 md-small-size-100">
         <center>
           <div class="h2" id="namess">
@@ -179,6 +179,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+
+#txt1 {
+  width: 240px;
+  background-color: brown;
+  text-transform: capitalize;
+}
+
+#txts {
+  color: white;
+  //  text-transform: capitalize;
+  border-bottom: 8px solid brown;
+  border-width: 4px;
+  color: brown;
+}
+
 //Top Button >> Login SignUp
 .h2 {
   padding-bottom: 10px;
@@ -231,7 +247,8 @@ export default {
 
 //Text Forgot
 #txt {
-  text-transform: capitalize;
+  // text-transform: capitalize;
+  margin-right:14% ;
 }
 
 #lgbtn {
@@ -284,11 +301,12 @@ select {
 }
 
 #txts {
-  color: white;
+  // color: white;
   border-bottom: 8px solid brown;
   border-width: 4px;
   color: brown;
-  margin-right: 70px;
+  margin-left: 20%;
+  
 }
 
 //Other Device 

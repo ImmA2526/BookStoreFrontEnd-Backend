@@ -94,20 +94,8 @@ namespace BookStoreApplication
                     //ClockSkew = TimeSpan.Zero
                 };
             });
-
-            //CORS
-            services.AddCors(options =>
-            {
-                options.AddPolicy("AllowAllHeaders",
-                    builder =>
-                    {
-                        builder.AllowAnyOrigin()
-                        .AllowAnyHeader()
-                        .AllowAnyMethod();
-                    });
-            });
-
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

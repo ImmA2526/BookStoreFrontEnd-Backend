@@ -119,6 +119,8 @@ namespace BookStoreApplication.Controllers
         [AllowAnonymous]
         [HttpGet]
         [Route("forgotPassword")]
+        [EnableCors("AllowAllHeaders")]
+
         public IActionResult ForgotPassword([FromQuery] ForgotModel forgot)
         {
             try

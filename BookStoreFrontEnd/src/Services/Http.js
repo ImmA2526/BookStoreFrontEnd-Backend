@@ -33,11 +33,11 @@ export default
         PUT(requestUrl) {
             return axios({
                 method: 'put',
-                url: `${baseUrl}${requestUrl}`,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': localStorage.getItem("AccessToken")
-                }
+                url: `${baseUrl}${requestUrl}`
+                // headers: {
+                //     'Content-Type': 'application/json',
+                //     'Authorization': localStorage.getItem("AccessToken")
+                // }
             })
         },
 // Delete Method 

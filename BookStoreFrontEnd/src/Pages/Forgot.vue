@@ -1,5 +1,5 @@
 <template>
-  <div class="md-layout">
+  <div class="main">
     <form
       id="md-card"
       novalidate
@@ -9,7 +9,7 @@
       <md-card class="md-layout-item md-size-50 md-small-size-100">
         <center>
           <div class="h2">
-            <p>
+            <p id="para">
               Please Enter Your Register Mail For Receving Mail Regarding Forgot
               Password.
             </p>
@@ -17,14 +17,15 @@
         </center>
 
         <md-card-content>
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Email Id</label>
-            <div class="col-sm-8">
-              <input type="email" id="email" name="email" v-model="email" />
-            <div v-if="submitted && $v.user.email.$error" class="invalid-feedback">
-                                    <span v-if="!$v.user.email.required">Email is required</span>
-                                    <span v-if="!$v.user.email.email">Email is invalid</span>
-                                </div>
+            <div>
+            <label>Email Id</label>
+            <div>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                v-model="form.email"
+              />
             </div>
           </div>
           <!-- <md-button to="./Forgot" id="txt" class="md-primary">Forgot Password?</md-button> -->
@@ -36,7 +37,7 @@
           <div class="md-layout md-gutter">
             <div class="md-layout-item md-small-size-100">
               <md-button
-                v-on:click="loginPost()"
+                v-on:click="emailPost()"
                 type="submit"
                 id="lgbtn"
                 class="md-dense md-raised md-primary"
@@ -56,6 +57,7 @@
 <script>
 import { validationMixin } from "vuelidate";
 import { required, email, minLength } from "vuelidate/lib/validators";
+import userService from "../Services/userService";
 
 export default {
   name: "FormValidation",
@@ -83,6 +85,22 @@ export default {
   },
 
   methods: {
+    // Forgot Password
+    emailPost() {
+      const userData = {
+        email: this.form.email,
+      };
+      userService
+        .forgot(userData)
+        .then(function(data) {
+          this.$router.push("/");
+          console.log(data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
     getValidationClass(fieldName) {
       const field = this.$v.form[fieldName];
       if (field) {
@@ -122,47 +140,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.h2 {
-  padding-bottom: 10px;
-  margin-top: 1px;
-  padding-top: 6px;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  padding-bottom: 10px;
-  border-radius: 14px;
-}
-
-.md-card-content {
-  padding: 8px;
-  font-size: 14px;
-  line-height: 10px;
-}
-.blank {
-  padding-bottom: 6px;
-  //  background-color: black;
-  border-radius: 20px;
-}
-.md-progress-bar {
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-}
-
-#md-card {
-  display: flex;
-  justify-content: center;
-  margin-top: 150px;
-  margin-left: 400px;
-}
-
-//Form
-.md-layout {
-  width: 700px;
-  height: 40px;
-}
-
 //Text Forgot
-
 #txt {
   text-transform: capitalize;
 }
@@ -173,12 +151,67 @@ export default {
   background-color: brown;
 }
 
-#names {
-  margin-bottom: 4px;
+// Top Button >> Login SignUp
+.h2 {
+  padding-bottom: 6px;
+  margin-top: 1px;
+  padding-top: 6px;
+
+  height: auto;
+  font-size: 96%;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
-#namess {
-  padding-bottom: 1px;
+//Inside Card
+.md-card-content {
+  padding: 4%;
+  font-size: 14px;
+  line-height: 10px;
+}
+
+//Progress Bar
+.md-progress-bar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+
+  //Form
+  .md-layout {
+    display: flex;
+    justify-content: center;
+    width: 46%;
+    height: 84%;
+    margin: auto;
+  }
+
+  //Whole Card
+  #md-card {
+    display: flex;
+    justify-content: center;
+    margin-top: 12%;
+    margin-left: 30%;
+  }
+}
+
+// Label Input
+
+label {
+  display: flex;
+  justify-content: left;
+  text-align: right;
+  width: 100%;
+  line-height: 8px;
+  color: black;
+  margin-left: 10%;
 }
 
 input[type="text"],
@@ -194,97 +227,86 @@ select {
   outline: none;
 }
 
-label {
-  display: flex;
-  justify-content: left;
-  text-align: right;
-  width: 100px;
-  line-height: 8px;
-  color: black;
-  margin-left: 38px;
+//Other Device
+@media (min-width: 300px) and(max-width:640px) {
+  //Form
+  .main {
+    display: flex;
+    justify-content: center;
+    width: 120%;
+    height: 80%;
+    background-color: white;
+
+    //Form
+    .md-layout {
+      width: 120%;
+      height: 50%;
+      margin-right: 20px;
+    }
+
+    //Whole Card
+    #md-card {
+      display: flex;
+      justify-content: center;
+      margin-top: 12%;
+      margin-left: 30%;
+    }
+  }
 }
 
-#fname {
-  margin-top: 20px;
-}
+//IPAD Device
 
-#txt1 {
-  width: 240px;
-  background-color: brown;
-  //  text-transform: capitalize;
-}
+// @media (min-width: 750px) and(max-width:1030px) {
+//   //Form
+//   .main {
+//     display: flex;
+//     justify-content: center;
+//     width: 140%;
+//     height: 120%;
+//     background-color: white;
 
-#txts {
-  color: white;
-  border-bottom: 8px solid brown;
-  border-width: 4px;
-  color: brown;
-  margin-right: 70px;
-}
+//     //Form
+//     .md-layout {
+//       display: flex;
+//       justify-content: center;
+//       width: 60%;
+//       height: 90%;
+//       margin: auto;
+//     }
 
-//IPAD 
+//     //Whole Card
+//     #md-card {
+//       display: flex;
+//       justify-content: center;
+//       margin-top: 12%;
+//       margin-left: 8%;
+//     }
+//   }
 
-@media (max-width: 768px) {
+//   // Label Input
 
-#md-card {
-  // margin-left: 800px;
-  display: flex;
-  justify-content: center;
-  margin-top: 180px;
-  margin-left: 60px;
+// label {
+//   display: flex;
+//   justify-content: left;
+//   text-align: right;
+//   width: 100%;
+//   line-height: 8px;
+//   color: black;
+//   margin-left: 10%;
+// }
 
-}
+// input[type="text"],
+// input[type="password"],
+// input[type="email"],
+// textarea,
+// select {
+//   padding: 12px 20px;
+//   margin: 12px 0;
+//   box-sizing: border-box;
+//   width: 80%;
+//   height: 48px;
+//   outline: none;
+// }
 
-//Form
-.md-layout {
-  display: flex;
-  width: 600px;
-  height: 80px;
-}
-
-input[type="text"],
-input[type="password"],
-input[type="email"],
-textarea,
-select {
-  padding: 20px 24px;
-  margin: 12px 0;
-  box-sizing: border-box;
-  width: 80%;
-  height: 30px;
-  outline: none;
-}
-
-label {
-  display: flex;
-  padding: 2px;
-  justify-content: left;
-  text-align: right;
-  width: 100px;
-  line-height: 10px;
-  color: black;
-  margin-left: 60px;
-}
-
-}
-
-//Other Device 
-
-@media (max-width: 100px) {
-
-#md-card {
-  // margin-left: 800px;
-  display: flex;
-  justify-content: center;
-  margin-top: 100px;
-  margin-left: 20px;
-
-}
-
-//Form
-.md-layout {
-  display: flex;
-  width: 300px;
-  height: 40px;
-}
-}</style>
+// }
+</style>

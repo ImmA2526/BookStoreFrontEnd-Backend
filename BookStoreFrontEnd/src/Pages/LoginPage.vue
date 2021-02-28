@@ -276,7 +276,7 @@ select {
   margin-right: 70px;
 }
 
-//Other Device 
+//Other Device
 @media (min-width: 300px) and(max-width:640px) {
   //Form
   .main {
@@ -303,7 +303,7 @@ select {
   }
 }
 
-//IPAD Device 
+//IPAD Device
 
 // @media (min-width: 750px) and(max-width:1030px) {
 //   //Form
@@ -358,5 +358,4 @@ select {
 // }
 
 // }
-
 </style>
