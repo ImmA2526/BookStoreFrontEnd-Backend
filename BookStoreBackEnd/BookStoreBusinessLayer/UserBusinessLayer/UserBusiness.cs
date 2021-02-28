@@ -27,9 +27,9 @@ namespace BookStoreBusinessLayer.BusinessLayer
             return result;
         }
 
-        public string ForgotUserPassword(ForgotModel forgot)
+        public string ForgotUserPassword(string email)
         {
-            var result = userRepo.ForgotUserPassword(forgot);
+            var result = userRepo.ForgotUserPassword(email);
             return result;
         }
 

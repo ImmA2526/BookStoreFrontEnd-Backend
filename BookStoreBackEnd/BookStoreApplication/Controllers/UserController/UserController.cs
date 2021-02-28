@@ -116,16 +116,15 @@ namespace BookStoreApplication.Controllers
         /// </summary>
         /// <param name="forgot">The forgot.</param>
         /// <returns></returns>
-        [AllowAnonymous]
+      
         [HttpGet]
-        [Route("forgotPassword")]
-        [EnableCors("AllowAllHeaders")]
-
-        public IActionResult ForgotPassword([FromQuery] ForgotModel forgot)
+        [Route("forgotPassword/{email}")]
+      
+        public IActionResult ForgotPassword(string email)
         {
             try
             {
-                var result = this.business.ForgotUserPassword(forgot);
+                var result = this.business.ForgotUserPassword(email);
 
                 if (result != null)
                 {

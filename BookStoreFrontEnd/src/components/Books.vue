@@ -19,7 +19,8 @@ export default {
   data() {
     return {
       Loadding: false,
-      books: [],
+      allBooks: [],
+      books:[],
       // allBooks: [],
  isListEmpty: true,
       
@@ -37,9 +38,10 @@ export default {
       bookService
         .getBooks()
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data.data);
           // console.log("This is Your Data");
-          this.allBooks= response.data;
+          this.books= response.data.data;
+          console.log(this.books);
           this.Loadding = false;
         })
         .catch((error) => {

@@ -94,6 +94,19 @@ namespace BookStoreApplication
                     //ClockSkew = TimeSpan.Zero
                 };
             });
+
+            //CORS 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllHeaders",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                    });
+            });
+
         }
 
 
@@ -109,13 +122,16 @@ namespace BookStoreApplication
                 app.UseHsts();
             }
 
+            app.UseCors("AllowAllHeaders");
+
+            app.UseAuthentication();
+            app.UseAuthentication();
             //Swagger Service 
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "BookStore");
             });
-            app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();
         }

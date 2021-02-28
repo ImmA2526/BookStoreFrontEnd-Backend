@@ -120,14 +120,14 @@ namespace BookStoreRepositoryLayer
         /// <param name="forgot">The forgot.</param>
         /// <returns></returns>
 
-        public string ForgotUserPassword(ForgotModel forgot)
+        public string ForgotUserPassword(string email)
         {
             try
             {
-                var forgotPassword = "Reset Password link for Parking Model:- This is the Link of Your Forgot Password ";
+                var forgotPassword = "Reset Password link for Boostore:- This is the Link of Your Forgot Password ";
                 string subject = "Your Password is";
                 string body;
-                var result = bookStoreContext.UserTabel.FirstOrDefault(e => e.Email == forgot.Email);
+                var result = bookStoreContext.UserTabel.FirstOrDefault(e => e.Email == email);
                 if (result != null)
                 {
 
@@ -145,7 +145,7 @@ namespace BookStoreRepositoryLayer
                     return "Not Found";
                 }
 
-                using (MailMessage mailMessage = new MailMessage("imraninfo.1996@gmail.com", forgot.Email))
+                using (MailMessage mailMessage = new MailMessage("imraninfo.1996@gmail.com", email))
                 {
                     mailMessage.Subject = subject;
                     mailMessage.Body = body;

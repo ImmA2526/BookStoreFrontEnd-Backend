@@ -87,11 +87,11 @@ export default {
   methods: {
     // Forgot Password
     emailPost() {
-      const userData = {
-        email: this.form.email,
-      };
+      // const userData = {
+      //   email: this.form.email,
+      // };
       userService
-        .forgot(userData)
+        .forgot(this.form.email)
         .then(function(data) {
           this.$router.push("/");
           console.log(data);

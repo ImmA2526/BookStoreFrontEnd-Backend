@@ -10,7 +10,8 @@ class UserRegister {
     }
 
     forgot(userData) {
-        return http.post(`/User/forgotPassword`, userData)
+        console.log(userData);
+        return http.post(`/User/forgotPassword?Email=`+userData)
     }
 
     reset(userData) {

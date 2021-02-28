@@ -3,17 +3,20 @@
     <div id="display" class="card" v-for="book in allBooks" :key="book._id">
       <div class="addBook">
         <div class="books">
-          <div class="book pds">
-            <b>{{ book.BookName }}</b>
+        <div class="img">
+        <img src={book.bookImage}/>
+        </div>  
+                <div class="book pds">
+            <b>{{ book.bookName }}</b>
           </div>
-          <div class="book pds">RS: {{ book.BookPrice }}</div>
+          <div class="book pds">RS: {{ book.bookPrice }}</div>
 
           <div class="book pds">
-            <b>{{ book.AuthorName }}</b>
+            <b>{{ book.authorName }}</b>
           </div>
-          <div class="book pds">
-            {{ book.bookprice }}
-          </div>
+          <!-- <div class="book pds">
+            {{ book.bookPrice }}
+          </div> -->
 
           <div class="book pds">
             <!-- <img src="{{book.BookImage}}" /> -->
@@ -31,17 +34,18 @@ export default {
     
   },
 
-  props: ["allBooks"],
+  props: ['allBooks'],
 
   data() {
     return {
-      BookName: false,
-      BookId: false,
-      AuthorName: false,
-      BookPrice: false,
-      BookCount: false,
-      BookImage: false,
-      showDialog: false,
+      books:[],
+    //   BookName: false,
+    //   BookId: false,
+    //   AuthorName: false,
+    //   BookPrice: false,
+    //   BookCount: false,
+    //   BookImage: false,
+    //   showDialog: false,
       Loadding: false,
     };
   },
