@@ -45,13 +45,6 @@
           </form>
         </div>
       </nav>
-
-      <!-- 
-      <md-app>
-        <md-app-toolbar >
-      
-        </md-app-toolbar>
-      </md-app> -->
     </div>
     <router-view></router-view>
   </div>
@@ -64,7 +57,7 @@
 .main {
   display: flex;
   // justify-content: center;
-
+  
 //AppBar
 #md-app {
   padding-left: 0px;
@@ -87,7 +80,7 @@
   height: 10%;
   margin-top: 14px;
   width:40%;
-  border-radius:0%;
+  border-radius:4px;
   border-style: none;
 }
 
@@ -114,7 +107,7 @@
 
   #cart {
     color: white;
-    font-size: 16px;
+    font-size: 14px;
     margin-right:4%;
   }
 }
