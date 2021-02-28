@@ -17,7 +17,7 @@
         </center>
 
         <md-card-content>
-            <div>
+          <div>
             <label>Email Id</label>
             <div>
               <input
@@ -28,7 +28,6 @@
               />
             </div>
           </div>
-          <!-- <md-button to="./Forgot" id="txt" class="md-primary">Forgot Password?</md-button> -->
         </md-card-content>
 
         <md-progress-bar md-mode="indeterminate" v-if="sending" />
@@ -87,9 +86,6 @@ export default {
   methods: {
     // Forgot Password
     emailPost() {
-      // const userData = {
-      //   email: this.form.email,
-      // };
       userService
         .forgot(this.form.email)
         .then(function(data) {

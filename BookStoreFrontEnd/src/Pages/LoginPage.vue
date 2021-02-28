@@ -145,7 +145,7 @@ export default {
     },
     saveUser() {
       this.sending = true;
-
+      
       window.setTimeout(() => {
         this.loginUser = `${this.form.email} `;
         this.userSaved = true;

@@ -3,10 +3,11 @@
     <div id="display" class="card" v-for="book in allBooks" :key="book._id">
       <div class="addBook">
         <div class="books">
-        <div class="img">
-        <img src={book.bookImage}/>
-        </div>  
-                <div class="book pds">
+          <div class="img">
+            <img v-bind:src="book.bookImage" class="imageproduit" />
+          </div>
+
+          <div class="book pds">
             <b>{{ book.bookName }}</b>
           </div>
           <div class="book pds">RS: {{ book.bookPrice }}</div>
@@ -17,7 +18,10 @@
           <!-- <div class="book pds">
             {{ book.bookPrice }}
           </div> -->
-
+          <div class="btns">
+            <button>Add to Bag</button>
+            <button>Wishlist</button>
+          </div>
           <div class="book pds">
             <!-- <img src="{{book.BookImage}}" /> -->
           </div>
@@ -30,26 +34,23 @@
 <script>
 export default {
   name: "DisplayBooks",
-  components: {
-    
-  },
+  components: {},
 
-  props: ['allBooks'],
+  props: ["allBooks"],
 
   data() {
     return {
-      books:[],
-    //   BookName: false,
-    //   BookId: false,
-    //   AuthorName: false,
-    //   BookPrice: false,
-    //   BookCount: false,
-    //   BookImage: false,
-    //   showDialog: false,
+      books: [],
+      //   BookName: false,
+      //   BookId: false,
+      //   AuthorName: false,
+      //   BookPrice: false,
+      //   BookCount: false,
+      //   BookImage: false,
+      //   showDialog: false,
       Loadding: false,
     };
   },
-
 };
 </script>
 

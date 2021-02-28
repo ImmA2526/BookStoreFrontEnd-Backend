@@ -2,20 +2,20 @@ import http from './Http'
 class UserRegister {
 
     registration(userData) {
-        return http.post('/User/registerUser',userData)
+        return http.post('/User/registerUser', userData)
     }
 
     login(userData) {
         return http.post(`/User/loginUser`, userData)
     }
 
-    forgot(userData) {
-        console.log(userData);
-        return http.post(`/User/forgotPassword?Email=`+userData)
+    forgot(email) {
+        console.log(email);
+        return http.get(`/User/forgotPassword/` + email, null)
     }
 
     reset(userData) {
-        return http.post(`/User/resetPassword`, userData)
+        return http.PUT(`/User/resetPassword`, userData)
     }
 
 }
