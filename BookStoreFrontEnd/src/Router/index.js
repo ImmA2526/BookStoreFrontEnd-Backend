@@ -6,7 +6,7 @@ import ForgotPassword from "../Pages/Forgot"
 import ResetPassword from "../Pages/ResetPage"
 import Home from "../components/Home"
 import Books from "../components/Books"
-
+import cart from "../components/Cart"
 Vue.use(VueRouter);
 
 
@@ -46,8 +46,14 @@ const routes = [
       component: Books,
     },
     ]
-  }
+  },
+{
+  path: "/cart",
+  name: "Cart",
+component:cart,
 
+}
+  
 ];
 
 const router = new VueRouter({

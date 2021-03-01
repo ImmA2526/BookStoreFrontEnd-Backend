@@ -62,7 +62,7 @@ namespace BookStoreApplication.Controllers
         /// <returns></returns>
 
         [HttpGet]
-        [Route("getAllBooks/{userId}")]
+        [Route("{userId}")]
         public IActionResult GetAllBookFromCart(int userId)
         {
             try
@@ -75,12 +75,12 @@ namespace BookStoreApplication.Controllers
 
                 else
                 {
-                    return this.NotFound(new { Status = false, Message = "Error Occur While Fetching Cart Items" });
+                    return this.BadRequest(new { Status = false, Message = "Error Occur While Fetching Cart Items" });
                 }
             }
             catch (Exception e)
             {
-                return this.BadRequest(new { Status = false, Message = e.Message });
+                return this.NotFound(new { Status = false, Message = e.Message });
             }
         }
 
@@ -91,7 +91,7 @@ namespace BookStoreApplication.Controllers
         /// <returns></returns>
 
         [HttpDelete]
-        [Route("deleteBooks/{cartId}")]
+        [Route("{cartId}")]
         public IActionResult DeleteBookFromWishlist(int cartId)
         {
             try
@@ -108,7 +108,7 @@ namespace BookStoreApplication.Controllers
             }
             catch (Exception e)
             {
-                return this.BadRequest(new { Status = false, Message = e.Message });
+                return this.NotFound(new { Status = false, Message = e.Message });
             }
         }
 
@@ -118,7 +118,7 @@ namespace BookStoreApplication.Controllers
         /// <param name="bookId">The book identifier.</param>
         /// <returns></returns>
         [HttpPut]
-        [Route("updateBookById")]
+        [Route("{cartId}")]
         public IActionResult UpdateCart(CartModel model)
         {
             try
@@ -130,12 +130,12 @@ namespace BookStoreApplication.Controllers
                 }
                 else
                 {
-                    return this.NotFound(new { Status = false, Message = "Error While Updating" });
+                    return this.BadRequest(new { Status = false, Message = "Error While Updating" });
                 }
             }
             catch (Exception e)
             {
-                return this.BadRequest(new { Status = false, Message = e.Message });
+                return this.NotFound(new { Status = false, Message = e.Message });
 
             }
         }
@@ -147,7 +147,7 @@ namespace BookStoreApplication.Controllers
         /// <returns></returns>
 
         [HttpGet]
-        [Route("getBookCount/{userId}")]
+        [Route("CartBookCount/{userId}")]
         public IActionResult  GetCartBooksCount(int userId)
         {
             try
@@ -159,12 +159,12 @@ namespace BookStoreApplication.Controllers
                 }
                 else
                 {
-                    return this.NotFound(new { Status = false, Message = "Error While Updating" });
+                    return this.BadRequest(new { Status = false, Message = "Error While Updating" });
                 }
             }
             catch (Exception e)
             {
-                return this.BadRequest(new { Status = false, Message = e.Message });
+                return this.NotFound(new { Status = false, Message = e.Message });
 
             }
         }

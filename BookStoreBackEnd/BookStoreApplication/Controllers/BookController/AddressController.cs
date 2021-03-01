@@ -33,7 +33,7 @@ namespace BookStoreApplication.Controllers
         /// <param name="book">The book.</param>
         /// <returns></returns>
         [HttpPost]
-        [Route("addAddress")]
+        //[Route("addAddress")]
         public IActionResult AddAddress([FromBody] CustomerModel addAddress)
         {
             try
@@ -61,7 +61,7 @@ namespace BookStoreApplication.Controllers
         /// <returns></returns>
 
         [HttpPut]
-        [Route("updateAddress")]
+        //[Route("updateAddress")]
         public IActionResult UpdateAddress(CustomerModel updates)
         {
             try
@@ -73,12 +73,12 @@ namespace BookStoreApplication.Controllers
                 }
                 else
                 {
-                    return this.NotFound(new { Status = false, Message = "Error While Updating Address" });
+                    return this.BadRequest(new { Status = false, Message = "Error While Updating Address" });
                 }
             }
             catch (Exception e)
             {
-                return this.BadRequest(new { Status = false, Message = e.Message });
+                return this.NotFound(new { Status = false, Message = e.Message });
 
             }
         }
@@ -89,7 +89,7 @@ namespace BookStoreApplication.Controllers
         /// <param name="userId">The user identifier.</param>
         /// <returns></returns>
         [HttpGet]
-        [Route("getAddress/{userId}")]
+        [Route("{userId}")]
         public IActionResult GetAddress(int userId)
         {
             try
@@ -101,12 +101,12 @@ namespace BookStoreApplication.Controllers
                 }
                 else
                 {
-                    return this.NotFound(new { Status = false, Message = "Error While Retriving Address" });
+                    return this.BadRequest(new { Status = false, Message = "Error While Retriving Address" });
                 }
             }
             catch (Exception e)
             {
-                return this.BadRequest(new { Status = false, Message = e.Message });
+                return this.NotFound(new { Status = false, Message = e.Message });
             }
         }
 

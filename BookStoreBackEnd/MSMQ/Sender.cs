@@ -6,7 +6,7 @@ namespace MSMQ
     public class Sender
     {
         /// <summary>
-        /// Send Mail.
+        /// Send To Que Mail.
         /// </summary>
 
         public void MailSender(string sendData)

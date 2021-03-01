@@ -44,9 +44,15 @@
             </div>
           </form>
         </div>
+        
       </nav>
+      
+
     </div>
+        
     <router-view></router-view>
+ 
+ 
   </div>
 
   <!-- </div> -->
@@ -54,6 +60,7 @@
 </template>
 
 <style lang="scss" scoped>
+
 .main {
   display: flex;
   // justify-content: center;
@@ -69,6 +76,9 @@
   justify-items: center;
 }
 
+#bookcount{
+  margin-top:20px;
+}
 // Navabar Style
 .color {
   background-color: rgb(192, 56, 56);

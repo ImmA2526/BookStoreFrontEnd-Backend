@@ -2,9 +2,9 @@ import http from "./Http"
 
 class bookService {
     // Add Data  Method 
-    addBook(bookData) {
+    addBag(bookData) {
         console.log(bookData)
-        return http.post(`/books/abooks`, bookData, {
+        return http.post(`/Cart`, bookData, {
             headers: {
                 Authorization: localStorage.getItem('AccessToken'),
             },
@@ -13,7 +13,7 @@ class bookService {
     // Get Data  Method 
     getBooks() {
         console.log("The Details are Service :")
-        return http.get(`/Book/getAllRecord`)
+        return http.get(`/Book`)
     }
 
 }

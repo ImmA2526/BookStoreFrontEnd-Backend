@@ -1,100 +1,236 @@
 <template>
-  <div id="display-book-container">
-    <div id="display" class="card" v-for="book in allBooks" :key="book._id">
-      <div class="addBook">
-        <div class="books">
-          <div class="img">
-            <img v-bind:src="book.bookImage" class="imageproduit" />
-          </div>
+  <div class="maindiv">
+    <div id="bookcount">
+      <h5>Books</h5>
+      ({{ allBooks.length }} <label id="lb">Items </label>)
 
-          <div class="book pds">
+      <div class="dropdown">
+        <button
+          class=" btn-sm dropdown-toggle"
+          type="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          id="drop"
+        >
+          Sort By Relevance
+        </button>
+        <div class="dropdown-menu" aria-labelledby="Sort By Relevance">
+          <a class="dropdown-item" href="#"></a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="main-container">
+      <div id="display" class="card" v-for="book in allBooks" :key="book._id">
+        <div class="img">
+          <img v-bind:src="book.bookImage" />
+        </div>
+
+        <div id="bookdiv" class="book">
+          <div class="bookname">
             <b>{{ book.bookName }}</b>
           </div>
-          <div class="book pds">RS: {{ book.bookPrice }}</div>
-
-          <div class="book pds">
-            <b>{{ book.authorName }}</b>
-          </div>
-          <!-- <div class="book pds">
-            {{ book.bookPrice }}
-          </div> -->
-          <div class="btns">
-            <button>Add to Bag</button>
-            <button>Wishlist</button>
-          </div>
-          <div class="book pds">
-            <!-- <img src="{{book.BookImage}}" /> -->
-          </div>
+          <div id="name">by {{ book.authorName }}</div>
+          <div id="price"><b>RS:</b> {{ book.bookPrice }}</div>
         </div>
+
+        <div class="btns">
+          <md-button type="button" id="add" v-on:click="AddCart()" >ADD TO BAG</md-button>
+          <md-button type="button" id="wish">WISHLIST</md-button>
+        </div>
+        <!-- <Description/> -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import bookService from "../Services/bookService";
+// import Description from './Description.vue';
 export default {
   name: "DisplayBooks",
-  components: {},
+  // components: {Description},
 
-  props: ["allBooks"],
+  props: ["allBooks", "total"],
 
   data() {
     return {
       books: [],
-      //   BookName: false,
-      //   BookId: false,
-      //   AuthorName: false,
-      //   BookPrice: false,
-      //   BookCount: false,
-      //   BookImage: false,
-      //   showDialog: false,
+      // total:'',
       Loadding: false,
+      bookId: "",
+      userId: "",
     };
+  },
+
+  methods: {
+    AddCart() {
+      const bookData = {
+        bookId: this.bookId,
+        userId: "",
+      };
+      bookService
+      .addBag(bookData)
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-#display {
+#add {
+  background-color: brown;
+  height: 24px;
+  width: 90px;
+  color: white;
+  font-size: 10px;
+  border: none;
+}
+
+//Bookname Bg Color
+#bookdiv {
+  background-color: white;
+  display: grid;
+  // float: left;
+  // text-align: justify;
+  text-align: left;
+}
+
+#name {
+  font-size: 4px;
+}
+.btns {
   display: flex;
-  width: 240px;
-  overflow-wrap: break-word;
-  content: "";
-  display: table;
-  clear: both;
-  margin: -16px -4px;
+  background-color: white;
+}
+#wish {
+  font-size: 10px;
+  height: 24px;
+  width: 3;
+  border: 1px solid black;
+  margin-left: 2px;
+}
+// Card
+#display {
+  width: 18%;
+  height: 24%;
   display: inline-flex;
-  white-space: normal;
-  margin-left: 1%;
-  margin-top: 3%;
+  margin-left: 2%;
+  margin-top: 2%;
+  background-color: lightgray;
 }
 
-.addBook {
-  width: 240px;
-  height: max-content;
-  margin: 5px;
-  border: 1px solid #dadce0;
-  border-radius: 8px;
-  box-sizing: content-box;
+#RS {
+}
+.book {
+  float: left;
+
+  //  margin-right: 18%;
+  //  width: fit-content;
 }
 
-.books {
-  height: fit-content;
-  overflow: content;
+.img {
+  // display: flex;
+  // height: 4%;
+  background-color: lightgray;
+  padding-top: 4%;
+  padding-bottom: 4%;
+  margin: auto;
+  width: 50%;
+  height: 10%;
 }
 
-// Spacing between word and line
-.pds {
-  letter-spacing: 0.00625em;
-  padding: 5px;
-  height: fit-content;
+#main-container {
+  // padding-top: 1%;
+  height: 80%;
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  // justify-content: center;
+  margin-left: 12%;
+  // margin-right: 16%;
 }
 
-#display-book-container {
-  width: 65vw;
-  left: 10vw;
-  position: relative;
-  top: 2vh;
-  color: black;
+#name {
+  font-size: small;
+  display: grid;
+  margin-left: 8px;
+}
+
+#price {
+  font-size: 12px;
+  margin-left: 8px;
+}
+
+.bookname {
+  font-size: 12px;
+  margin-left: 8px;
+}
+
+#bookcount {
+  margin-top: 80px;
+  text-align: left;
+  margin-left: 14%;
+  display: flex;
+  // margin-right: 200px;
+}
+
+#lb {
+  margin-left: 4px;
+}
+
+#drop {
+  background-color: white;
+  display: flex;
+  margin-left: 800px;
+}
+
+//Other Device
+@media (min-width: 360px) and(max-width:640px) {
+  // Card
+  #display {
+    float: left;
+    width: 40%;
+    height: 100%;
+    display: inline-flex;
+    flex-wrap: wrap;
+    margin-left: 2%;
+    margin-top: 2%;
+    background-color: lightgray;
+  }
+
+  .book {
+    float: left;
+  }
+
+  .img {
+    // display: flex;
+    // height: 4%;
+    background-color: lightgray;
+    padding-top: 4%;
+    padding-bottom: 4%;
+    margin: auto;
+    width: 60%;
+    height: 10%;
+  }
+
+  #main-container {
+    // padding-top: 1%;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    // justify-content: center;
+    margin-left: 12%;
+    // margin-right: 16%;
+  }
 }
 </style>

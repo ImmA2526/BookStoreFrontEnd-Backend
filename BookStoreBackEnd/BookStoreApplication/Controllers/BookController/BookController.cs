@@ -37,7 +37,7 @@ namespace BookStoreApplication.Controllers
         /// <returns></returns>
 
         [HttpPost]
-        [Route("addBooks")]
+        //[Route("addBooks")]
         public IActionResult AddBooks(BookModel book)
         {
             try
@@ -64,7 +64,7 @@ namespace BookStoreApplication.Controllers
         /// <returns></returns>
 
         [HttpGet]
-        [Route("getAllRecord")]
+        //[Route("getAllRecord")]
         public IActionResult GetAllBook()
         {
             try
@@ -81,7 +81,7 @@ namespace BookStoreApplication.Controllers
             }
             catch (Exception e)
             {
-                return this.BadRequest(new { Status = false, Message = e.Message });
+                return this.NotFound(new { Status = false, Message = e.Message });
             }
         }
 
@@ -120,7 +120,7 @@ namespace BookStoreApplication.Controllers
         /// <param name="bookId">The book identifier.</param>
         /// <returns></returns>
         [HttpPut]
-        [Route("updateBook/addBookCount/{bookId}")]
+        [Route("addBookCount/{bookId}")]
         public IActionResult UpdateBookByAdding(int bookCount, int bookId)
         {
             try
@@ -149,7 +149,7 @@ namespace BookStoreApplication.Controllers
         /// <returns></returns>
 
         [HttpPut]
-        [Route("updateBook/deleteBookCount/{bookId}")]
+        [Route("deleteBookCount/{bookId}")]
         public IActionResult UpdateBookByDeleting(int bookCount, int bookId)
         {
             try

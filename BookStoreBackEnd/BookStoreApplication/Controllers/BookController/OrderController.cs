@@ -29,7 +29,7 @@ namespace BookStoreApplication.Controllers
         /// <returns></returns>
 
         [HttpPost]
-        [Route("addOrder")]
+        //[Route("addOrder")]
         public IActionResult OrderSummary([FromBody] OrderModel order)
         {
             try

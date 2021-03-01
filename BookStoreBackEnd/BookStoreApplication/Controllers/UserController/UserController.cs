@@ -60,7 +60,7 @@ namespace BookStoreApplication.Controllers
         /// <returns></returns>
 
         [HttpPost]
-        [Route("registerUser")]
+        //[Route("registerUser")]
         public IActionResult RegisterUser([FromBody] UserModel user)
         {
             try
@@ -88,7 +88,7 @@ namespace BookStoreApplication.Controllers
         /// <returns></returns>
 
         [HttpPost]
-        [Route("loginUser")]
+        [Route("Login")]
         public IActionResult LoginUser([FromBody] LoginModel login)
         {
             try
@@ -118,7 +118,7 @@ namespace BookStoreApplication.Controllers
         /// <returns></returns>
       
         [HttpGet]
-        [Route("forgotPassword/{email}")]
+        [Route("{email}")]
       
         public IActionResult ForgotPassword(string email)
         {
@@ -149,7 +149,7 @@ namespace BookStoreApplication.Controllers
         /// <returns></returns>
 
         [HttpPut]
-        [Route("resetPassword")]
+        //[Route("resetPassword")]
         public IActionResult ResetPassword(LoginModel reset)
         {
             try

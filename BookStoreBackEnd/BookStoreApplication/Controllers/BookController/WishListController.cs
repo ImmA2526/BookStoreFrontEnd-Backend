@@ -36,7 +36,7 @@ namespace BookStoreApplication.Controllers
         /// <returns></returns>
 
         [HttpPost]
-        [Route("addBooks")]
+        //[Route("addBooks")]
         public IActionResult AddItems([FromBody] WishlistModel addItem)
         {
             try
@@ -63,7 +63,7 @@ namespace BookStoreApplication.Controllers
         /// <returns></returns>
 
         [HttpGet]
-        [Route("getAllBooks/{userId}")]
+        [Route("{userId}")]
         public IActionResult GetAllBookFromWishList(int userId)
         {
             try
@@ -76,12 +76,12 @@ namespace BookStoreApplication.Controllers
 
                 else
                 {
-                    return this.NotFound(new { Status = false, Message = "Error Occur While Fetching WishList Data" });
+                    return this.BadRequest(new { Status = false, Message = "Error Occur While Fetching WishList Data" });
                 }
             }
             catch (Exception e)
             {
-                return this.BadRequest(new { Status = false, Message = e.Message });
+                return this.NotFound(new { Status = false, Message = e.Message });
             }
         }
 
@@ -92,7 +92,7 @@ namespace BookStoreApplication.Controllers
         /// <returns></returns>
 
         [HttpDelete]
-        [Route("deleteBooks/{wishListId}")]
+        [Route("{wishListId}")]
         public IActionResult DeleteBookFromWishlist(int wishListId)
         {
             try
@@ -109,7 +109,7 @@ namespace BookStoreApplication.Controllers
             }
             catch (Exception e)
             {
-                return this.BadRequest(new { Status = false, Message = e.Message });
+                return this.NotFound(new { Status = false, Message = e.Message });
             }
         }
 
