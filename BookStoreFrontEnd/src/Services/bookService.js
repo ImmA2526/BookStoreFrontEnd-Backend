@@ -4,9 +4,10 @@ class bookService {
     // Add Data  Method 
     addBag(bookData) {
         console.log(bookData)
-        return http.post(`/Cart`, bookData, {
+        return http.post(`/Cart/addBooks`, bookData, {
             headers: {
-                Authorization: localStorage.getItem('AccessToken'),
+                Authorization: localStorage.getItem('AccessToken','id'),
+            
             },
         });
     }

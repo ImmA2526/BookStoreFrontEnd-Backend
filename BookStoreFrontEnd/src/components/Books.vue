@@ -1,7 +1,7 @@
 <template>
   <div class="Books">
     <div id="empty" v-if="isListEmpty">
-      <Spinner id="custom-spinner" v-if="Loadding" />
+      <Spinner class="spin" id="custom-spinner" v-if="Loadding" />
     </div>
     <div class="display Book">
       <Display v-bind:allBooks="books" ></Display>
@@ -9,6 +9,13 @@
     </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.spin{
+  margin-top:80px
+}
+</style>
+
 
 <script>
 import Spinner from "vue-simple-spinner";
@@ -40,8 +47,6 @@ export default {
       bookService
         .getBooks()
         .then((response) => {
-          // console.log(response.data.data);
-          // console.log("This is Your Data");
           this.books= response.data.data;
                    console.log(this.books);
           this.Loadding = false;

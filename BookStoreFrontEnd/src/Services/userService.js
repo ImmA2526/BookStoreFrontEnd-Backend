@@ -6,7 +6,7 @@ class UserRegister {
     }
 
     login(userData) {
-        return http.post(`/User/loginUser`, userData)
+        return http.post(`/User/Login`, userData)
     }
 
     forgot(email) {

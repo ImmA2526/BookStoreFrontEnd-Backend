@@ -98,7 +98,7 @@ namespace BookStoreApplication.Controllers
                 if (result != null)
                 {
                     var token = GenrateJWTToken(result.Email);
-                    return this.Ok(new { Status = true, Message = "Login Successfully", Data = token });
+                    return this.Ok(new { Status = true, Message = "Login Successfully", Data = token, id=result.UserId });
                 }
                 else
                 {

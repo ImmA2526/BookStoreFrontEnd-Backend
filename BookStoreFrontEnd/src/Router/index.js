@@ -4,14 +4,34 @@ import Login from "../Pages/LoginPage"
 import Register from "../Pages/Register"
 import ForgotPassword from "../Pages/Forgot"
 import ResetPassword from "../Pages/ResetPage"
-import Home from "../components/Home"
-import Books from "../components/Books"
+import NavBar from "../components/NavBar"
+// import Books from "../components/Books"
 import cart from "../components/Cart"
+import Home from"../components/HomePage"
+
 Vue.use(VueRouter);
 
 
 
 const routes = [
+  {
+    path: "/Home",
+    name: "Home",
+    component: Home,
+  },
+
+  {
+    path: "/nav",
+    name: "NavBar",
+    component: NavBar,
+    // children: [{
+    //   path: "books",
+    //   name: "books",
+    //   component: Books,
+    // },
+    // ]
+  },
+
   {
     path: "/",
     name: "login",
@@ -36,17 +56,6 @@ const routes = [
     component: ResetPassword,
   },
 
-  {
-    path: "/home",
-    name: "Home",
-    component: Home,
-    children: [{
-      path: "books",
-      name: "books",
-      component: Books,
-    },
-    ]
-  },
 {
   path: "/cart",
   name: "Cart",

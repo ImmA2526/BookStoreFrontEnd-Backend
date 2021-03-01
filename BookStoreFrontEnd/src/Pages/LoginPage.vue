@@ -115,10 +115,13 @@ export default {
       };
       userService
         .login(userData)
-        .then((data) => {
+        .then((response) => {
           setTimeout(() => this.redirect(), 2000);
+          localStorage.setItem("AccessToken",response.data.data);
+localStorage.setItem("UserId",response.data.id);
+
           this.$router.push("/Register");
-          console.log(data);
+          console.log(response.data.data);
         })
         .catch((error) => {
           console.log(error);

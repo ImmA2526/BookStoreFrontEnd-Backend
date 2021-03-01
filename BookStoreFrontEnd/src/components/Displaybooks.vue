@@ -38,7 +38,9 @@
         </div>
 
         <div class="btns">
-          <md-button type="button" id="add" v-on:click="AddCart()" >ADD TO BAG</md-button>
+          <md-button type="button" id="add" v-on:click="AddCart(bookId)"
+            >ADD TO BAG</md-button
+          >
           <md-button type="button" id="wish">WISHLIST</md-button>
         </div>
         <!-- <Description/> -->
@@ -62,20 +64,24 @@ export default {
       // total:'',
       Loadding: false,
       bookId: "",
-      userId: "",
+      userId:'',
+      bookCount: 1,
     };
   },
-
+  
   methods: {
-    AddCart() {
+    AddCart(bookId) {
       const bookData = {
-        bookId: this.bookId,
-        userId: "",
+        bookId,
+        booCount:this.bookCount,
+        userId:localStorage.getItem("userId"),
+        
       };
+      console.log(this.bookData);
       bookService
       .addBag(bookData)
-        .then((data) => {
-          console.log(data);
+      .then((response) => {
+          console.log(response);
         })
         .catch((error) => {
           console.log(error);
@@ -86,9 +92,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 #add {
   background-color: brown;
   height: 24px;
+  margin-left: 16px;
   width: 90px;
   color: white;
   font-size: 10px;
@@ -99,8 +107,6 @@ export default {
 #bookdiv {
   background-color: white;
   display: grid;
-  // float: left;
-  // text-align: justify;
   text-align: left;
 }
 
@@ -116,47 +122,41 @@ export default {
   height: 24px;
   width: 3;
   border: 1px solid black;
-  margin-left: 2px;
+  margin-left: 10px;
 }
 // Card
 #display {
-  width: 18%;
-  height: 24%;
-  display: inline-flex;
   margin-left: 2%;
   margin-top: 2%;
-  background-color: lightgray;
+  top: 20px;
+  left: 120px;
+  width: 233px;
+  background: #f5f5f5 0% 0% no-repeat padding-box;
+  border-radius: 2px 2px 0px 0px;
+  opacity: 1;
 }
 
-#RS {
-}
 .book {
   float: left;
-
-  //  margin-right: 18%;
-  //  width: fit-content;
+  margin-left: 4px;
+  background: #f5f5f5 0% 0% no-repeat padding-box;
 }
 
 .img {
-  // display: flex;
-  // height: 4%;
-  background-color: lightgray;
-  padding-top: 4%;
-  padding-bottom: 4%;
+  top: 163px;
+  left: 239px;
+  width: 105px;
+  height: 135px;
   margin: auto;
-  width: 50%;
-  height: 10%;
+  opacity: 1;
 }
 
 #main-container {
-  // padding-top: 1%;
   height: 80%;
   width: 80%;
   display: flex;
   flex-wrap: wrap;
-  // justify-content: center;
   margin-left: 12%;
-  // margin-right: 16%;
 }
 
 #name {
@@ -177,12 +177,11 @@ export default {
 
 #bookcount {
   margin-top: 80px;
-  text-align: left;
-  margin-left: 14%;
+  margin-left: 22%;
   display: flex;
-  // margin-right: 200px;
 }
 
+//ITEMS 
 #lb {
   margin-left: 4px;
 }
@@ -190,47 +189,77 @@ export default {
 #drop {
   background-color: white;
   display: flex;
-  margin-left: 800px;
+  margin-left: 720px;
 }
 
 //Other Device
 @media (min-width: 360px) and(max-width:640px) {
   // Card
-  #display {
-    float: left;
-    width: 40%;
-    height: 100%;
-    display: inline-flex;
-    flex-wrap: wrap;
-    margin-left: 2%;
-    margin-top: 2%;
-    background-color: lightgray;
-  }
 
-  .book {
-    float: left;
-  }
 
-  .img {
-    // display: flex;
-    // height: 4%;
-    background-color: lightgray;
-    padding-top: 4%;
-    padding-bottom: 4%;
-    margin: auto;
-    width: 60%;
-    height: 10%;
-  }
-
-  #main-container {
-    // padding-top: 1%;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    // justify-content: center;
-    margin-left: 12%;
-    // margin-right: 16%;
-  }
+#display {
+  display: flex;
+  margin-left: 6%;
+  // margin-top: 20%;
+  top: 20px;
+  left: 20px;
+  width: 240px;
+  background: #f5f5f5 0% 0% no-repeat padding-box;
+  border-radius: 2px 2px 0px 0px;
+  opacity: 1;
 }
+
+#bookcount {
+  margin-top: 80px;
+  margin-left: 8%;
+  display: flex;
+}
+
+.img {
+  top: 13px;
+  left: 29px;
+  width: 105px;
+  height: 135px;
+  margin: auto;
+  opacity: 1;
+}
+//ITEMS 
+#lb {
+  margin-left: 4px;
+}
+
+#drop {
+  background-color: white;
+  display: flex;
+  margin-left: 50px;
+  height: 34px;
+}
+
+}
+
+.btns {
+  display: flex;
+  background-color: white;
+}
+#wish {
+  font-size: 10px;
+  height: 20px;
+  width: 20px;
+  
+  border: 1px solid black;
+  margin-left: 6px;
+}
+
+#add {
+  background-color: brown;
+  height: 20px;
+  margin-left: 20px;
+  overflow-wrap:break-word;
+  overflow: wrap;
+  width: 50px;
+  color: white;
+  font-size: 10px;
+  border: none;
+}
+
 </style>
