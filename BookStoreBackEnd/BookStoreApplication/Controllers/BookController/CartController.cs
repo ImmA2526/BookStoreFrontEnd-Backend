@@ -43,12 +43,9 @@ namespace BookStoreApplication.Controllers
                 var result = this.cartBusinsess.AddItems(addItem);
                 if (result != null)
                 {
-                    return this.Ok(new { Status = true, Message = "Data Added Successfully", Data = result });
+                    return this.Ok(new { Status = true, Message = "Book Data Added in Cart Successfully", Data = result });
                 }
-                else
-                {
-                    return this.BadRequest(new { Status = false, Message = "Data is Not Added Succesfully " });
-                }
+                return this.BadRequest(new { Status = false, Message = "Error While Adding Book Data in Cart" });
             }
             catch (Exception e)
             {
@@ -72,15 +69,11 @@ namespace BookStoreApplication.Controllers
                 {
                     return this.Ok(new { Status = true, Message = "Cart Data Retrive Successfully", Data = getResult });
                 }
-
-                else
-                {
-                    return this.BadRequest(new { Status = false, Message = "Error Occur While Fetching Cart Items" });
-                }
+                return this.NotFound(new { Status = false, Message = "Error Occur While Fetching Cart Data" });
             }
             catch (Exception e)
             {
-                return this.NotFound(new { Status = false, Message = e.Message });
+                return this.BadRequest(new { Status = false, Message = e.Message });
             }
         }
 
@@ -99,16 +92,13 @@ namespace BookStoreApplication.Controllers
                 var delete = this.cartBusinsess.DeleteBooksFromCart(cartId);
                 if (delete != null)
                 {
-                    return this.Ok(new { Status = true, Message = "Item Removed SuccesFully" });
+                    return this.Ok(new { Status = true, Message = "Cart Item Removed SuccesFully" });
                 }
-                else
-                {
-                    return this.BadRequest(new { Status = false, Message = "Error While Removing" });
-                }
+                return this.NotFound(new { Status = false, Message = "Error While Removing Cart Items" });
             }
             catch (Exception e)
             {
-                return this.NotFound(new { Status = false, Message = e.Message });
+                return this.BadRequest(new { Status = false, Message = e.Message });
             }
         }
 
@@ -126,17 +116,13 @@ namespace BookStoreApplication.Controllers
                 var update = this.cartBusinsess.UpdateCart(model);
                 if (update != null)
                 {
-                    return this.Ok(new { Status = true, Message = "Book Updated Succesfully", Data = update });
+                    return this.Ok(new { Status = true, Message = "Cart Book Updated Succesfully", Data = update });
                 }
-                else
-                {
-                    return this.BadRequest(new { Status = false, Message = "Error While Updating" });
-                }
+                return this.NotFound(new { Status = false, Message = "Error While Updating Cart Item Count" });
             }
             catch (Exception e)
             {
-                return this.NotFound(new { Status = false, Message = e.Message });
-
+                return this.BadRequest(new { Status = false, Message = e.Message });
             }
         }
 
@@ -148,24 +134,20 @@ namespace BookStoreApplication.Controllers
 
         [HttpGet]
         [Route("CartBookCount/{userId}")]
-        public IActionResult  GetCartBooksCount(int userId)
+        public IActionResult GetCartBooksCount(int userId)
         {
             try
             {
                 var count = this.cartBusinsess.GetCartBooksCount(userId);
-                if (count >0)
+                if (count > 0)
                 {
                     return this.Ok(new { Status = true, Message = "The No of Books Are :" + count, Data = count });
                 }
-                else
-                {
-                    return this.BadRequest(new { Status = false, Message = "Error While Updating" });
-                }
+                return this.NotFound(new { Status = false, Message = "Error While Updating Book Count" });
             }
             catch (Exception e)
             {
-                return this.NotFound(new { Status = false, Message = e.Message });
-
+                return this.BadRequest(new { Status = false, Message = e.Message });
             }
         }
 

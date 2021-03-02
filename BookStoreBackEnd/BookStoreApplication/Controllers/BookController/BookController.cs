@@ -45,12 +45,9 @@ namespace BookStoreApplication.Controllers
                 var result = this.bookbusiness.AddBooks(book);
                 if (result != null)
                 {
-                    return this.Ok(new { Status = true, Message = "Data Added Successfully", Data = result });
+                    return this.Ok(new { Status = true, Message = "Book Data Added Successfully", Data = result });
                 }
-                else
-                {
-                    return this.BadRequest(new { Status = false, Message = "Data is Not Added Succesfully " });
-                }
+                return this.BadRequest(new { Status = false, Message = "Error While Adding Book" });
             }
             catch (Exception e)
             {
@@ -72,12 +69,9 @@ namespace BookStoreApplication.Controllers
                 IEnumerable<BookModel> getResult = this.bookbusiness.GetAllBook();
                 if (getResult != null)
                 {
-                    return this.Ok(new { Status = true, Message = "Data Retrived Succesfully", Data = getResult });
+                    return this.Ok(new { Status = true, Message = "Book Data Retrived Succesfully", Data = getResult });
                 }
-                else
-                {
-                    return this.BadRequest(new { Status = false, Message = "Error While Fetching Data" });
-                }
+                return this.BadRequest(new { Status = false, Message = "Error While Retriving Book Data" });
             }
             catch (Exception e)
             {
@@ -100,16 +94,13 @@ namespace BookStoreApplication.Controllers
                 var book = this.bookbusiness.Image(image, bookId);
                 if (book != null)
                 {
-                    return this.Ok(new { Status = true, Message = "Image Uploaded Succesfully", Data = book });
+                    return this.Ok(new { Status = true, Message = "Book Image Uploaded Succesfully", Data = book });
                 }
-                else
-                {
-                    return this.BadRequest(new { Status = false, Message = "Error While Uploading Book Image" });
-                }
+                return this.NotFound(new { Status = false, Message = "Error While Uploading Book Image" });
             }
             catch (Exception e)
             {
-                return this.NotFound(new { Status = false, Message = e.Message });
+                return this.BadRequest(new { Status = false, Message = e.Message });
             }
         }
 
@@ -130,10 +121,7 @@ namespace BookStoreApplication.Controllers
                 {
                     return this.Ok(new { Status = true, Message = "Book Count Updated Succesfully", Data = book });
                 }
-                else
-                {
-                    return this.BadRequest(new { Status = false, Message = "Error While Updating Book Count" });
-                }
+                return this.BadRequest(new { Status = false, Message = "Error While Updating Book Count" });
             }
             catch (Exception e)
             {
@@ -154,17 +142,12 @@ namespace BookStoreApplication.Controllers
         {
             try
             {
-
                 var book = this.bookbusiness.UpdateBooksByDeleting(bookCount, bookId);
                 if (book != null)
                 {
                     return this.Ok(new { Status = true, Message = "Book Count Updated Succesfully", Data = book });
                 }
-                else
-                {
-                    return this.BadRequest(new { Status = false, Message = "Error While Updating Book Count" });
-                }
-
+                return this.BadRequest(new { Status = false, Message = "Error While Updating Book Count" });
             }
             catch (Exception e)
             {

@@ -35,14 +35,11 @@ namespace BookStoreApplication.Controllers
             try
             {
                 var result = this.orderBusinsess.CreateOrderSummary(order);
-                if (result >0)
+                if (result > 0)
                 {
                     return this.Ok(new { Status = true, Message = "Order Added Successfully", Data = result });
                 }
-                else
-                {
-                    return this.BadRequest(new { Status = false, Message = "Error While Adding Order " });
-                }
+                return this.BadRequest(new { Status = false, Message = "Error While Adding Order " });
             }
             catch (Exception e)
             {

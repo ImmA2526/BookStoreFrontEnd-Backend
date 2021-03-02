@@ -20,11 +20,11 @@ namespace BookStoreApplication.Controllers
     public class AddressController : Controller
     {
         private readonly IAddressBusiness addressBusiness;
-      
+
         public AddressController(IAddressBusiness addressBusiness)
         {
             this.addressBusiness = addressBusiness;
-            
+
         }
 
         /// <summary>
@@ -43,10 +43,7 @@ namespace BookStoreApplication.Controllers
                 {
                     return this.Ok(new { Status = true, Message = "Address Data Added Successfully", Data = result });
                 }
-                else
-                {
-                    return this.BadRequest(new { Status = false, Message = "Error While Adding Address Data " });
-                }
+                return this.BadRequest(new { Status = false, Message = "Error Occur While Adding Address Data " });
             }
             catch (Exception e)
             {
@@ -71,14 +68,11 @@ namespace BookStoreApplication.Controllers
                 {
                     return this.Ok(new { Status = true, Message = "Address Updated Succesfully", Data = update });
                 }
-                else
-                {
-                    return this.BadRequest(new { Status = false, Message = "Error While Updating Address" });
-                }
+                return this.NotFound(new { Status = false, Message = "Error While Updating Address" });
             }
             catch (Exception e)
             {
-                return this.NotFound(new { Status = false, Message = e.Message });
+                return this.BadRequest(new { Status = false, Message = e.Message });
 
             }
         }
@@ -99,10 +93,7 @@ namespace BookStoreApplication.Controllers
                 {
                     return this.Ok(new { Status = true, Message = "Address Data Retrive Succesfully", Data = getAddress });
                 }
-                else
-                {
-                    return this.BadRequest(new { Status = false, Message = "Error While Retriving Address" });
-                }
+                return this.BadRequest(new { Status = false, Message = "Error While Retriving Address Data" });
             }
             catch (Exception e)
             {

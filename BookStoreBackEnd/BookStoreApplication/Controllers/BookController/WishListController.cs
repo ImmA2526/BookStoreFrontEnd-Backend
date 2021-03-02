@@ -22,11 +22,11 @@ namespace BookStoreApplication.Controllers
     public class WishListController : Controller
     {
         private readonly IWishListBusiness wishBusinsess;
-        
+
         public WishListController(IWishListBusiness wishBusinsess)
         {
             this.wishBusinsess = wishBusinsess;
-           
+
         }
 
         /// <summary>
@@ -46,10 +46,7 @@ namespace BookStoreApplication.Controllers
                 {
                     return this.Ok(new { Status = true, Message = "Books Added in Wishlist Successfully", Data = result });
                 }
-                else
-                {
-                    return this.BadRequest(new { Status = false, Message = "Book is Not Added Succesfully " });
-                }
+                return this.BadRequest(new { Status = false, Message = "Error While Adding Book in Wishlist" });
             }
             catch (Exception e)
             {
@@ -73,15 +70,11 @@ namespace BookStoreApplication.Controllers
                 {
                     return this.Ok(new { Status = true, Message = "WishList Data Retrive Successfully", Data = getResult });
                 }
-
-                else
-                {
-                    return this.BadRequest(new { Status = false, Message = "Error Occur While Fetching WishList Data" });
-                }
+                return this.NotFound(new { Status = false, Message = "Error Occur While Retriving WishList Data" });
             }
             catch (Exception e)
             {
-                return this.NotFound(new { Status = false, Message = e.Message });
+                return this.BadRequest(new { Status = false, Message = e.Message });
             }
         }
 
@@ -100,16 +93,13 @@ namespace BookStoreApplication.Controllers
                 var delete = this.wishBusinsess.DeleteBooksFromWishlist(wishListId);
                 if (delete != null)
                 {
-                    return this.Ok(new { Status = true, Message = "Book Removed From Wishlist SuccesFully" ,Data=delete});
+                    return this.Ok(new { Status = true, Message = "Book Removed From Wishlist SuccesFully", Data = delete });
                 }
-                else
-                {
-                    return this.BadRequest(new { Status = false, Message = "Error While Removing Book" });
-                }
+                return this.NotFound(new { Status = false, Message = "Error While Removing Book From Wishlit" });
             }
             catch (Exception e)
             {
-                return this.NotFound(new { Status = false, Message = e.Message });
+                return this.BadRequest(new { Status = false, Message = e.Message });
             }
         }
 

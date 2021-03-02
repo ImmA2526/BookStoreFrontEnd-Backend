@@ -70,7 +70,7 @@ namespace BookStoreApplication.Controllers
                 {
                     return this.Ok(new { Status = true, Message = "User Data Added Successfully", Data = result });
                 }
-                return this.BadRequest(new { Status = false, Message = "Data is Not Added Succesfully " });
+                return this.BadRequest(new { Status = false, Message = "Error While Adding User Data" });
             }
             catch (Exception e)
             {
@@ -90,18 +90,17 @@ namespace BookStoreApplication.Controllers
         {
             try
             {
-
                 var result = this.business.UserLogin(login);
                 if (result != null)
                 {
                     var token = GenrateJWTToken(result.Email);
-                    return this.Ok(new { Status = true, Message = "Login Successfully", Data = token, id=result.UserId });
+                    return this.Ok(new { Status = true, Message = "Login Successfully", Data = token, id = result.UserId });
                 }
-                                return this.BadRequest(new { Status = false, Message = "Login Failed" });
+                return this.NotFound(new { Status = false, Message = "Login Failed" });
             }
             catch (Exception e)
             {
-                return this.NotFound(new { Status = false, Message = e.Message });
+                return this.BadRequest(new { Status = false, Message = e.Message });
             }
         }
 
@@ -110,10 +109,10 @@ namespace BookStoreApplication.Controllers
         /// </summary>
         /// <param name="forgot">The forgot.</param>
         /// <returns></returns>
-      
+
         [HttpGet]
         [Route("{email}")]
-      
+
         public IActionResult ForgotPassword(string email)
         {
             try
@@ -124,15 +123,11 @@ namespace BookStoreApplication.Controllers
                 {
                     return this.Ok(new { Status = true, Message = "Password Send Successfully", Data = result });
                 }
-                else
-                {
-                    return this.BadRequest(new { Status = false, Message = "Sending Password Failed" });
-                }
+                return this.NotFound(new { Status = false, Message = "Sending Password Failed" });
             }
-
             catch (Exception e)
             {
-                return this.NotFound(new { Status = false, Message = e.Message });
+                return this.BadRequest(new { Status = false, Message = e.Message });
             }
         }
 
@@ -153,10 +148,7 @@ namespace BookStoreApplication.Controllers
                 {
                     return this.Ok(new { Status = true, Message = "Password Reset Succesfully", Data = result });
                 }
-                else
-                {
-                    return this.NotFound(new { Status = false, Message = "Error While Reseting Password" });
-                }
+                return this.NotFound(new { Status = false, Message = "Error While Reseting Password" });
             }
             catch (Exception e)
             {
