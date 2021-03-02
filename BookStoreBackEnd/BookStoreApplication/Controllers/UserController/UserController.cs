@@ -70,10 +70,7 @@ namespace BookStoreApplication.Controllers
                 {
                     return this.Ok(new { Status = true, Message = "User Data Added Successfully", Data = result });
                 }
-                else
-                {
-                    return this.BadRequest(new { Status = false, Message = "Data is Not Added Succesfully " });
-                }
+                return this.BadRequest(new { Status = false, Message = "Data is Not Added Succesfully " });
             }
             catch (Exception e)
             {
@@ -100,10 +97,7 @@ namespace BookStoreApplication.Controllers
                     var token = GenrateJWTToken(result.Email);
                     return this.Ok(new { Status = true, Message = "Login Successfully", Data = token, id=result.UserId });
                 }
-                else
-                {
-                    return this.BadRequest(new { Status = false, Message = "Login Failed" });
-                }
+                                return this.BadRequest(new { Status = false, Message = "Login Failed" });
             }
             catch (Exception e)
             {
@@ -161,12 +155,12 @@ namespace BookStoreApplication.Controllers
                 }
                 else
                 {
-                    return this.BadRequest(new { Status = false, Message = "Error While Reseting Password" });
+                    return this.NotFound(new { Status = false, Message = "Error While Reseting Password" });
                 }
             }
             catch (Exception e)
             {
-                return this.NotFound(new { Status = false, Message = e.Message });
+                return this.BadRequest(new { Status = false, Message = e.Message });
             }
         }
 

@@ -1,11 +1,10 @@
 <template>
-  <!-- Main -->
   <div>
     <div class="main">
       <nav class="color" id="md-app">
         <div class="container-fluid">
           <form class="d-flex">
-            <div id= "book-div">
+            <div id="book-div">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="28"
@@ -21,14 +20,17 @@
               <label id="book">Book Store</label>
             </div>
 
-            <input 
-              id= "search" class="form-control me-1"
+            <input
+              id="search"
+              class="form-control me-1"
               type="search"
               placeholder="Search"
               aria-label="Search"
             />
-            <div id= "cart-div">
-              <label id="cart">Cart</label>
+            <div id="cart-div">
+              
+              <b-button size="sm"  id="cart" to="./Cart">Cart</b-button>
+              <!-- <b-button id="cart" to="./Cart">Cart</b-button> -->
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -44,86 +46,82 @@
             </div>
           </form>
         </div>
-        
       </nav>
-      
-
     </div>
-        
     <!-- <router-view></router-view> -->
- 
- 
   </div>
-
-  <!-- </div> -->
-  <!-- Main -->
 </template>
 
 <style lang="scss" scoped>
-
 .main {
   display: flex;
   // justify-content: center;
-  
-//AppBar
-#md-app {
-  padding-left: 0px;
-  position: fixed;
-  width: 100%;
-  overflow: hidden;
-  z-index: 1000;
-  display: flex;
-  justify-items: center;
-}
 
-#bookcount{
-  margin-top:20px;
-}
-// Navabar Style
-.color {
-  background-color: rgb(192, 56, 56);
-  height: 8%;
-}
+  //AppBar
+  #md-app {
+    padding-left: 0px;
+    position: fixed;
+    width: 100%;
+    overflow: hidden;
+    z-index: 1000;
+    display: flex;
+    justify-items: center;
+  }
 
-//Search
-#search{
-  height: 10%;
-  margin-top: 14px;
-  width:40%;
-  border-radius:4px;
-  border-style: none;
-}
+  #bookcount {
+    margin-top: 20px;
+  }
+  // Navabar Style
+  .color {
+    background-color: rgb(192, 56, 56);
+    height: 8%;
+  }
 
-//BookStore
-#book-div {
-  padding-left: 4%;
-  height: 10%;
-  margin-top: 14px;
-  width:40%;
+  //Search
+  #search {
+    height: 10%;
+    margin-top: 14px;
+    width: 40%;
+    border-radius: 4px;
+    border-style: none;
+  }
 
-  #book {
-    color: white;
-    font-size: 14px;
-    margin-left:2%;
+  //BookStore
+  #book-div {
+    padding-left: 4%;
+    height: 10%;
+    margin-top: 14px;
+    width: 40%;
+
+    #book {
+      color: white;
+      font-size: 14px;
+      margin-left: 2%;
+    }
+  }
+
+  //Cart
+  #cart-div {
+    padding-left: 4%;
+    height: 10%;
+    margin-top: 14px;
+    width: 40%;
+
+    #cart {
+      // color: white;
+      font-size: 14px;
+      margin-right: 4%;
+      height: 40px;
+      border: none;
+      text-decoration: none;
+      outline: none;
+      // text-underline-offset: none;
+      color: white;
+background-color: rgb(192, 56, 56);
+    
+    }
   }
 }
-
-//Cart 
-#cart-div {
-  padding-left: 4%;
-  height: 10%;
-  margin-top: 14px;
-  width:40%;
-
-  #cart {
-    color: white;
-    font-size: 14px;
-    margin-right:4%;
-  }
-}
-
-}
-
 </style>
 
 <script>

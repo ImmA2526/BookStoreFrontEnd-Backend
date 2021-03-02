@@ -4,7 +4,6 @@ const baseUrl = "https://localhost:44387/api"
 export default
     {
 // Add Data 
-
         post(requestUrl,data){
             return axios({
                 method: 'post',
@@ -21,11 +20,11 @@ export default
         get(requestUrl){
             return axios({
                 method:'get',
-                url: `${baseUrl}${requestUrl}`
-                // headers: {
-                //     'Content-Type': 'application/json',
-                //     'Authorization': localStorage.getItem("AccessToken")
-                // }
+                url: `${baseUrl}${requestUrl}`,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': localStorage.getItem("AccessToken")
+                }
             })
         },
 // Edit Method 
@@ -33,11 +32,11 @@ export default
         PUT(requestUrl) {
             return axios({
                 method: 'put',
-                url: `${baseUrl}${requestUrl}`
-                // headers: {
-                //     'Content-Type': 'application/json',
-                //     'Authorization': localStorage.getItem("AccessToken")
-                // }
+                url: `${baseUrl}${requestUrl}`,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': localStorage.getItem("AccessToken")
+                }
             })
         },
 // Delete Method 

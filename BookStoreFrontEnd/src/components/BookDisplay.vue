@@ -38,7 +38,7 @@
         </div>
 
         <div class="btns">
-          <md-button type="button" id="add" v-on:click="AddCart(bookId)"
+          <md-button type="button" id="add" v-on:click="AddCart(book.bookId)"
             >ADD TO BAG</md-button
           >
           <md-button type="button" id="wish">WISHLIST</md-button>
@@ -64,17 +64,19 @@ export default {
       // total:'',
       Loadding: false,
       bookId: "",
-      userId:'',
+      UserId:'',
       bookCount: 1,
     };
   },
   
+  ///Add Books To Cart 
   methods: {
     AddCart(bookId) {
+      console.log(localStorage.getItem('UserId'));
       const bookData = {
         bookId,
         booCount:this.bookCount,
-        userId:localStorage.getItem("userId"),
+        UserId:localStorage.getItem("UserId"),
         
       };
       console.log(this.bookData);

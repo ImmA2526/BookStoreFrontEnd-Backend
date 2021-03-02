@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Book from "../components/Books"
+import Book from "../components/Book"
 import Home from "../components/NavBar"
 
 export default {

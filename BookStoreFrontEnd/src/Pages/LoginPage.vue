@@ -117,8 +117,8 @@ export default {
         .login(userData)
         .then((response) => {
           setTimeout(() => this.redirect(), 2000);
-          localStorage.setItem("AccessToken",response.data.data);
-localStorage.setItem("UserId",response.data.id);
+          localStorage.setItem("AccessToken", response.data.data);
+          localStorage.setItem("UserId", response.data.id);
 
           this.$router.push("/Register");
           console.log(response.data.data);
@@ -148,7 +148,7 @@ localStorage.setItem("UserId",response.data.id);
     },
     saveUser() {
       this.sending = true;
-      
+
       window.setTimeout(() => {
         this.loginUser = `${this.form.email} `;
         this.userSaved = true;
