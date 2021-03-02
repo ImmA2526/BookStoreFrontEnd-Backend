@@ -1,53 +1,38 @@
 <template>
-
-
-  <div class="maindiv">
+  <div>
+    <!-- <Home/> -->
+    <b-card class="card">
     <div id="bookcount">
-      <h5>Books</h5>
+      <h5>My Cart</h5>
       ({{ allBooks.length }} <label id="lb">Items </label>)
-
-      <div class="dropdown">
-        <button
-          class=" btn-sm dropdown-toggle"
-          type="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-          id="drop"
-        >
-          Sort By Relevance
-        </button>
-        <div class="dropdown-menu" aria-labelledby="Sort By Relevance">
-          <a class="dropdown-item" href="#"></a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </div>
     </div>
-
-    <div id="main-container">
-      <div id="display" class="card" v-for="book in allBooks" :key="book._id">
+      <div id="display" v-for="book in allBooks" :key="book._id">
         <div class="img">
           <img v-bind:src="book.bookImage" />
         </div>
 
         <div id="bookdiv" class="book">
-          <div class="bookname">
+          <!-- <div class="bookname"> -->
             <b>{{ book.bookName }}</b>
-          </div>
-          <div id="name">by {{ book.authorName }}</div>
-          <div id="price"><b>RS:</b> {{ book.bookPrice }}</div>
+          <!-- </div> -->
+          <!-- <div id="name"> -->
+          by {{ book.authorName }}
+          <!-- </div> -->
+          <!-- <div id="price"> -->
+            <b>RS: {{ book.bookPrice }}</b>
+          <!-- </div> -->
         </div>
-
-        <!-- <div class="btns">
-          <md-button type="button" id="add" v-on:click="AddCart(book.bookId)"
-            >ADD TO BAG</md-button
-          >
-          <md-button type="button" id="wish">WISHLIST</md-button>
-        </div> -->
-        <!-- <Description/> -->
       </div>
-    </div>
+      <b-button
+        id="button"
+        style="margin-top: 12%; float:right; position: relative"
+        variant="primary"
+        >PLACE ORDER</b-button
+      >
+      <b-card-text> </b-card-text>
+
+     
+    </b-card>
   </div>
 </template>
 
@@ -70,88 +55,49 @@ export default {
       // bookCount: 1,
     };
   },
-  
-  // methods: {
-  //   AddCart(bookId) {
-  //     console.log(localStorage.getItem('UserId'));
-  //     const bookData = {
-  //       bookId,
-  //       booCount:this.bookCount,
-  //       UserId:localStorage.getItem("UserId"),
-        
-  //     };
-  //     console.log(this.bookData);
-  //     bookService
-  //     .addBag(bookData)
-  //     .then((response) => {
-  //         console.log(response);
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   },
-  // },
 };
 </script>
 
 <style lang="scss" scoped>
 
-#add {
-  background-color: brown;
-  height: 24px;
-  margin-left: 16px;
-  width: 90px;
-  color: white;
-  font-size: 10px;
-  border: none;
-}
-
-//Bookname Bg Color
-#bookdiv {
-  background-color: white;
-  display: grid;
-  text-align: left;
-}
-
-#name {
-  font-size: 4px;
-}
-.btns {
-  display: flex;
-  background-color: white;
-}
-#wish {
-  font-size: 10px;
-  height: 24px;
-  width: 3;
-  border: 1px solid black;
-  margin-left: 10px;
+#button{
+ top: -110px;
+    left: 2px;
+    width: 140px;
+    height: 29px;
+    background: #3371B5 0% 0% no-repeat padding-box;
+    border-radius: 2px;
+    opacity: 1;
+    font-size: 12px;
+      text-align: center;
 }
 // Card
 #display {
-  margin-left: 2%;
+  margin-left: 8%;
   margin-top: 2%;
-  top: 20px;
-  left: 120px;
+  // top: 400px;
+  // left: 120px;
   width: 233px;
-  background: #f5f5f5 0% 0% no-repeat padding-box;
+  // background: #f5f5f5 0% 0% no-repeat padding-box;
   border-radius: 2px 2px 0px 0px;
   opacity: 1;
+  display: flex;
 }
 
+//Name Margin
 .book {
   float: left;
-  margin-left: 4px;
+  margin-left: 20px;
   background: #f5f5f5 0% 0% no-repeat padding-box;
 }
 
 .img {
-  top: 163px;
-  left: 239px;
-  width: 105px;
-  height: 135px;
-  margin: auto;
-  opacity: 1;
+top: 192px;
+left: 213px;
+width: 65px;
+height: 85px;
+// background: transparent url('img/Image 11.png') 0% 0% no-repeat padding-box;
+opacity: 1;
 }
 
 #main-container {
@@ -162,8 +108,12 @@ export default {
   margin-left: 12%;
 }
 
+
+//Author NAme
 #name {
-  font-size: small;
+  font-size: 12px;
+
+
   display: grid;
   margin-left: 8px;
 }
@@ -173,20 +123,27 @@ export default {
   margin-left: 8px;
 }
 
-.bookname {
-  font-size: 12px;
-  margin-left: 8px;
+
+
+//Bookname Bg Color
+#bookdiv {
+  background-color: white;
+  display: grid;
+  text-align: left;
+  font-size: 14px;
+  margin-left: 18px;
+  height: 10px;
+ 
+  // word-break: break-all;
+
 }
+
 
 #bookcount {
-  margin-top: 80px;
-  margin-left: 22%;
+  margin-top: -12px;
+  margin-left: 8%;
+font-size: small;
   display: flex;
-}
-
-//ITEMS 
-#lb {
-  margin-left: 4px;
 }
 
 #drop {
@@ -195,74 +152,20 @@ export default {
   margin-left: 720px;
 }
 
-//Other Device
-@media (min-width: 360px) and(max-width:640px) {
-  // Card
-
-
-#display {
-  display: flex;
-  margin-left: 6%;
-  // margin-top: 20%;
-  top: 20px;
-  left: 20px;
-  width: 240px;
-  background: #f5f5f5 0% 0% no-repeat padding-box;
-  border-radius: 2px 2px 0px 0px;
-  opacity: 1;
+.card {
+  position: relative;
+  flex-direction: column;
+  border-radius: 0.25rem;
+  border: 1px solid #707070;
+  height: 251px;
+  top: 112px;
+  left: 177px;
+  width: 774px;
 }
 
-#bookcount {
-  margin-top: 80px;
-  margin-left: 8%;
-  display: flex;
+.card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    /* padding: 1.25rem; */
 }
-
-.img {
-  top: 13px;
-  left: 29px;
-  width: 105px;
-  height: 135px;
-  margin: auto;
-  opacity: 1;
-}
-//ITEMS 
-#lb {
-  margin-left: 4px;
-}
-
-#drop {
-  background-color: white;
-  display: flex;
-  margin-left: 50px;
-  height: 34px;
-}
-
-}
-
-.btns {
-  display: flex;
-  background-color: white;
-}
-#wish {
-  font-size: 10px;
-  height: 20px;
-  width: 20px;
-  
-  border: 1px solid black;
-  margin-left: 6px;
-}
-
-#add {
-  background-color: brown;
-  height: 20px;
-  margin-left: 20px;
-  overflow-wrap:break-word;
-  overflow: wrap;
-  width: 50px;
-  color: white;
-  font-size: 10px;
-  border: none;
-}
-
 </style>

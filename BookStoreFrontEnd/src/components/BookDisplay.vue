@@ -51,10 +51,8 @@
 
 <script>
 import bookService from "../Services/bookService";
-// import Description from './Description.vue';
 export default {
   name: "DisplayBooks",
-  // components: {Description},
 
   props: ["allBooks", "total"],
 
@@ -197,7 +195,6 @@ export default {
 //Other Device
 @media (min-width: 360px) and(max-width:640px) {
   // Card
-
 
 #display {
   display: flex;
