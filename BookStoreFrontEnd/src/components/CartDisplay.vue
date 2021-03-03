@@ -19,9 +19,9 @@
 <div id="blank"></div>
           <div id="Qnty">
             <div class="quantity-toggle">
-              <button @click="updateCart()">&mdash;</button>
+              <button @click="updateCart(book)">&mdash;</button>
               <input type="text" :value="qnty" readonly />
-              <button @click="updateCart()">&#xff0b;</button>
+              <button @click="updateCart(book)">&#xff0b;</button>
             </div>
           </div>
           <!-- </div> -->
@@ -50,30 +50,33 @@ export default {
       books: [],
       Loadding: false,
       qnty: 1,
-      bookId:null,
-      bookCount:null,
+      bookId:'',
+      bookCount:'',
 
     };
   },
 
  methods: {
-    updateCart(cartId) {
+    updateCart(book) {
+      console.log(book);
       console.log(localStorage.getItem('UserId'));
+// console.log(this.bookCount);
+// console.log(this.bookId);
       const bookData = {
-        cartId,
+        
         // bookId,
-        booCount:this.bookCount,
-        bookId:this.bookId,
-        UserId:localStorage.getItem("UserId"),
+        bookCount:book.bookCount,
+        bookId:book.bookId,
+        userId:localStorage.getItem("UserId"),
         
       };
       // if(this.qnty===1){
       //   this.qnty++;
       // }
       // this.qnty--;
-      console.log(this.bookData);
+      console.log(bookData);
       bookService
-      .updateCart(cartId,bookData)
+      .updateCart(book.cartId,bookData)
       .then((response) => {
           console.log(response);
         })

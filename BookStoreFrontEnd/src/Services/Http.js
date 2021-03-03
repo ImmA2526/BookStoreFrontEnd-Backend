@@ -15,8 +15,8 @@ export default
                 }
             })
         },
-// Get Data 
 
+// Get Data 
         get(requestUrl){
             return axios({
                 method:'get',
@@ -27,20 +27,21 @@ export default
                 }
             })
         },
-// Edit Method 
 
-        PUT(requestUrl) {
+// Edit Method 
+        PUT(requestUrl,bookData) {
             return axios({
                 method: 'put',
                 url: `${baseUrl}${requestUrl}`,
+            data:bookData,
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': localStorage.getItem("AccessToken")
                 }
             })
         },
-// Delete Method 
 
+// Delete Method 
         DELETE(requestUrl){
             return axios({
                 method:'DELETE',
