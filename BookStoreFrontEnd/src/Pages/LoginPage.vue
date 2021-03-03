@@ -116,11 +116,11 @@ export default {
       userService
         .login(userData)
         .then((response) => {
-          setTimeout(() => this.redirect(), 2000);
+          setTimeout(() => this.redirect(), 1400);
           localStorage.setItem("AccessToken", response.data.data);
           localStorage.setItem("UserId", response.data.id);
 
-          this.$router.push("/Register");
+          // this.$router.push("/Register");
           console.log(response.data.data);
         })
         .catch((error) => {

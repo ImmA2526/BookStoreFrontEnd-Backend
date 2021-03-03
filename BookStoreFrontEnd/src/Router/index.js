@@ -8,7 +8,7 @@ import NavBar from "../components/NavBar"
 // import Books from "../components/Books"
 import cart from "../components/Cart"
 import Home from"../components/HomePage"
-
+import customer from "../components/CustomerDetail"
 Vue.use(VueRouter);
 
 
@@ -18,6 +18,12 @@ const routes = [
     path: "/home",
     name: "Home",
     component: Home,
+  },
+
+  {
+    path: "/cst",
+    name: "customer",
+    component: customer,
   },
 
   {

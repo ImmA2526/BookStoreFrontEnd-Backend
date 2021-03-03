@@ -2,83 +2,152 @@
   <div>
     <!-- <Home/> -->
     <b-card class="card">
-    <div id="bookcount">
-      <h5>My Cart</h5>
-      ({{ allBooks.length }} <label id="lb">Items </label>)
-    </div>
+      <div id="bookcount">
+        <h5 id="count">My Cart ({{ allBooks.length }})</h5>
+      </div>
       <div id="display" v-for="book in allBooks" :key="book._id">
         <div class="img">
+       <div id="blanksbook"></div>
           <img v-bind:src="book.bookImage" />
         </div>
 
+ 
         <div id="bookdiv" class="book">
-          <!-- <div class="bookname"> -->
-            <b>{{ book.bookName }}</b>
-          <!-- </div> -->
-          <!-- <div id="name"> -->
+          <b>{{ book.bookName }}</b>
           by {{ book.authorName }}
-          <!-- </div> -->
-          <!-- <div id="price"> -->
-            <b>RS: {{ book.bookPrice }}</b>
+          <b>RS: {{ book.bookPrice }}</b>
+<div id="blank"></div>
+          <div id="Qnty">
+            <div class="quantity-toggle">
+              <button @click="updateCart()">&mdash;</button>
+              <input type="text" :value="qnty" readonly />
+              <button @click="updateCart()">&#xff0b;</button>
+            </div>
+          </div>
           <!-- </div> -->
         </div>
       </div>
+
       <b-button
         id="button"
         style="margin-top: 12%; float:right; position: relative"
-        variant="primary"
+        variant="primary" 
         >PLACE ORDER</b-button
       >
       <b-card-text> </b-card-text>
-
-     
     </b-card>
   </div>
 </template>
 
 <script>
-// import bookService from "../Services/bookService";
-// import Description from './Description.vue';
+import bookService from "../Services/bookService";
 export default {
   name: "DisplayBooks",
-  // components: {Description},
-
   props: ["allBooks", "total"],
 
   data() {
     return {
       books: [],
-      // total:'',
       Loadding: false,
-      // bookId: "",
-      // UserId:'',
-      // bookCount: 1,
+      qnty: 1,
+      bookId:null,
+      bookCount:null,
+
     };
   },
+
+ methods: {
+    updateCart(cartId) {
+      console.log(localStorage.getItem('UserId'));
+      const bookData = {
+        cartId,
+        // bookId,
+        booCount:this.bookCount,
+        bookId:this.bookId,
+        UserId:localStorage.getItem("UserId"),
+        
+      };
+      // if(this.qnty===1){
+      //   this.qnty++;
+      // }
+      // this.qnty--;
+      console.log(this.bookData);
+      bookService
+      .updateCart(cartId,bookData)
+      .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+
+  //   increment() {
+  //     this.quantity++;
+  //   },
+  //   decrement() {
+  //     if (this.quantity === 1) {
+  //       alert("Negative quantity not allowed");
+  //     } else {
+  //       this.quantity--;
+  //     }
+  //   },
+  // },
 };
 </script>
 
 <style lang="scss" scoped>
+#Qnty {
+  display: grid;
+  padding-top: 10px;
+}
 
-#button{
- top: -110px;
-    left: 2px;
-    width: 140px;
-    height: 29px;
-    background: #3371B5 0% 0% no-repeat padding-box;
-    border-radius: 2px;
-    opacity: 1;
-    font-size: 12px;
-      text-align: center;
+$border: 2px solid #ddd;
+
+.quantity-toggle {
+  display: flex;
+
+  width: 10px;
+  height: 40px;
+
+  input {
+    border: 1px solid black;
+    width: 2rem;
+    text-align: center;
+    align-items: center;
+    height: 1.4rem;
+  }
+
+  button {
+    border: $border;
+
+    background: #f5f5f5;
+    color: rgb(0, 0, 0);
+    font-size: 0.5rem;
+
+    border-radius: 50%;
+    height: 1.5rem;
+    cursor: pointer;
+  }
+}
+
+#button {
+  top: -110px;
+  left: 2px;
+  width: 140px;
+  height: 29px;
+  background: #3371b5 0% 0% no-repeat padding-box;
+  border-radius: 2px;
+  opacity: 1;
+  font-size: 12px;
+  text-align: center;
 }
 // Card
 #display {
   margin-left: 8%;
   margin-top: 2%;
-  // top: 400px;
-  // left: 120px;
   width: 233px;
-  // background: #f5f5f5 0% 0% no-repeat padding-box;
   border-radius: 2px 2px 0px 0px;
   opacity: 1;
   display: flex;
@@ -92,14 +161,22 @@ export default {
 }
 
 .img {
-top: 192px;
-left: 213px;
-width: 65px;
-height: 85px;
-// background: transparent url('img/Image 11.png') 0% 0% no-repeat padding-box;
-opacity: 1;
+  top: 192px;
+  left: 213px;
+  width: 65px;
+  height: 85px;
+  opacity: 1;
 }
 
+#blank{
+margin-top: 8px;
+}
+#blanks{
+margin-top:18px;
+}
+#blanksbook{
+
+}
 #main-container {
   height: 80%;
   width: 80%;
@@ -107,23 +184,6 @@ opacity: 1;
   flex-wrap: wrap;
   margin-left: 12%;
 }
-
-
-//Author NAme
-#name {
-  font-size: 12px;
-
-
-  display: grid;
-  margin-left: 8px;
-}
-
-#price {
-  font-size: 12px;
-  margin-left: 8px;
-}
-
-
 
 //Bookname Bg Color
 #bookdiv {
@@ -133,23 +193,19 @@ opacity: 1;
   font-size: 14px;
   margin-left: 18px;
   height: 10px;
- 
+
   // word-break: break-all;
-
 }
-
 
 #bookcount {
   margin-top: -12px;
   margin-left: 8%;
-font-size: small;
+  font-size: small;
   display: flex;
 }
 
-#drop {
-  background-color: white;
-  display: flex;
-  margin-left: 720px;
+#count {
+  font-size: 16px;
 }
 
 .card {
@@ -164,8 +220,8 @@ font-size: small;
 }
 
 .card-body {
-    flex: 1 1 auto;
-    min-height: 1px;
-    /* padding: 1.25rem; */
+  flex: 1 1 auto;
+  min-height: 1px;
+  /* padding: 1.25rem; */
 }
 </style>
