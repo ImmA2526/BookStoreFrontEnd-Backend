@@ -108,7 +108,7 @@ namespace BookStoreApplication.Controllers
         /// <param name="bookId">The book identifier.</param>
         /// <returns></returns>
         [HttpPut]
-        [Route("{cartId}")]
+        //[Route("{cartId}")]
         public IActionResult UpdateCart(CartModel model)
         {
             try

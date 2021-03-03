@@ -111,7 +111,7 @@ namespace BookStoreApplication.Controllers
         /// <param name="bookId">The book identifier.</param>
         /// <returns></returns>
         [HttpPut]
-        [Route("addBookCount/{bookId}")]
+        [Route("addBookCount/{bookCount}/{bookId}")]
         public IActionResult UpdateBookByAdding(int bookCount, int bookId)
         {
             try
@@ -137,7 +137,7 @@ namespace BookStoreApplication.Controllers
         /// <returns></returns>
 
         [HttpPut]
-        [Route("deleteBookCount/{bookId}")]
+        [Route("deleteBookCount/{bookCount}/{bookId}")]
         public IActionResult UpdateBookByDeleting(int bookCount, int bookId)
         {
             try

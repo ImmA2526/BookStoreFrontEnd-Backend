@@ -7,20 +7,16 @@
     <div class="display Book">
       <CartDisplay v-bind:allBooks="books"></CartDisplay>
     </div>
+    <!-- <CustomerDetail/> -->
   </div>
 </template>
-
-<style lang="scss" scoped>
-.spin {
-  margin-top: 80px;
-}
-</style>
 
 <script>
 import Spinner from "vue-simple-spinner";
 import bookService from "../Services/bookService";
 import CartDisplay from "../components/CartDisplay";
 import NavBar from "../components/NavBar";
+
 export default {
   name: "Books",
   data() {

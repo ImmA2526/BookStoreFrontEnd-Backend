@@ -1,27 +1,26 @@
 <template>
   <div>
     <!-- <Home/> -->
-    <b-card class="card">
+    <div class="card">
       <div id="bookcount">
         <h5 id="count">My Cart ({{ allBooks.length }})</h5>
       </div>
       <div id="display" v-for="book in allBooks" :key="book._id">
         <div class="img">
-       <div id="blanksbook"></div>
+          <div id="blanksbook"></div>
           <img v-bind:src="book.bookImage" />
         </div>
 
- 
         <div id="bookdiv" class="book">
           <b>{{ book.bookName }}</b>
           by {{ book.authorName }}
           <b>RS: {{ book.bookPrice }}</b>
-<div id="blank"></div>
+          <div id="blank"></div>
           <div id="Qnty">
             <div class="quantity-toggle">
-              <button @click="updateCart(book)">&mdash;</button>
-              <input type="text" :value="qnty" readonly />
-              <button @click="updateCart(book)">&#xff0b;</button>
+              <button @click="updateCart(book, 'less')">&mdash;</button>
+              <input type="text" :value="book.bookCount" readonly />
+              <button @click="updateCart(book, 'more')">&#xff0b;</button>
             </div>
           </div>
           <!-- </div> -->
@@ -31,11 +30,11 @@
       <b-button
         id="button"
         style="margin-top: 12%; float:right; position: relative"
-        variant="primary" 
+        variant="primary"
         >PLACE ORDER</b-button
       >
       <b-card-text> </b-card-text>
-    </b-card>
+    </div>
   </div>
 </template>
 
@@ -49,35 +48,35 @@ export default {
     return {
       books: [],
       Loadding: false,
-      qnty: 1,
-      bookId:'',
-      bookCount:'',
-
+      // bookId:'',
+      // bookCount:'',
+      count: null,
     };
   },
 
- methods: {
-    updateCart(book) {
-      console.log(book);
-      console.log(localStorage.getItem('UserId'));
-// console.log(this.bookCount);
-// console.log(this.bookId);
-      const bookData = {
-        
-        // bookId,
-        bookCount:book.bookCount,
-        bookId:book.bookId,
-        userId:localStorage.getItem("UserId"),
-        
-      };
-      // if(this.qnty===1){
-      //   this.qnty++;
-      // }
-      // this.qnty--;
-      console.log(bookData);
+  methods: {
+    updateCart(book, oprator) {
+      console.log(book, oprator);
+      // const bookData = {
+      //   bookCount:book.bookCount,
+      //   bookId:book.bookId,
+      // };
+      // console.log(bookData);
+
+     if (this.quantity === 1) {
+        alert("Negative quantity not allowed");
+      }
+
+      if (oprator === "more") {
+        this.count = book.bookCount++;
+      } else {
+        this.count = book.bookCount--;
+      }
+      console.log(this.count);
       bookService
-      .updateCart(book.cartId,bookData)
-      .then((response) => {
+        .updateCartBookQnty(this.count, book.bookId)
+        .then((response) => {
+          this.$emit("Cart");
           console.log(response);
         })
         .catch((error) => {
@@ -137,22 +136,23 @@ $border: 2px solid #ddd;
 
 #button {
   top: -110px;
-  left: 2px;
   width: 140px;
   height: 29px;
   background: #3371b5 0% 0% no-repeat padding-box;
   border-radius: 2px;
   opacity: 1;
+  left: 76%;
   font-size: 12px;
   text-align: center;
 }
 // Card
 #display {
   margin-left: 8%;
-  margin-top: 2%;
+  margin-top: 1%;
   width: 233px;
   border-radius: 2px 2px 0px 0px;
   opacity: 1;
+  height: auto;
   display: flex;
 }
 
@@ -171,38 +171,36 @@ $border: 2px solid #ddd;
   opacity: 1;
 }
 
-#blank{
-margin-top: 8px;
-}
-#blanks{
-margin-top:18px;
-}
-#blanksbook{
+// #blank{
+// margin-top: 8px;
+// }
+// #blanks{
+// margin-top:18px;
+// }
+// #blanksbook{
 
-}
-#main-container {
-  height: 80%;
-  width: 80%;
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: 12%;
-}
+// }
+// #main-container {
+//   height: 80%;
+//   width: 80%;
+//   display: flex;
+//   flex-wrap: wrap;
+//   margin-left: 12%;
+// }
 
 //Bookname Bg Color
 #bookdiv {
   background-color: white;
   display: grid;
   text-align: left;
-  font-size: 14px;
+  font-size: 12px;
   margin-left: 18px;
-  height: 10px;
-
-  // word-break: break-all;
 }
 
 #bookcount {
-  margin-top: -12px;
+  margin-top: 12px;
   margin-left: 8%;
+  margin-bottom: 6px;
   font-size: small;
   display: flex;
 }
@@ -213,18 +211,22 @@ margin-top:18px;
 
 .card {
   position: relative;
-  flex-direction: column;
+  // flex-direction: column;
   border-radius: 0.25rem;
   border: 1px solid #707070;
-  height: 251px;
+  height: auto;
   top: 112px;
   left: 177px;
   width: 774px;
+  // position: relative;
+  // display: flex;
+  // flex-direction: column;
+  min-width: 0;
 }
 
-.card-body {
-  flex: 1 1 auto;
-  min-height: 1px;
-  /* padding: 1.25rem; */
-}
+// .card-body {
+//   flex: 1 1 auto;
+//   min-height: 1px;
+//   /* padding: 1.25rem; */
+// }
 </style>

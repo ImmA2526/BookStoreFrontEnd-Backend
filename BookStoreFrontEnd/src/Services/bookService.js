@@ -1,4 +1,4 @@
-import http from "./Http"
+import http from "./CartServices"
 
 class bookService {
 
@@ -22,10 +22,18 @@ class bookService {
     }
 
 //Update Cart 
-updateCart(cartId,bookData){
-    console.log(cartId);
-    return http.PUT(`/Cart/`+cartId,bookData)
+updateCart(bookData){
+    console.log(bookData);
+    return http.PUT(`/Cart/`,bookData)
 }
+
+//Plus and Minus Items 
+// updateCartBookQnty(bookCount,bookId){
+//     console.log(bookCount);
+//     console.log(bookId);
+//     return http.PUT(`/Book/addBookCount/`+bookCount+'/'+bookId)
+// }
+
 
 // Add Customer  
     AddCustomer(bookData) {

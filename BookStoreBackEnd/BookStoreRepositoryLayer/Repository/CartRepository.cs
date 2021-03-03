@@ -66,7 +66,7 @@ namespace BookStoreRepositoryLayer
                              BookName = BookModel.BookName,
                              AuthorName = BookModel.AuthorName,
                              BookPrice = BookModel.BookPrice,
-                             BookCount = BookModel.BookCount,
+                             BookCount = CartModel.BookCount,
                              BookImage = BookModel.BookImage,
                              BookDescription = BookModel.BookDescription,
 

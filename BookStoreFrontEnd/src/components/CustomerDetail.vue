@@ -2,8 +2,10 @@
   <div>
     <form>
       <b-card>
-        <div id="heading">Customer Details
-<div id="edit" type="button" >Edit</div></div>
+        <div id="heading">
+          Customer Details
+          <div id="edit" type="button">Edit</div>
+        </div>
         <div class="row">
           <div class="col">
             <input
@@ -20,7 +22,7 @@
               id="phone"
               class="form-control"
               placeholder="Phone Number"
-                v-model="form.phone"
+              v-model="form.phone"
             />
           </div>
         </div>
@@ -96,20 +98,28 @@
               name="work"
               v-model="form.addresstype"
               value="Work"
-              />
+            />
             <label class="form-check-label" id="works">Work</label>
           </div>
 
           <div class="form-check form-check-inline">
-            <input type="radio" class= "other" name="other" id="addresstype" value="other" v-model="form.addresstype"/>
-            <label class="form-check-label" id="others" >Other</label>
+            <input
+              type="radio"
+              class="other"
+              name="other"
+              id="addresstype"
+              value="other"
+              v-model="form.addresstype"
+            />
+            <label class="form-check-label" id="others">Other</label>
           </div>
         </div>
         <b-button
           id="button"
           style="margin-top: 5%; float:right; position: relative"
           variant="primary"
-          v-on:click=" addCustomer()">CONTINUE</b-button
+          v-on:click="addCustomer()"
+          >CONTINUE</b-button
         >
       </b-card>
     </form>
@@ -167,8 +177,7 @@ export default {
 <style lang="scss" scoped>
 #address {
   height: 80px;
-  // width: 190px;
-}
+ }
 
 #button {
   float: right;
@@ -192,8 +201,7 @@ export default {
 .card-body {
   flex: 1 1 auto;
   min-height: 1px;
-  /* padding: 1.25rem; */
-}
+ }
 
 input[type="text"] {
   padding: 10px 20px;
@@ -252,11 +260,11 @@ input[type="text"] {
   margin-bottom: 10px;
 }
 
-#edit{
-     text-align: right;
-    font-size: 18px;
-    margin-bottom: 10px;
-    display: inline-flex;
-    margin-left: 68%;
+#edit {
+  text-align: right;
+  font-size: 18px;
+  margin-bottom: 10px;
+  display: inline-flex;
+  margin-left: 68%;
 }
 </style>

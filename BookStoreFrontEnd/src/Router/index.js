@@ -11,18 +11,36 @@ import Home from"../components/HomePage"
 import customer from "../components/CustomerDetail"
 Vue.use(VueRouter);
 
+// Router Guard
+
+function guardRoute(to, from, next) {
+  var isAuthenticated = false;
+  if (localStorage.getItem("AccessToken")) {
+    isAuthenticated = true;
+  } else {
+    isAuthenticated = false;
+  }
+  if (isAuthenticated) {
+    next();
+  } else {
+    next("/");
+  }
+}
+
 
 
 const routes = [
   {
     path: "/home",
     name: "Home",
+    // beforeEnter: guardRoute,
     component: Home,
   },
 
   {
     path: "/cst",
     name: "customer",
+    beforeEnter: guardRoute,
     component: customer,
   },
 
@@ -65,6 +83,7 @@ const routes = [
 {
   path: "/cart",
   name: "Cart",
+  beforeEnter: guardRoute,
 component:cart,
 }
   

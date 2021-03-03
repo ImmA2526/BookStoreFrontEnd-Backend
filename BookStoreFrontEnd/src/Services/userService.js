@@ -1,8 +1,8 @@
-import http from './Http'
+import http from './Http_User'
 class UserRegister {
 
     registration(userData) {
-        return http.post('/User/registerUser', userData)
+        return http.post('/User', userData)
     }
 
     login(userData) {
@@ -11,11 +11,11 @@ class UserRegister {
 
     forgot(email) {
         console.log(email);
-        return http.get(`/User/forgotPassword/` + email, null)
+        return http.get(`/User/` + email, null)
     }
 
     reset(userData) {
-        return http.PUT(`/User/resetPassword`, userData)
+        return http.PUT(`/User`, userData)
     }
 
 }
