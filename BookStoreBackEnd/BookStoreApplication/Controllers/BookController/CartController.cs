@@ -18,7 +18,7 @@ namespace BookStoreApplication.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class CartController : Controller
     {
         private readonly ICartBusiness cartBusinsess;

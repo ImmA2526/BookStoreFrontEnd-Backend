@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- <Home/> -->
-    <div class="card">
+    <b-card class="card">
       <div id="bookcount">
         <h5 id="count">My Cart ({{ allBooks.length }})</h5>
       </div>
@@ -20,7 +20,7 @@
           <div id="Qnty">
             <div class="quantity-toggle">
               <button @click="updateCart(book)">&mdash;</button>
-              <input type="text" :value="book.bookId" readonly />
+              <input type="text" :value="qnty" readonly />
               <button @click="updateCart(book)">&#xff0b;</button>
             </div>
           </div>
@@ -35,7 +35,7 @@
         >PLACE ORDER</b-button
       >
       <b-card-text> </b-card-text>
-    </div>
+    </b-card>
   </div>
 </template>
 
@@ -49,6 +49,7 @@ export default {
     return {
       books: [],
       Loadding: false,
+      qnty: 1,
       bookId:'',
       bookCount:'',
 
@@ -58,7 +59,7 @@ export default {
  methods: {
     updateCart(book) {
       console.log(book);
-      // console.log(localStorage.getItem('UserId'));
+      console.log(localStorage.getItem('UserId'));
 // console.log(this.bookCount);
 // console.log(this.bookId);
       const bookData = {
@@ -66,7 +67,7 @@ export default {
         // bookId,
         bookCount:book.bookCount,
         bookId:book.bookId,
-        // userId:localStorage.getItem("UserId"),
+        userId:localStorage.getItem("UserId"),
         
       };
       // if(this.qnty===1){
@@ -135,20 +136,20 @@ $border: 2px solid #ddd;
 }
 
 #button {
-      top: -86px;
-    width: 140px;
-    height: 29px;
-    background: #3371b5 0% 0% no-repeat padding-box;
-    border-radius: 2px;
-    opacity: 1;
-    left:76%;
-    font-size: 12px;
-    text-align: center;
+  top: -110px;
+  left: 2px;
+  width: 140px;
+  height: 29px;
+  background: #3371b5 0% 0% no-repeat padding-box;
+  border-radius: 2px;
+  opacity: 1;
+  font-size: 12px;
+  text-align: center;
 }
 // Card
 #display {
   margin-left: 8%;
-  margin-top: 1%;
+  margin-top: 2%;
   width: 233px;
   border-radius: 2px 2px 0px 0px;
   opacity: 1;
@@ -170,36 +171,38 @@ $border: 2px solid #ddd;
   opacity: 1;
 }
 
-// #blank{
-// margin-top: 8px;
-// }
-// #blanks{
-// margin-top:18px;
-// }
-// #blanksbook{
+#blank{
+margin-top: 8px;
+}
+#blanks{
+margin-top:18px;
+}
+#blanksbook{
 
-// }
-// #main-container {
-//   height: 80%;
-//   width: 80%;
-//   display: flex;
-//   flex-wrap: wrap;
-//   margin-left: 12%;
-// }
+}
+#main-container {
+  height: 80%;
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 12%;
+}
 
 //Bookname Bg Color
 #bookdiv {
-      background-color: white;
-    display: grid;
-    text-align: left;
-    font-size: 12px;
-    margin-left: 18px;
+  background-color: white;
+  display: grid;
+  text-align: left;
+  font-size: 14px;
+  margin-left: 18px;
+  height: 10px;
+
+  // word-break: break-all;
 }
 
 #bookcount {
-  margin-top: 12px;
+  margin-top: -12px;
   margin-left: 8%;
-  margin-bottom:6px;
   font-size: small;
   display: flex;
 }
@@ -210,17 +213,13 @@ $border: 2px solid #ddd;
 
 .card {
   position: relative;
-  // flex-direction: column;
+  flex-direction: column;
   border-radius: 0.25rem;
   border: 1px solid #707070;
-  height: auto;
+  height: 251px;
   top: 112px;
   left: 177px;
   width: 774px;
-// position: relative;
-    // display: flex;
-    // flex-direction: column;
-    min-width: 0;
 }
 
 .card-body {
