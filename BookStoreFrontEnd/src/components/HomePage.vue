@@ -1,19 +1,19 @@
 <template>
     <div>
     <!-- <router-view/> -->
-<Home/>
-<Book/>
+<!-- <Home/> -->
+<!-- <Book/> -->
     </div>
 </template>
 
 <script>
-import Book from "../components/Book"
-import Home from "../components/NavBar"
+// import Book from "../components/Book"
+// import Home from "../components/NavBar"
 
-export default {
-    components:{
-        Home,
-        Book,
-    }
-}
+// export default {
+//     components:{
+//         Home,
+//         Book,
+//     }
+// }
 </script>

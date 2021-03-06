@@ -41,7 +41,7 @@
           <md-button type="button" id="add" v-on:click="AddCart(book.bookId)"
             >ADD TO BAG</md-button
           >
-          <md-button type="button" id="wish">WISHLIST</md-button>
+          <md-button type="button" id="wish" v-on:click="AddWishlist(book.bookId)">WISHLIST</md-button>
         </div>
         <!-- <Description/> -->
       </div>
@@ -74,12 +74,29 @@ export default {
       const bookData = {
         bookId,
         booCount:this.bookCount,
-        UserId:localStorage.getItem("UserId"),
-        
+        UserId:localStorage.getItem("UserId"), 
       };
       console.log(this.bookData);
       bookService
       .addBag(bookData)
+      .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+//Add to Wishlist 
+    AddWishlist(bookId) {
+      console.log(localStorage.getItem('UserId'));
+      const bookData = {
+        bookId,
+        UserId:localStorage.getItem("UserId"), 
+      };
+      console.log(this.bookData);
+      bookService
+      .addToWishlist(bookData)
       .then((response) => {
           console.log(response);
         })

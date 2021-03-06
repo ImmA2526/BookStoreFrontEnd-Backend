@@ -24,6 +24,6 @@ namespace BookStoreModelLayer
 
         public int UserId { get; set; }
 
-        public int WishlistID { get; set; }
+        public int WishId { get; set; }
     }
 }

@@ -5,7 +5,7 @@
       <Spinner class="spin" id="custom-spinner" v-if="Loadding" />
     </div>
     <div class="display Book">
-      <CartDisplay @getBooks="fetchBooks" v-bind:allBooks="books"></CartDisplay>
+      <CartDisplay v-bind:allBooks="books"></CartDisplay>
     </div>
     <!-- <CustomerDetail/> -->
   </div>
@@ -51,15 +51,10 @@ export default {
           console.log(error);
         });
     },
-
-    // Emiting Method 
-    fetchBooks:function(){
-      this.getCartBooks();
-    },
   }, // Method
 
   // For All List
-mounted() {
+  created() {
     console.log("message");
     this.getCartBooks();
   },

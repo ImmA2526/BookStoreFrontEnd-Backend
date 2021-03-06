@@ -1,139 +1,142 @@
 <template>
   <div>
-    <form>
-      <b-card>
-        <div id="heading">
-          Customer Details
-          <div id="edit" type="button">Edit</div>
+    <div class="card">
+      <div id="heading">
+        Customer Details
+        <div id="edit" type="button">Edit</div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <input
+            type="text"
+            id="name"
+            class="form-control"
+            placeholder="Name"
+            v-model="form.name"
+          />
         </div>
-        <div class="row">
-          <div class="col">
-            <input
-              type="text"
-              id="name"
-              class="form-control"
-              placeholder="Name"
-              v-model="form.name"
-            />
-          </div>
-          <div class="col">
-            <input
-              type="text"
-              id="phone"
-              class="form-control"
-              placeholder="Phone Number"
-              v-model="form.phone"
-            />
-          </div>
+        <div class="col">
+          <input
+            type="text"
+            id="phone"
+            class="form-control"
+            placeholder="Phone Number"
+            v-model="form.phone"
+          />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <input
+            type="text"
+            id="pin"
+            class="form-control"
+            placeholder="Pincode"
+            v-model="form.pin"
+          />
+        </div>
+        <div class="col">
+          <input
+            type="text"
+            id="local"
+            class="form-control"
+            placeholder="Locality"
+            v-model="form.local"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <input
+            type="text"
+            id="address"
+            class="form-control"
+            placeholder="Address"
+            v-model="form.address"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <input
+            type="text"
+            id="city"
+            class="form-control"
+            placeholder="City/Town"
+            v-model="form.city"
+          />
+        </div>
+        <div class="col">
+          <input
+            type="text"
+            class="form-control"
+            id="landmark"
+            placeholder="Landmark"
+            v-model="form.landmark"
+          />
+        </div>
+      </div>
+      <div id="type">Type</div>
+      <div id="mainRadio">
+        <div class="form-check form-check-inline">
+          <input
+            class="home"
+            type="radio"
+            name="home"
+            id="addresstype"
+            value="Home"
+            v-model="form.addresstype"
+          />
+          <label class="form-check-label" id="homes">Home</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            class="work"
+            type="radio"
+            name="work"
+            v-model="form.addresstype"
+            value="Work"
+          />
+          <label class="form-check-label" id="works">Work</label>
         </div>
 
-        <div class="row">
-          <div class="col">
-            <input
-              type="text"
-              id="pin"
-              class="form-control"
-              placeholder="Pincode"
-              v-model="form.pin"
-            />
-          </div>
-          <div class="col">
-            <input
-              type="text"
-              id="local"
-              class="form-control"
-              placeholder="Locality"
-              v-model="form.local"
-            />
-          </div>
+        <div class="form-check form-check-inline">
+          <input
+            type="radio"
+            class="other"
+            name="other"
+            id="addresstype"
+            value="other"
+            v-model="form.addresstype"
+          />
+          <label class="form-check-label" id="others">Other</label>
         </div>
-        <div class="row">
-          <div class="col">
-            <input
-              type="text"
-              id="address"
-              class="form-control"
-              placeholder="Address"
-              v-model="form.address"
-            />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <input
-              type="text"
-              id="city"
-              class="form-control"
-              placeholder="City/Town"
-              v-model="form.city"
-            />
-          </div>
-          <div class="col">
-            <input
-              type="text"
-              class="form-control"
-              id="landmark"
-              placeholder="Landmark"
-              v-model="form.landmark"
-            />
-          </div>
-        </div>
-        <div id="type">Type</div>
-        <div id="mainRadio">
-          <div class="form-check form-check-inline">
-            <input
-              class="home"
-              type="radio"
-              name="home"
-              id="addresstype"
-              value="Home"
-              v-model="form.addresstype"
-            />
-            <label class="form-check-label" id="homes">Home</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input
-              class="work"
-              type="radio"
-              name="work"
-              v-model="form.addresstype"
-              value="Work"
-            />
-            <label class="form-check-label" id="works">Work</label>
-          </div>
-
-          <div class="form-check form-check-inline">
-            <input
-              type="radio"
-              class="other"
-              name="other"
-              id="addresstype"
-              value="other"
-              v-model="form.addresstype"
-            />
-            <label class="form-check-label" id="others">Other</label>
-          </div>
-        </div>
-        <b-button
-          id="button"
-          style="margin-top: 5%; float:right; position: relative"
-          variant="primary"
-          v-on:click="addCustomer()"
-          >CONTINUE</b-button
-        >
-      </b-card>
-    </form>
+      </div>
+<div v-if="!display">
+      <b-button id="button" variant="primary" @click="addCustomer();display = !display"
+        >CONTINUE</b-button
+      >
+</div>
+     </div>
+     <div id="blank"></div>
+    <div id="maincard" v-if="display"><Order /></div>
   </div>
 </template>
 
 <script>
 import bookService from "../Services/bookService";
+import Order from "../components/Order";
 export default {
+  components: {
+    Order,
+  },
   // name: "DisplayBooks",
   // props: ["allBooks", "total"],
 
   data() {
     return {
+      display: false,
       form: {
         name: null,
         phone: null,
@@ -163,8 +166,10 @@ export default {
       bookService
         .AddCustomer(bookData)
         .then((response) => {
+          alert(" Customer Added Succesfully... ");
+          this.display=!this.display;
           console.log(response);
-          alert(" Success ");
+          
         })
         .catch((error) => {
           console.log(error);
@@ -177,16 +182,22 @@ export default {
 <style lang="scss" scoped>
 #address {
   height: 80px;
- }
-
-#button {
-  float: right;
-  position: relative;
-  font-size: 14px;
-  height: 30px;
-  margin-right: 20px;
 }
 
+#button {
+  // margin-bottom: 10px;
+  width: 140px;
+  height: 29px;
+  background: #3371b5 0% 0% no-repeat padding-box;
+  border-radius: 2px;
+  opacity: 1;
+  font-size: 12px;
+  text-align: center;
+  margin-left: 580px;
+  margin-top: -14px;
+}
+
+//Main Cardd Container 
 .card {
   position: relative;
   flex-direction: column;
@@ -201,34 +212,34 @@ export default {
 .card-body {
   flex: 1 1 auto;
   min-height: 1px;
- }
+}
 
 input[type="text"] {
-  padding: 10px 20px;
-  margin: 10px 0;
-  width: 80%;
-  height: 40px;
+  padding: 10px 23px;
+  margin: 6px 0;
+  width: 300px;
+  height: 36px;
   outline: 1px solid lightgrey;
 }
 #name,
 #pin,
 #city {
-  margin-left: 20px;
+  margin-left: 58px;
 }
 #phone,
 #local,
 #landmark {
-  margin-left: -60px;
+  margin-left: -20px;
 }
 
 #address {
-  margin-left: 20px;
-  width: 580px;
+  margin-left: 58px;
+  width: 622px;
 }
 
 .work,
 .other {
-  margin-left: 60px;
+  margin-left: 40px;
   font-size: small;
 }
 
@@ -248,9 +259,14 @@ input[type="text"] {
   margin-left: 1px;
 }
 
+.form-check-inline {
+  display: inline-flex;
+  align-items: center;
+  padding-left: 0;
+  margin-right: 6.75rem;
+}
 #type {
-  float: left;
-  margin-left: 20px;
+  margin-left: -620px;
 }
 
 #heading {
@@ -266,5 +282,23 @@ input[type="text"] {
   margin-bottom: 10px;
   display: inline-flex;
   margin-left: 68%;
+}
+
+#card {
+  position: relative;
+  border-radius: 0.25rem;
+  border: 1px solid #707070;
+  height: 60px;
+  top: 56px;
+  width: 774px;
+}
+
+#lbl {
+  margin-top: 16px;
+}
+
+#blank
+{
+  margin-top: 20px;
 }
 </style>

@@ -1,21 +1,22 @@
 <template>
   <div class="Books">
-    <NavBar />
+    <!-- <NavBar /> -->
     <div id="empty" v-if="isListEmpty">
-      <Spinner class="spin" id="custom-spinner" v-if="Loadding" />
+      <!-- <Spinner class="spin" id="custom-spinner" v-if="Loadding" /> -->
     </div>
     <div class="display Book">
-      <CartDisplay @getBooks="fetchBooks" v-bind:allBooks="books"></CartDisplay>
+      <OrderDisplay v-bind:allBooks="books"></OrderDisplay>
+
     </div>
     <!-- <CustomerDetail/> -->
   </div>
 </template>
 
 <script>
-import Spinner from "vue-simple-spinner";
+// import Spinner from "vue-simple-spinner";
 import bookService from "../Services/bookService";
-import CartDisplay from "../components/CartDisplay";
-import NavBar from "../components/NavBar";
+import OrderDisplay from "../components/OrderDisplay";
+// import NavBar from "../components/NavBar";
 
 export default {
   name: "Books",
@@ -30,9 +31,9 @@ export default {
   },
 
   components: {
-    CartDisplay,
-    Spinner,
-    NavBar,
+    OrderDisplay,
+    // Spinner,
+    // NavBar,
   },
 
   methods: {
@@ -43,7 +44,7 @@ export default {
         .then((response) => {
           this.books = response.data.data;
           console.log(response);
-          this.Loadding = false;
+          // this.Loadding = false;
           this.total = this.books.length;
           console.log(this.total);
         })
@@ -51,15 +52,10 @@ export default {
           console.log(error);
         });
     },
-
-    // Emiting Method 
-    fetchBooks:function(){
-      this.getCartBooks();
-    },
   }, // Method
 
   // For All List
-mounted() {
+created() {
     console.log("message");
     this.getCartBooks();
   },

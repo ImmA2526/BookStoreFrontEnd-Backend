@@ -5,10 +5,12 @@ import Register from "../Pages/Register"
 import ForgotPassword from "../Pages/Forgot"
 import ResetPassword from "../Pages/ResetPage"
 import NavBar from "../components/NavBar"
-// import Books from "../components/Books"
+import Books from "../components/Book"
 import cart from "../components/Cart"
-import Home from"../components/HomePage"
+import Wish from "../components/WishList"
+// import Home from"../components/HomePage"
 import customer from "../components/CustomerDetail"
+import order from "../components/Order"
 Vue.use(VueRouter);
 
 // Router Guard
@@ -30,30 +32,60 @@ function guardRoute(to, from, next) {
 
 
 const routes = [
-  {
-    path: "/home",
-    name: "Home",
-    // beforeEnter: guardRoute,
-    component: Home,
-  },
+  // {
+  //   path: "/home",
+  //   name: "Home",
+  //   // beforeEnter: guardRoute,
+  //   component: Home,
+  // },
 
-  {
-    path: "/cst",
-    name: "customer",
-    beforeEnter: guardRoute,
-    component: customer,
-  },
-
+  
   {
     path: "/nav",
-    name: "NavBar",
+    name: "nav",
+    // beforeEnter: guardRoute,
     component: NavBar,
-    // children: [{
-    //   path: "books",
-    //   name: "books",
-    //   component: Books,
-    // },
-    // ]
+    children: [
+      {
+        path:"/" ,
+        name: "books",
+        beforeEnter: guardRoute,
+        component: Books,
+      },
+
+      {
+        path: "/wish",
+        name: "wish",
+        beforeEnter: guardRoute,
+        component: Wish,
+      },
+      
+      {
+        path: "/order",
+        name: "order",
+        beforeEnter: guardRoute,
+        component: order,
+      },
+
+
+      {
+      path: "/cart",
+      name: "Cart",
+      beforeEnter: guardRoute,
+      component: cart,
+      children:[
+        {
+          path: "/cst",
+          name: "customer",
+          beforeEnter: guardRoute,
+          component: customer,
+        },
+      ]
+
+      },
+  
+  ]
+
   },
 
   {
@@ -80,13 +112,6 @@ const routes = [
     component: ResetPassword,
   },
 
-{
-  path: "/cart",
-  name: "Cart",
-  beforeEnter: guardRoute,
-component:cart,
-}
-  
 ];
 
 const router = new VueRouter({

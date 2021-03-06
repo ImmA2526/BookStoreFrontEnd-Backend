@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = "https://localhost:44387/api"
+const baseUrl = "https://localhost:5001/api"
 
 export default
     {

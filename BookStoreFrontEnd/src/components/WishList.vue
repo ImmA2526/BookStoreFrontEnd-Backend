@@ -5,7 +5,7 @@
       <Spinner class="spin" id="custom-spinner" v-if="Loadding" />
     </div>
     <div class="display Book">
-      <CartDisplay @getBooks="fetchBooks" v-bind:allBooks="books"></CartDisplay>
+      <WishListDisplay v-bind:allBooks="books"></WishListDisplay>
     </div>
     <!-- <CustomerDetail/> -->
   </div>
@@ -14,7 +14,7 @@
 <script>
 import Spinner from "vue-simple-spinner";
 import bookService from "../Services/bookService";
-import CartDisplay from "../components/CartDisplay";
+import WishListDisplay from "../components/WishListDisplay";
 import NavBar from "../components/NavBar";
 
 export default {
@@ -30,16 +30,16 @@ export default {
   },
 
   components: {
-    CartDisplay,
+    WishListDisplay,
     Spinner,
     NavBar,
   },
 
   methods: {
-    getCartBooks: function() {
+    getWishListBooks: function() {
       this.Loadding = true;
       bookService
-        .getCartBooks()
+        .getWishListBooks()
         .then((response) => {
           this.books = response.data.data;
           console.log(response);
@@ -51,17 +51,12 @@ export default {
           console.log(error);
         });
     },
-
-    // Emiting Method 
-    fetchBooks:function(){
-      this.getCartBooks();
-    },
   }, // Method
 
-  // For All List
+// For All List
 mounted() {
     console.log("message");
-    this.getCartBooks();
+    this.getWishListBooks();
   },
 }; // }Export MAin
 </script>

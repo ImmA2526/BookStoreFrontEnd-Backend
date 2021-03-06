@@ -35,7 +35,7 @@ namespace BookStoreApplication.Controllers
         /// <returns></returns>
 
         [HttpPost]
-        [Route("addBooks")]
+        //[Route("addBooks")]
         public IActionResult AddItems([FromBody] CartModel addItem)
         {
             try

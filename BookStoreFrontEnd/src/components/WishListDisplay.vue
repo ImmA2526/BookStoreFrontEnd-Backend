@@ -3,38 +3,25 @@
     <!-- <Home/> -->
     <div class="card">
       <div id="bookcount">
-        <h5 id="count">My Cart ({{ allBooks.length }})</h5>
+        <h5 id="count">Wishlist Items ({{ allBooks.length }})</h5>
       </div>
       <div id="display" v-for="book in allBooks" :key="book._id">
         <div class="img">
           <div id="blanksbook"></div>
           <img v-bind:src="book.bookImage" />
         </div>
-
         <div id="bookdiv" class="book">
           <b>{{ book.bookName }}</b>
           by {{ book.authorName }}
           <b>RS: {{ book.bookPrice }}</b>
           <div id="blank"></div>
-          <div id="Qnty">
-            <div class="quantity-toggle">
-              <button @click="updateCart(book, 'less')">&mdash;</button>
-              <input type="text" :value="book.bookCount" readonly />
-              <button @click="updateCart(book, 'more')">&#xff0b;</button>
-            </div>
+          <div type="button" @click="RemoveWishItem(book.wishId)" id="remove">
+            Remove
           </div>
-          <!-- </div> -->
         </div>
       </div>
-
-      <b-button
-        id="button"
-        style="margin-top: 12%; float:right; position: relative"
-        variant="primary"
-        >PLACE ORDER</b-button
-      >
-      <b-card-text> </b-card-text>
     </div>
+    <div />
   </div>
 </template>
 
@@ -44,39 +31,26 @@ export default {
   name: "DisplayBooks",
   props: ["allBooks", "total"],
 
+  components: {
+  },
   data() {
     return {
       books: [],
       Loadding: false,
-      // bookId:'',
-      // bookCount:'',
-      count: null,
+      bookId: "",
+      bookCount: "",
+      count: "",
     };
   },
 
   methods: {
-    updateCart(book, oprator) {
-      console.log(book, oprator);
-      // const bookData = {
-      //   bookCount:book.bookCount,
-      //   bookId:book.bookId,
-      // };
-      // console.log(bookData);
-
-     if (this.quantity === 1) {
-        alert("Negative quantity not allowed");
-      }
-
-      if (oprator === "more") {
-        this.count = book.bookCount++;
-      } else {
-        this.count = book.bookCount--;
-      }
-      console.log(this.count);
+    RemoveWishItem(wishId) {
+      console.log(localStorage.getItem("UserId"));
+      console.log(this.wishId);
       bookService
-        .updateCartBookQnty(this.count, book.bookId)
+        .RemoveWishlistItem(wishId)
         .then((response) => {
-          this.$emit("Cart");
+          alert("Wishlist Item Removed Succesfully");
           console.log(response);
         })
         .catch((error) => {
@@ -84,18 +58,6 @@ export default {
         });
     },
   },
-
-  //   increment() {
-  //     this.quantity++;
-  //   },
-  //   decrement() {
-  //     if (this.quantity === 1) {
-  //       alert("Negative quantity not allowed");
-  //     } else {
-  //       this.quantity--;
-  //     }
-  //   },
-  // },
 };
 </script>
 
@@ -105,11 +67,15 @@ export default {
   padding-top: 10px;
 }
 
+#remove {
+  margin-left: 60px;
+  border: 1px solid grey;
+  border-radius: 4px;
+}
 $border: 2px solid #ddd;
 
 .quantity-toggle {
   display: flex;
-
   width: 10px;
   height: 40px;
 
@@ -123,11 +89,9 @@ $border: 2px solid #ddd;
 
   button {
     border: $border;
-
     background: #f5f5f5;
     color: rgb(0, 0, 0);
     font-size: 0.5rem;
-
     border-radius: 50%;
     height: 1.5rem;
     cursor: pointer;
@@ -171,23 +135,6 @@ $border: 2px solid #ddd;
   opacity: 1;
 }
 
-// #blank{
-// margin-top: 8px;
-// }
-// #blanks{
-// margin-top:18px;
-// }
-// #blanksbook{
-
-// }
-// #main-container {
-//   height: 80%;
-//   width: 80%;
-//   display: flex;
-//   flex-wrap: wrap;
-//   margin-left: 12%;
-// }
-
 //Bookname Bg Color
 #bookdiv {
   background-color: white;
@@ -211,22 +158,12 @@ $border: 2px solid #ddd;
 
 .card {
   position: relative;
-  // flex-direction: column;
   border-radius: 0.25rem;
   border: 1px solid #707070;
   height: auto;
   top: 112px;
   left: 177px;
   width: 774px;
-  // position: relative;
-  // display: flex;
-  // flex-direction: column;
   min-width: 0;
 }
-
-// .card-body {
-//   flex: 1 1 auto;
-//   min-height: 1px;
-//   /* padding: 1.25rem; */
-// }
 </style>

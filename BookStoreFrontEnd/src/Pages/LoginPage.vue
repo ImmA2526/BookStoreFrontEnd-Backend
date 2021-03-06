@@ -116,10 +116,10 @@ export default {
       userService
         .login(userData)
         .then((response) => {
-          setTimeout(() => this.redirect(), 1400);
           localStorage.setItem("AccessToken", response.data.data);
           localStorage.setItem("UserId", response.data.id);
-
+          setTimeout(() => this.redirect(), 1400);
+         
           // this.$router.push("/Register");
           console.log(response.data.data);
         })
@@ -138,7 +138,7 @@ export default {
     },
 
     redirect() {
-      this.$router.push("/home");
+      this.$router.push("/nav");
     },
 
     clearForm() {

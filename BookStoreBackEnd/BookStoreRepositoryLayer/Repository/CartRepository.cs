@@ -33,6 +33,7 @@ namespace BookStoreRepositoryLayer
             try
             {
                 cartContext.CartTable.Add(addItem);
+                addItem.BookCount = 1;
                 var add = cartContext.SaveChanges();
 
                 if (add > 0)
@@ -58,7 +59,7 @@ namespace BookStoreRepositoryLayer
             List<CartBookResponse> getResult = new List<CartBookResponse>();
             var result = from BookModel in cartContext.BookTable
                          join CartModel in cartContext.CartTable
-                         on BookModel.BookId equals CartModel.UserId
+                         on BookModel.BookId equals CartModel.BookId
 
                          select new CartBookResponse()
                          {
@@ -71,7 +72,7 @@ namespace BookStoreRepositoryLayer
                              BookDescription = BookModel.BookDescription,
 
                              CartId = CartModel.CartId,
-                             UserId = CartModel.UserId
+                             UserId = CartModel.UserId,
                          };
 
             foreach (var data in result)

@@ -1,8 +1,9 @@
 <template>
   <div>
+    <!-- <Home/> -->
     <div class="card">
       <div id="bookcount">
-        <h5 id="count">My Cart ({{ allBooks.length }})</h5>
+        <h5 id="count">Order ({{ allBooks.length }})</h5>
       </div>
       <div id="display" v-for="book in allBooks" :key="book._id">
         <div class="img">
@@ -14,7 +15,7 @@
           by {{ book.authorName }}
           <b>RS: {{ book.bookPrice }}</b>
           <div id="blank"></div>
-          <div id="Qnty">
+          <!-- <div id="Qnty">
             <div class="quantity-toggle">
               <button @click="updateCart(book, 'less')">&mdash;</button>
               <input type="text" :value="book.bookCount" readonly />
@@ -27,50 +28,40 @@
                 Remove
               </div>
             </div>
-          </div>
+          </div> -->
           <!-- </div> -->
         </div>
       </div>
-<div v-if="!display">
+
       <b-button
         id="button"
         variant="primary"
-        @click="(ishidden = false), (display = !display)"
-        >PLACE ORDER</b-button
+        >CHECK OUT</b-button
       >
-</div>
     </div>
     <div />
-    <div id="card" v-if="!display">
-      <label id="lbl">Customer Details</label>
     </div>
-     <div id="space" ></div>
-     <div id="card" v-if="!display">
-      <label id="lbl1">Order Details</label>      
-    </div>
-<div id="maincard" v-if="display"><CST /></div>
-  </div>
 </template>
 
 <script>
-import CST from "../components/CustomerDetail";
-import bookService from "../Services/bookService";
-import {bus} from "../main"
+// import CST from "../components/CustomerDetail";
+// import bookService from "../Services/bookService";
 export default {
   name: "DisplayBooks",
   props: ["allBooks", "total"],
 
   components: {
-    CST,
+    // CST,
   },
   data() {
     return {
+       display: false,
       books: [],
       Loadding: false,
       bookId: "",
       bookCount: "",
       count: "",
-      display: false,
+     
       isHidden: true,
     };
   },
@@ -78,53 +69,7 @@ export default {
 //Update Cart
 
   methods: {
-    updateCart(book, oprator) {
-      console.log(book);
-      console.log(localStorage.getItem("UserId"));
-      if (oprator === "more") {
-        this.count = book.bookCount + 1;
-        // bus.$emit.fetchBooks();
-      // bus.$emit('fetchBooks');
-      } else {
-        this.count = book.bookCount - 1;
-        // bus.$emit.fetchBooks();
-      
-      }
-      const bookData = {
-        cartId: book.cartId,
-        bookCount: this.count,
-        bookId: book.bookId,
-        userId: localStorage.getItem("UserId"),
-      };
-      console.log(bookData);
-      bookService
-        .updateCart(bookData)
-        .then((response) => {
-          // this.$emit('fetchBooks');
-          //Emitter 
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-
-    ///Remove Item From Cart
-    RemoveCartItem(cartId) {
-      console.log(localStorage.getItem("UserId"));
-      console.log(this.cartId);
-      bookService
-        .removeCart(cartId)
-        .then((response) => {
-          alert("BookRemoved From Cart Sussefully...");
-          bus.$emit('fetchBooks');
-
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
+    
   },
 };
 </script>

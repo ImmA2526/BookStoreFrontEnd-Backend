@@ -69,7 +69,7 @@ namespace BookStoreRepositoryLayer
                              BookImage = BookModel.BookImage,
                              BookDescription = BookModel.BookDescription,
 
-                             WishlistID = WishlistModel.WishlistID,
+                             WishId = WishlistModel.WishId,
                              UserId = WishlistModel.UserId
                          };
 

@@ -10,7 +10,7 @@ namespace BookStoreModelLayer.BooksModels
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int WishlistID { get; set; }
+        public int WishId { get; set; }
 
         [Required]
         [ForeignKey("UserModel")]
