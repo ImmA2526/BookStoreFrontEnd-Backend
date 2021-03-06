@@ -162,7 +162,7 @@ $border: 2px solid #ddd;
   border: 1px solid #707070;
   height: auto;
   top: 112px;
-  left: 177px;
+ left: 240px;
   width: 774px;
   min-width: 0;
 }

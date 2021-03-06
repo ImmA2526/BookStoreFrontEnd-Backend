@@ -205,7 +205,7 @@ export default {
   border: 1px solid #707070;
   height: 420px;
   top: 112px;
-  left: 177px;
+ left: 240px;
   width: 774px;
 }
 

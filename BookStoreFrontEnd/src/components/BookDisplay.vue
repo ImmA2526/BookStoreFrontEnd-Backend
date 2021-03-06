@@ -4,24 +4,13 @@
       <h5>Books</h5>
       ({{ allBooks.length }} <label id="lb">Items </label>)
 
-      <div class="dropdown">
-        <button
-          class=" btn-sm dropdown-toggle"
-          type="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-          id="drop"
-        >
-          Sort By Relevance
-        </button>
-        <div class="dropdown-menu" aria-labelledby="Sort By Relevance">
-          <a class="dropdown-item" href="#"></a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </div>
-    </div>
+<div id="drop">
+  <b-dropdown id="item" text="Sort By Relevance" size="sm" >
+    <b-dropdown-item size="sm" id="items" href="#">Price High To Low</b-dropdown-item>
+    <b-dropdown-item size="sm" id="items" href="#">Price Low To High</b-dropdown-item>
+   </b-dropdown>
+  </div>
+ </div>
 
     <div id="main-container">
       <div id="display" class="card" v-for="book in allBooks" :key="book._id">
@@ -277,5 +266,17 @@ export default {
   font-size: 10px;
   border: none;
 }
+#item{
+  height: 30px;
+  width:40px;
+  border:none;
+  background-color: white;
+  margin: auto;
+  // font-size: 10px;
+}
 
+#items{
+  font-size:10px ;
+  margin: auto;
+}
 </style>
