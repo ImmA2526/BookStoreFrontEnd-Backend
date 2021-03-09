@@ -40,12 +40,6 @@ const routes = [
     component: NavBar,
 
   },
-  {
-    path: "/order",
-    name: "order",
-    beforeEnter: guardRoute,
-    component: order,
-  },
 
   {
     

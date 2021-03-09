@@ -16,12 +16,12 @@
       </p>
     </div>
     <div id="allTable">
-      <table class="table table-bordered">
+      <table id="allTable" class="table table-bordered">
         <thead class="thead-light">
           <tr>
             <th scope="col">Email US</th>
             <th scope="col">Contact Us</th>
-            <th scope="col">Address</th>
+            <th id="address" scope="col">Address</th>
           </tr>
         </thead>
         <tbody>
@@ -51,7 +51,7 @@ export default {};
 
 <style lang="scss" scoped>
 #button {
-  width: 240px;
+  width: 140px;
   height: 29px;
   background: #3371b5 0% 0% no-repeat padding-box;
   border-radius: 2px;
@@ -60,6 +60,7 @@ export default {};
   text-align: center;
   margin-left: 254px;
   margin-top: 30px;
+  color: white;
 }
 
 .maindiv {
@@ -74,14 +75,15 @@ export default {};
 
 @media (min-width: 360px) and(max-width:640px) {
 #button {
-  width: 240px;
+  width: 140px;
   height: 29px;
   background: #3371b5 0% 0% no-repeat padding-box;
   border-radius: 2px;
   opacity: 1;
-  font-size: 12px;
+  color: white;
+  font-size: 10px;
   text-align: center;
-  margin-left: 254px;
+  margin-left: 104px;
   margin-top: 30px;
 }
 
@@ -92,8 +94,12 @@ export default {};
 }
 
 #allTable {
-  width: 100px;
+  width: 90%;
+  font-size: 10px;
+  margin-left: 10px;
 }
+
+
 #Image{
   width:80%;
   margin:auto;
