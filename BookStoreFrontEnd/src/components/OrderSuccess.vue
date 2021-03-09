@@ -1,6 +1,6 @@
 <template>
   <div class="maindiv">
-    <div>
+    <div id="Image">
       <img
         src="@/assets/OrderSuccessfull.png"
         height="320"
@@ -87,11 +87,16 @@ export default {};
 
 .maindiv {
   display: grid;
+  width:400px;
   justify-content: center;
 }
 
 #allTable {
-  width: 800px;
+  width: 100px;
+}
+#Image{
+  width:80%;
+  margin:auto;
 }
 }
 </style>
