@@ -156,7 +156,6 @@
 
 
   }
-
     #cart {
       font-size: 12px;
       margin-right: 4%;
@@ -182,6 +181,7 @@
     border-style: none;
   }
 
+///Responsivness Menu Bar 
 @media (min-width: 360px) and(max-width:640px) {
   // Card
 #search
@@ -233,8 +233,6 @@
 }
 
 </style>
-
-
 <script>
 // import Home from "../components/Home";
 export default {
