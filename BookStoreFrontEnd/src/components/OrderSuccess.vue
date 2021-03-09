@@ -70,4 +70,28 @@ export default {};
 #allTable {
   width: 800px;
 }
+
+
+@media (min-width: 360px) and(max-width:640px) {
+#button {
+  width: 240px;
+  height: 29px;
+  background: #3371b5 0% 0% no-repeat padding-box;
+  border-radius: 2px;
+  opacity: 1;
+  font-size: 12px;
+  text-align: center;
+  margin-left: 254px;
+  margin-top: 30px;
+}
+
+.maindiv {
+  display: grid;
+  justify-content: center;
+}
+
+#allTable {
+  width: 800px;
+}
+}
 </style>
