@@ -52,6 +52,12 @@ class bookService {
         console.log("Wishlist Id is: " + wishId);
         return http.DELETE(`/WishList/` + wishId)
     }
+//Order Checkout
+
+    orderCheckout(bookData) {
+        console.log(bookData)
+        return http.post(`/Order`, bookData)
+    }
 
 //Plus and Minus Items 
 // updateCartBookQnty(bookCount,bookId){

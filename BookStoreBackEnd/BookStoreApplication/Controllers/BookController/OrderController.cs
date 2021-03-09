@@ -12,7 +12,7 @@ namespace BookStoreApplication.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class OrderController : Controller
     {
         private readonly IOrderBusiness orderBusinsess;

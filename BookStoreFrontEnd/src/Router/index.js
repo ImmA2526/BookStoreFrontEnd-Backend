@@ -8,7 +8,8 @@ import NavBar from "../components/NavBar"
 import Books from "../components/Book"
 import cart from "../components/Cart"
 import Wish from "../components/WishList"
-// import Home from"../components/HomePage"
+import Orders from"../components/OrderSuccess"
+import Home from"../components/HomePage"
 import customer from "../components/CustomerDetail"
 import order from "../components/Order"
 Vue.use(VueRouter);
@@ -32,19 +33,19 @@ function guardRoute(to, from, next) {
 
 
 const routes = [
-  // {
-  //   path: "/home",
-  //   name: "Home",
-  //   // beforeEnter: guardRoute,
-  //   component: Home,
-  // },
-
-  
   {
     path: "/nav",
     name: "nav",
     // beforeEnter: guardRoute,
     component: NavBar,
+
+  },
+
+  {
+    
+    path: "/home",
+    name: "Home",
+    component: Home,
     children: [
       {
         path:"/" ,
@@ -52,30 +53,27 @@ const routes = [
         beforeEnter: guardRoute,
         component: Books,
       },
-
       {
-        path: "/wish",
+        path: "wish",
         name: "wish",
         beforeEnter: guardRoute,
         component: Wish,
       },
-      
+
       {
-        path: "/order",
+        path: "order",
         name: "order",
         beforeEnter: guardRoute,
         component: order,
       },
-
-
       {
-      path: "/cart",
+      path: "cart",
       name: "Cart",
       beforeEnter: guardRoute,
       component: cart,
       children:[
         {
-          path: "/cst",
+          path: "cst",
           name: "customer",
           beforeEnter: guardRoute,
           component: customer,
@@ -111,7 +109,11 @@ const routes = [
     name: "reset",
     component: ResetPassword,
   },
-
+  {
+    path: "/success",
+    name: "ordersc",
+    component: Orders,
+  },
 ];
 
 const router = new VueRouter({

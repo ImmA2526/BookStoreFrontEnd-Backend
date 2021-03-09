@@ -21,7 +21,7 @@
               <button @click="updateCart(book, 'more')">&#xff0b;</button>
               <div
                 type="button"
-                @click="RemoveCartItem(book.cartId)"
+                @click="RemoveCartItem(book.cartId);EventBus.$emit(fetchBooks)"
                 id="remove"
               >
                 Remove
@@ -55,7 +55,7 @@
 <script>
 import CST from "../components/CustomerDetail";
 import bookService from "../Services/bookService";
-import {bus} from "../main"
+import {EventBus} from "../main"
 export default {
   name: "DisplayBooks",
   props: ["allBooks", "total"],
@@ -109,6 +109,9 @@ export default {
         });
     },
 
+fetchbooks:function(){
+    this.getCartBooks();
+},
     ///Remove Item From Cart
     RemoveCartItem(cartId) {
       console.log(localStorage.getItem("UserId"));
@@ -117,7 +120,7 @@ export default {
         .removeCart(cartId)
         .then((response) => {
           alert("BookRemoved From Cart Sussefully...");
-          bus.$emit('fetchBooks');
+        EventBus.$emit('fetchBooks');
 
           console.log(response);
         })

@@ -16,6 +16,7 @@ import Spinner from "vue-simple-spinner";
 import bookService from "../Services/bookService";
 import CartDisplay from "../components/CartDisplay";
 import NavBar from "../components/NavBar";
+import { EventBus } from '../main';
 
 export default {
   name: "Books",
@@ -59,9 +60,10 @@ export default {
   }, // Method
 
   // For All List
-mounted() {
+created() {
+   EventBus.$on(this.getCartBooks())   
     console.log("message");
-    this.getCartBooks();
+    
   },
 }; // }Export MAin
 </script>

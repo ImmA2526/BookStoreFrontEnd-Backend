@@ -15,28 +15,13 @@
           by {{ book.authorName }}
           <b>RS: {{ book.bookPrice }}</b>
           <div id="blank"></div>
-          <!-- <div id="Qnty">
-            <div class="quantity-toggle">
-              <button @click="updateCart(book, 'less')">&mdash;</button>
-              <input type="text" :value="book.bookCount" readonly />
-              <button @click="updateCart(book, 'more')">&#xff0b;</button>
-              <div
-                type="button"
-                @click="RemoveCartItem(book.cartId)"
-                id="remove"
-              >
-                Remove
-              </div>
-            </div>
-          </div> -->
-          <!-- </div> -->
-        </div>
+         </div>
       </div>
 
       <b-button
         id="button"
         variant="primary"
-        >CHECK OUT</b-button
+       v-on:click="CheckoutOrder()">CHECK OUT</b-button
       >
     </div>
     <div />
@@ -45,7 +30,7 @@
 
 <script>
 // import CST from "../components/CustomerDetail";
-// import bookService from "../Services/bookService";
+import bookService from "../Services/bookService";
 export default {
   name: "DisplayBooks",
   props: ["allBooks", "total"],
@@ -61,7 +46,7 @@ export default {
       bookId: "",
       bookCount: "",
       count: "",
-     
+     orderSummaryID:'',
       isHidden: true,
     };
   },
@@ -69,7 +54,24 @@ export default {
 //Update Cart
 
   methods: {
-    
+      CheckoutOrder() {
+      console.log(localStorage.getItem('UserId'));
+      const bookData = {
+       
+        UserId:localStorage.getItem("UserId"), 
+      };
+      console.log(this.bookData);
+      bookService
+      .orderCheckout(bookData)
+      .then((response) => {
+        alert("Order Added Succesfully");
+        this.$router.push("/success");
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
 };
 </script>
