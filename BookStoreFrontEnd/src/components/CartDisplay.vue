@@ -264,4 +264,45 @@ $border: 2px solid #ddd;
 #maincard {
   margin-top: 20px;
 }
+
+//Other Device
+@media (min-width: 360px) and(max-width:640px) {
+  // Card
+.card {
+  position: relative;
+  border-radius: 0.25rem;
+  border: 1px solid #707070;
+  height: auto;
+  top: 110px;
+  left: 40px;
+  width: 274px;
+}
+//Second Card 
+#space
+{
+  margin-top: 14px;
+}
+#card {
+  position: relative;
+  border-radius: 0.25rem;
+  border: 1px solid #707070;
+  height: 60px;
+  top: 130px;
+  left: 40px;
+  width: 274px;
+  // min-width: 0;
+}
+
+#button {
+  margin-bottom: 10px;
+  width: 140px;
+  height: 29px;
+  background: #3371b5 0% 0% no-repeat padding-box;
+  border-radius: 2px;
+  opacity: 1;
+  font-size: 12px;
+  text-align: center;
+  margin-left: 580px;
+}
+}
 </style>

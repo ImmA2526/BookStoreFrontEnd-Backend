@@ -166,4 +166,36 @@ $border: 2px solid #ddd;
   width: 774px;
   min-width: 0;
 }
+
+//Other Device
+@media (min-width: 360px) and(max-width:640px) {
+  // Card
+.card {
+  position: relative;
+  border-radius: 0.25rem;
+  border: 1px solid #707070;
+  height: auto;
+  top: 180px;
+  left: 40px;
+  width: 274px;
+}
+//Second Card 
+#space
+{
+  margin-top: 14px;
+}
+#card {
+  position: relative;
+  border-radius: 0.25rem;
+  border: 1px solid #707070;
+  height: 60px;
+  top: 200px;
+  left: 40px;
+  width: 274px;
+  // min-width: 0;
+}
+
+
+}
 </style>
+

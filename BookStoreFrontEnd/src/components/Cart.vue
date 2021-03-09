@@ -1,6 +1,6 @@
 <template>
   <div class="Books">
-    <NavBar />
+    <!-- <NavBar /> -->
     <div id="empty" v-if="isListEmpty">
       <Spinner class="spin" id="custom-spinner" v-if="Loadding" />
     </div>
@@ -15,7 +15,7 @@
 import Spinner from "vue-simple-spinner";
 import bookService from "../Services/bookService";
 import CartDisplay from "../components/CartDisplay";
-import NavBar from "../components/NavBar";
+// import NavBar from "../components/NavBar";
 import { EventBus } from '../main';
 
 export default {
@@ -33,7 +33,7 @@ export default {
   components: {
     CartDisplay,
     Spinner,
-    NavBar,
+    // NavBar,
   },
 
   methods: {

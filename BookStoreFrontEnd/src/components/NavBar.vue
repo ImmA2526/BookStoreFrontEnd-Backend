@@ -229,7 +229,10 @@
     border: none;
 
     }
-
+ #md-app
+{
+  height: 58px;
+}
 }
 
 </style>
