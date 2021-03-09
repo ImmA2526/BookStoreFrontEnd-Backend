@@ -41,11 +41,12 @@ const routes = [
 
   },
   {
-    path: "/cst",
-    name: "customer",
+    path: "/order",
+    name: "order",
     beforeEnter: guardRoute,
-    component: customer,
+    component: order,
   },
+
   {
     
     path: "/home",
@@ -78,7 +79,7 @@ const routes = [
       component: cart,
       children:[
         {
-          path: "/cst",
+          path: "cst",
           name: "customer",
           beforeEnter: guardRoute,
           component: customer,
