@@ -293,16 +293,17 @@ $border: 2px solid #ddd;
   // min-width: 0;
 }
 
+//Button
 #button {
   margin-bottom: 10px;
-  width: 140px;
+  width: 100px;
   height: 29px;
   background: #3371b5 0% 0% no-repeat padding-box;
   border-radius: 2px;
   opacity: 1;
-  font-size: 12px;
+  font-size: 10px;
   text-align: center;
-  margin-left: 580px;
+  margin-left: 80px;
 }
 }
 </style>

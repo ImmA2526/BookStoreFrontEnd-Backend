@@ -208,4 +208,115 @@ $border: 2px solid #ddd;
 #maincard {
   margin-top: 20px;
 }
+
+//Other Device
+@media (min-width: 360px) and(max-width:640px) {
+  // Card
+.card {
+  position: relative;
+  border-radius: 0.25rem;
+  border: 1px solid #707070;
+  height: auto;
+  top: 110px;
+  left: 40px;
+  width: 274px;
+}
+//Second Card 
+#space
+{
+  margin-top: 14px;
+}
+#card {
+  position: relative;
+  border-radius: 0.25rem;
+  border: 1px solid #707070;
+  height: 60px;
+  top: 130px;
+  left: 40px;
+  width: 274px;
+  // min-width: 0;
+}
+
+//Button
+#button {
+  margin-bottom: 10px;
+  width: 100px;
+  height: 29px;
+  background: #3371b5 0% 0% no-repeat padding-box;
+  border-radius: 2px;
+  opacity: 1;
+  margin-top: 8px;
+  font-size: 10px;
+  text-align: center;
+  margin-left: 80px;
+}
+
+
+input[type="text"] {
+  padding: 4px 2px;
+  font-size: 10px;
+  margin: 6px 0;
+  width: 110px;
+  height: 34px;
+  outline: 1px solid lightgrey;
+}
+#name,
+#pin,
+#city {
+  margin-left: 28px;
+}
+#phone,
+#local,
+#landmark {
+  margin-left: -16px;
+}
+
+#address {
+  margin-left: 28px;
+  width: 232px;
+}
+
+.work,
+.other {
+  margin-left: -50px;
+  font-size: small;
+}
+
+#homes,
+#works,
+#others {
+  width: 8px;
+  border: none;
+  margin: 12px;
+  display: flex;
+  margin-left: 2px;
+}
+
+#mainRadio {
+  float: left;
+  border: none;
+  display: flex;
+  margin-left: 6px;
+}
+
+#type {
+  margin-left: -220px;
+}
+
+#heading {
+  text-align: left;
+  margin-left: 24px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+#edit {
+  text-align: right;
+  font-size: 14px;
+  margin-bottom: 10px;
+  display: inline-flex;
+  margin-left: 88px;
+}
+
+}
 </style>

@@ -40,7 +40,12 @@ const routes = [
     component: NavBar,
 
   },
-
+  {
+    path: "/cst",
+    name: "customer",
+    beforeEnter: guardRoute,
+    component: customer,
+  },
   {
     
     path: "/home",
@@ -73,7 +78,7 @@ const routes = [
       component: cart,
       children:[
         {
-          path: "cst",
+          path: "/cst",
           name: "customer",
           beforeEnter: guardRoute,
           component: customer,
